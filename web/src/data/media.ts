@@ -30,7 +30,11 @@ function asset(
   return Object.freeze({
     id,
     ...meta,
-    sources: { hd: `${VIDEOS}/1080/${id}.mp4?${VIDEO_VERSION}`, sd: `${VIDEOS}/720/${id}.mp4?${VIDEO_VERSION}` },
+    sources: {
+      hd: `${VIDEOS}/1080/${id}.mp4?${VIDEO_VERSION}`,
+      sd: `${VIDEOS}/720/${id}.mp4?${VIDEO_VERSION}`,
+      preview: `${VIDEOS}/360/${id}.mp4?${VIDEO_VERSION}`,
+    },
     poster: `${POSTERS}/${id}.jpg`,
     posterSmall: `${POSTERS}/${id}-sm.jpg`,
   })

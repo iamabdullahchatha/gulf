@@ -1,39 +1,39 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode, type SVGProps } from 'react'
 import { Link, useLocation } from 'react-router'
-import { ArrowUp, ArrowUpRight, Clock, HardHat, Layers, Mail, MapPin, MapPinned, Phone } from 'lucide-react'
+import { ArrowRight, ArrowUp, ArrowUpRight, Clock, HardHat, Layers, Mail, MapPin, MapPinned, MessageCircleQuestion, Phone } from 'lucide-react'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
-import { Marquee } from '@/components/Marquee'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { Texture } from '@/components/Texture'
 import { buttonStyles } from '@/lib/buttonStyles'
+import { cn } from '@/lib/cn'
 import { scrollToElement } from '@/lib/lenis'
 import { COMPANY_LINKS } from '@/data/navigation'
 import { SERVICES } from '@/data/services'
 import { INDUSTRIES } from '@/data/industries'
 import { COMPANY, hasVerifiedContact } from '@/data/company'
 
-const TRUST = [
-  { icon: Layers, t: 'Integrated delivery' },
-  { icon: HardHat, t: 'Safety-first culture' },
-  { icon: MapPinned, t: 'Regional know-how' },
+const PILLARS = [
+  { icon: Layers, t: 'Integrated delivery', d: 'One contract. One owner.' },
+  { icon: HardHat, t: 'Safety-first culture', d: 'Everyone home, every day.' },
+  { icon: MapPinned, t: 'Regional know-how', d: 'Built for Gulf conditions.' },
 ]
 
-const SITE = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Industries', href: '/industries' },
-  { label: 'FAQs', href: '/faqs' },
-  { label: 'Contact', href: '/contact' },
-]
+const SECTORS = ['Oil & Gas', 'Petrochemical', 'Construction', 'Mechanical']
+
+interface FooterLink {
+  label: string
+  href: string
+}
 
 /**
- * Site footer: a calm closing band, an orderly link grid and a legal bar.
+ * Site footer: an optional closing statement, a brand band with the three
+ * delivery pillars, a four-column link grid with an enquiry panel, a large
+ * brand wordmark and a legal bar.
  *
  * Contact details come only from `data/company.ts` (verified facts); null
  * fields are never rendered. The homepage ends with its own contact chapter
- * and the contact page is the destination itself, so the closing band is
+ * and the contact page is the destination itself, so the closing statement is
  * skipped on both.
  */
 export function Footer() {
@@ -42,116 +42,275 @@ export function Footer() {
   const verified = hasVerifiedContact(contact)
   const { pathname } = useLocation()
   const showStatement = !['/', '/contact', '/faqs'].includes(pathname)
+  const revealRef = useReveal<HTMLDivElement>()
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#09264b_0%,#06172f_50%,#040f22_100%)] text-steel-300">
-      <Texture variant="grid" className="opacity-25" />
+    <footer className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#071d3b_0%,#06172f_40%,#030d1d_100%)] text-steel-300">
+      <Texture variant="grid" className="opacity-20" />
+      <Texture variant="noise" className="opacity-[0.035] mix-blend-overlay" />
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald/70 to-transparent" />
-      <div aria-hidden className="absolute -left-48 top-1/3 size-[36rem] rounded-full bg-electric/[0.08] blur-3xl" />
-      <div aria-hidden className="absolute -right-48 bottom-10 size-[32rem] rounded-full bg-emerald/[0.07] blur-3xl" />
-
-      {/* Capability ribbon */}
-      <div className="relative border-b border-white/10 bg-white/[0.02]">
-        <Marquee items={SERVICES.map((s) => s.title)} className="py-4" />
-      </div>
+      <div aria-hidden className="pointer-events-none absolute -left-56 top-1/4 -z-10 size-[40rem] rounded-full bg-electric/[0.08] blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-56 bottom-24 -z-10 size-[36rem] rounded-full bg-emerald/[0.07] blur-3xl" />
 
       {showStatement && <Statement />}
 
-      <Container className="relative grid gap-12 pb-14 pt-16 md:grid-cols-2 md:pt-20 lg:grid-cols-12 lg:gap-10">
-        {/* Brand */}
-        <div className="md:col-span-2 lg:col-span-4">
-          <div className="relative inline-block">
-            <div aria-hidden className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(closest-side,rgb(8_126_219/0.35),transparent)] blur-xl" />
-            <Logo size="xl" className="relative rounded-2xl px-4 py-2" />
-          </div>
-          <p className="mt-7 max-w-sm text-sm leading-relaxed text-steel-300">
-            Integrated oil &amp; gas contracting, industrial engineering and infrastructure solutions for operators and EPC contractors.
-          </p>
-          <ul className="mt-7 space-y-3">
-            {TRUST.map(({ icon: Icon, t }) => (
-              <li key={t} className="group flex items-center gap-3 text-sm text-white/85">
-                <span className="inline-flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-teal-300 transition duration-300 group-hover:border-emerald/40 group-hover:bg-emerald/15">
-                  <Icon className="size-4" aria-hidden />
-                </span>
-                {t}
-              </li>
-            ))}
-          </ul>
-          {registrationNumber && <p className="mt-6 label-tech text-steel-500">CR No. {registrationNumber}</p>}
-        </div>
-
-        <FooterColumn title="Company" className="lg:col-span-2" links={COMPANY_LINKS} />
-        <FooterColumn title="Services" className="lg:col-span-3" links={SERVICES.map((s) => ({ label: s.title, href: `/services/${s.slug}` }))} />
-
-        <div className="space-y-10 lg:col-span-3">
-          <FooterColumn title="Industries" links={INDUSTRIES.map((i) => ({ label: i.title, href: `/industries/${i.slug}` }))} />
-
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-md transition duration-500 hover:border-emerald/30">
-            <div aria-hidden className="absolute -right-10 -top-10 size-32 rounded-full bg-emerald/15 blur-2xl" />
-            <h2 className="relative flex items-center gap-3 label-tech text-white">
-              <span className="inline-flex size-7 items-center justify-center rounded-lg bg-gradient-to-br from-emerald to-teal-500 text-midnight">
-                <Mail className="size-3.5" aria-hidden />
-              </span>
-              Enquiries
-            </h2>
-            {verified ? (
-              <ul className="relative mt-4 space-y-3 text-sm">
-                {contact.email && (
-                  <li className="flex gap-3">
-                    <Mail className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden />
-                    <a href={`mailto:${contact.email}`} className="link-underline text-white/90 hover:text-white">{contact.email}</a>
+      <div ref={revealRef}>
+        {/* Brand band */}
+        <Container className="relative pt-16 md:pt-20">
+          <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-12 lg:items-center lg:gap-12">
+            <div className="reveal lg:col-span-5">
+              <div className="relative inline-block">
+                <div aria-hidden className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(closest-side,rgb(8_126_219/0.3),transparent)] blur-xl" />
+                <Logo size="lg" className="relative" />
+              </div>
+              <p className="mt-6 max-w-md text-[0.9375rem] leading-relaxed text-steel-300">
+                Integrated oil &amp; gas contracting, industrial engineering and infrastructure solutions for operators and EPC contractors.
+              </p>
+              <ul aria-label="Sectors we serve" className="mt-6 flex flex-wrap gap-2">
+                {SECTORS.map((s) => (
+                  <li key={s} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-steel-300">
+                    <span aria-hidden className="size-1.5 rounded-full bg-emerald shadow-[0_0_8px_rgb(0_185_154/0.8)]" />
+                    {s}
                   </li>
-                )}
-                {contact.phone && (
-                  <li className="flex gap-3">
-                    <Phone className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden />
-                    <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="link-underline text-white/90 hover:text-white">{contact.phone}</a>
-                  </li>
-                )}
-                {contact.address && (
-                  <li className="flex gap-3">
-                    <MapPin className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden />
-                    <address className="not-italic text-white/90">{contact.address.map((l) => <span key={l} className="block">{l}</span>)}</address>
-                  </li>
-                )}
-                {contact.hours && (
-                  <li className="flex gap-3">
-                    <Clock className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden />
-                    <span className="text-white/90">{contact.hours}</span>
-                  </li>
-                )}
+                ))}
               </ul>
-            ) : (
-              <p className="relative mt-4 text-sm leading-relaxed text-steel-300">Send us your scope and our engineering team will respond directly.</p>
-            )}
-            <Link to="/contact" className="group relative mt-4 flex items-center justify-between rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-midnight transition hover:bg-emerald">
-              Open the enquiry form
-              <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-            </Link>
+            </div>
+
+            <ul className="reveal grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-panel sm:grid-cols-3 lg:col-span-7">
+              {PILLARS.map(({ icon: Icon, t, d }, i) => (
+                <li key={t} className="group relative overflow-hidden bg-[#061a35] p-5 transition-colors duration-500 hover:bg-[#08223f] md:p-6">
+                  <span aria-hidden className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-emerald to-electric transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-x-100" />
+                  <span aria-hidden className="absolute -bottom-16 -right-16 size-36 rounded-full bg-emerald/0 blur-2xl transition-colors duration-700 group-hover:bg-emerald/15" />
+                  <span aria-hidden className="absolute right-5 top-5 label-tech text-steel-500 transition-colors duration-500 group-hover:text-emerald md:right-6 md:top-6">0{i + 1}</span>
+                  <div className="flex items-center gap-4 sm:block">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-teal-300 transition duration-500 group-hover:-translate-y-0.5 group-hover:border-emerald/40 group-hover:bg-emerald/15">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="font-display text-base font-semibold tracking-tight text-white sm:mt-5">{t}</p>
+                      <p className="mt-1 text-sm text-steel-400">{d}</p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </Container>
+        </Container>
+
+        {/* Link grid */}
+        <Container className="relative grid grid-cols-2 gap-x-6 gap-y-12 py-14 md:py-16 lg:grid-cols-12 lg:gap-x-10">
+          <FooterColumn index="01" title="Company" className="reveal lg:col-span-2" links={COMPANY_LINKS} pathname={pathname} />
+          <FooterColumn
+            index="02"
+            title="Industries"
+            className="reveal lg:col-span-2"
+            links={INDUSTRIES.map((i) => ({ label: i.title, href: `/industries/${i.slug}` }))}
+            all={{ label: 'All industries', href: '/industries' }}
+            pathname={pathname}
+          />
+          <FooterColumn
+            index="03"
+            title="Services"
+            className="reveal col-span-2 lg:col-span-5"
+            listClassName="sm:columns-2 sm:gap-x-8"
+            links={SERVICES.map((s) => ({ label: s.title, href: `/services/${s.slug}` }))}
+            all={{ label: 'All services', href: '/services' }}
+            pathname={pathname}
+          />
+
+          {/* Enquiry panel, framed by a slowly orbiting light */}
+          <div className="reveal col-span-2 lg:col-span-3">
+            <div className="footer-orbit relative rounded-2xl p-px shadow-[0_30px_70px_-30px_rgb(0_185_154/0.35)]">
+              <div className="relative isolate overflow-hidden rounded-[calc(1rem-1px)] bg-[linear-gradient(150deg,#0b3a72_0%,#08223f_55%,#061a35_100%)] p-6 md:p-7">
+                <div aria-hidden className="absolute -right-12 -top-12 -z-10 size-40 rounded-full bg-emerald/25 blur-3xl" />
+                <Texture variant="lines" className="-z-10 opacity-20" />
+                <h2 className="flex items-center gap-3 label-tech text-white">
+                  <span className="text-emerald">04</span>
+                  <span className="h-px w-5 bg-white/25" aria-hidden />
+                  Enquiries
+                </h2>
+                <p className="mt-4 font-display text-xl font-semibold tracking-tight text-white">
+                  Have a scope in <em>mind</em>?
+                </p>
+                {verified ? (
+                  <ul className="mt-4 space-y-3 text-sm">
+                    {contact.email && (
+                      <ContactRow icon={Mail}>
+                        <a href={`mailto:${contact.email}`} className="link-underline text-white/90 hover:text-white">{contact.email}</a>
+                      </ContactRow>
+                    )}
+                    {contact.phone && (
+                      <ContactRow icon={Phone}>
+                        <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="link-underline text-white/90 hover:text-white">{contact.phone}</a>
+                      </ContactRow>
+                    )}
+                    {contact.address && (
+                      <ContactRow icon={MapPin}>
+                        <address className="not-italic text-white/90">{contact.address.map((l) => <span key={l} className="block">{l}</span>)}</address>
+                      </ContactRow>
+                    )}
+                    {contact.hours && (
+                      <ContactRow icon={Clock}>
+                        <span className="text-white/90">{contact.hours}</span>
+                      </ContactRow>
+                    )}
+                  </ul>
+                ) : (
+                  <p className="mt-2 text-sm leading-relaxed text-steel-300">Send us your scope, site and schedule. Our engineering team will respond directly.</p>
+                )}
+                <div className="mt-6 flex flex-col gap-2.5 sm:flex-row lg:flex-col">
+                  <Link to="/contact" className={buttonStyles({ variant: 'emerald', size: 'md', className: 'flex-1 whitespace-nowrap' })}>
+                    Start an enquiry <ArrowUpRight className="size-4" aria-hidden />
+                  </Link>
+                  <Link to="/faqs" className={buttonStyles({ variant: 'ghost', size: 'md', className: 'flex-1 whitespace-nowrap' })}>
+                    <MessageCircleQuestion className="size-4" aria-hidden /> Read FAQs
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
 
       <Container className="relative">
-        <Skyline />
+        <Wordmark />
       </Container>
 
-      <Container className="relative flex flex-col gap-5 border-t border-white/10 py-7 text-xs text-steel-400 md:flex-row md:items-center md:justify-between">
-        <p>
-          &copy; {year} {legalName}. All rights reserved.
-        </p>
-        <nav aria-label="Footer">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {SITE.map((l) => (
-              <li key={l.href}>
-                <Link to={l.href} className="link-underline transition-colors hover:text-white">{l.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <BackToTop />
-      </Container>
+      {/* Legal bar */}
+      <div className="relative border-t border-white/10 bg-abyss/70 backdrop-blur-sm">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <Container className="grid gap-5 py-6 text-xs text-steel-400 md:grid-cols-[1fr_auto_1fr] md:items-center">
+          <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+            <p>
+              &copy; {year} {legalName}. All rights reserved.
+            </p>
+            {registrationNumber && (
+              <>
+                <span aria-hidden className="hidden h-3 w-px bg-white/15 sm:block" />
+                <p className="label-tech text-steel-500">CR No. {registrationNumber}</p>
+              </>
+            )}
+          </div>
+          <p aria-hidden className="hidden items-center gap-3 label-tech text-steel-500 md:flex">
+            Engineer <span className="size-1 rounded-full bg-emerald" /> Build <span className="size-1 rounded-full bg-electric" /> Maintain
+          </p>
+          <div className="md:justify-self-end">
+            <BackToTop />
+          </div>
+        </Container>
+      </div>
     </footer>
+  )
+}
+
+/**
+ * Fades and lifts every `.reveal` inside the returned ref, in sequence, the
+ * first time the block scrolls into view. Reduced motion is handled by the
+ * global `.reveal` rules in index.css.
+ */
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T>(null)
+  useEffect(() => {
+    const root = ref.current
+    if (!root) return
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.reveal'))
+    items.forEach((el, i) => (el.style.transitionDelay = `${i * 70}ms`))
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return
+        items.forEach((el) => el.classList.add('is-in'))
+        io.disconnect()
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    )
+    io.observe(root)
+    return () => io.disconnect()
+  }, [])
+  return ref
+}
+
+/**
+ * Oversized outlined brand wordmark. A soft emerald light follows the pointer
+ * across the letters. Decorative.
+ */
+function Wordmark() {
+  const ref = useRef<SVGSVGElement>(null)
+  const spot = useRef<SVGRadialGradientElement>(null)
+  const [lit, setLit] = useState(false)
+
+  const move = (e: ReactPointerEvent<SVGSVGElement>) => {
+    const svg = ref.current
+    const g = spot.current
+    if (!svg || !g) return
+    const r = svg.getBoundingClientRect()
+    g.setAttribute('cx', String(((e.clientX - r.left) / r.width) * 1000))
+    g.setAttribute('cy', String(((e.clientY - r.top) / r.height) * 200))
+  }
+
+  const text = (props: SVGProps<SVGTextElement>) => (
+    <text
+      x="500"
+      y="186"
+      textAnchor="middle"
+      textLength="996"
+      lengthAdjust="spacingAndGlyphs"
+      fontSize="228"
+      fontWeight="800"
+      style={{ fontFamily: 'var(--font-display)', fontStretch: '125%', letterSpacing: '-0.02em' }}
+      {...props}
+    >
+      GULF NEXT
+    </text>
+  )
+
+  return (
+    <div aria-hidden className="relative -mb-px select-none pt-2">
+      <svg
+        ref={ref}
+        viewBox="0 0 1000 200"
+        className="block w-full"
+        onPointerMove={move}
+        onPointerEnter={() => setLit(true)}
+        onPointerLeave={() => setLit(false)}
+      >
+        <defs>
+          <linearGradient id="wm-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0.06" />
+            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="wm-stroke" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#c5ced8" stopOpacity="0.32" />
+            <stop offset="1" stopColor="#c5ced8" stopOpacity="0.02" />
+          </linearGradient>
+          <linearGradient id="wm-glow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#4dd6bd" />
+            <stop offset="1" stopColor="#2e96ea" />
+          </linearGradient>
+          <radialGradient ref={spot} id="wm-spot" gradientUnits="userSpaceOnUse" cx="500" cy="100" r="190">
+            <stop offset="0" stopColor="#fff" stopOpacity="1" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          </radialGradient>
+          <mask id="wm-mask">
+            <rect width="1000" height="200" fill="url(#wm-spot)" />
+          </mask>
+        </defs>
+        {text({ fill: 'url(#wm-fill)', stroke: 'url(#wm-stroke)', strokeWidth: 1 })}
+        <g mask="url(#wm-mask)" style={{ opacity: lit ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+          {text({ fill: 'url(#wm-glow)', fillOpacity: 0.22, stroke: 'url(#wm-glow)', strokeWidth: 1.4 })}
+        </g>
+      </svg>
+    </div>
+  )
+}
+
+function ContactRow({ icon: Icon, children }: { icon: typeof Mail; children: ReactNode }) {
+  return (
+    <li className="flex gap-3">
+      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-emerald">
+        <Icon className="size-3.5" aria-hidden />
+      </span>
+      <span className="pt-1">{children}</span>
+    </li>
   )
 }
 
@@ -266,22 +425,58 @@ function PlantDrawing() {
   )
 }
 
-function FooterColumn({ title, links, className }: { title: string; links: { label: string; href: string }[]; className?: string }) {
+interface FooterColumnProps {
+  index: string
+  title: string
+  links: FooterLink[]
+  /** Optional "view all" link shown under the list. */
+  all?: FooterLink
+  pathname: string
+  className?: string
+  listClassName?: string
+}
+
+/** A titled link list. The link for the current page is highlighted and marked aria-current. */
+function FooterColumn({ index, title, links, all, pathname, className, listClassName }: FooterColumnProps) {
   return (
     <nav aria-label={title} className={className}>
       <h2 className="flex items-center gap-3 label-tech text-white">
-        <span className="h-px w-5 bg-emerald" aria-hidden /> {title}
+        <span className="text-emerald">{index}</span>
+        <span className="h-px w-5 bg-white/25" aria-hidden />
+        {title}
       </h2>
-      <ul className="mt-5 space-y-2.5 text-sm">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link to={l.href} className="group inline-flex items-start gap-2 leading-snug text-steel-300 transition-colors duration-300 hover:text-white">
-              <span aria-hidden className="mt-[0.55em] h-px w-0 shrink-0 bg-emerald transition-all duration-300 group-hover:w-3" />
-              {l.label}
-            </Link>
-          </li>
-        ))}
+      <ul className={cn('mt-6 text-sm', listClassName)}>
+        {links.map((l) => {
+          const current = l.href === pathname
+          return (
+            <li key={l.href} className="break-inside-avoid pb-3">
+              <Link
+                to={l.href}
+                aria-current={current ? 'page' : undefined}
+                className={cn(
+                  'group inline-flex items-start leading-snug transition-colors duration-300 hover:text-white',
+                  current ? 'text-white' : 'text-steel-300',
+                )}
+              >
+                <span
+                  aria-hidden
+                  className={cn(
+                    'mt-[0.6em] h-px shrink-0 bg-emerald transition-all duration-300 ease-[var(--ease-out-expo)] group-hover:mr-2 group-hover:w-3',
+                    current ? 'mr-2 w-3' : 'mr-0 w-0',
+                  )}
+                />
+                {l.label}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
+      {all && (
+        <Link to={all.href} className="group mt-2 inline-flex items-center gap-2 text-sm font-semibold text-teal-300 transition-colors hover:text-white">
+          {all.label}
+          <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+        </Link>
+      )}
     </nav>
   )
 }
@@ -328,51 +523,3 @@ function BackToTop() {
   )
 }
 
-/** Refinery skyline in line art — columns, spheres, tanks and a flare. Decorative. */
-function Skyline() {
-  return (
-    <div aria-hidden className="relative h-16 opacity-60 md:h-20">
-      <svg viewBox="0 0 1440 140" preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
-        <defs>
-          <linearGradient id="sky-stroke" x1="0" x2="1">
-            <stop offset="0" stopColor="#c5ced8" stopOpacity="0" />
-            <stop offset="0.2" stopColor="#c5ced8" stopOpacity="0.35" />
-            <stop offset="0.5" stopColor="#00b99a" stopOpacity="0.6" />
-            <stop offset="0.8" stopColor="#c5ced8" stopOpacity="0.35" />
-            <stop offset="1" stopColor="#c5ced8" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <g fill="none" stroke="url(#sky-stroke)" strokeWidth="1.2">
-          <path d="M0 139 H1440" />
-          {/* tanks */}
-          <path d="M70 139 V112 Q110 104 150 112 V139 M170 139 V118 Q200 112 230 118 V139" />
-          {/* columns */}
-          <path d="M300 139 V48 Q312 40 324 48 V139 M300 70 H324 M300 95 H324 M338 139 V66 Q347 60 356 66 V139 M338 90 H356" />
-          {/* pipe rack */}
-          <path d="M370 120 H560 M370 112 H560 M390 139 V112 M440 139 V112 M490 139 V112 M540 139 V112" />
-          {/* spheres */}
-          <circle cx="610" cy="114" r="18" />
-          <circle cx="660" cy="118" r="14" />
-          <path d="M600 139 L606 130 M620 139 L614 130 M652 139 L656 131 M668 139 L664 131" />
-          {/* tall column cluster */}
-          <path d="M720 139 V34 Q732 26 744 34 V139 M720 60 H744 M720 85 H744 M720 110 H744 M758 139 V56 Q766 50 774 56 V139 M788 139 V74 Q795 69 802 74 V139" />
-          {/* flare stack */}
-          <path d="M860 139 V20" />
-          <path d="M856 20 Q860 6 864 20" stroke="#ffb347" strokeOpacity="0.8" />
-          {/* process unit */}
-          <path d="M900 139 V96 H1010 V139 M920 96 V80 H990 V96 M930 80 V70 H980 V80" />
-          {/* tanks */}
-          <path d="M1050 139 V110 Q1100 101 1150 110 V139 M1170 139 V116 Q1205 109 1240 116 V139" />
-          {/* chimneys */}
-          <path d="M1280 139 V60 H1292 V139 M1310 139 V76 H1320 V139" />
-          <path d="M1360 139 V118 Q1385 112 1410 118 V139" />
-        </g>
-        {[[732, 30, '#00b99a'], [312, 44, '#00b99a'], [1286, 56, '#087edb'], [766, 52, '#00b99a'], [347, 62, '#087edb'], [860, 20, '#ffb347']].map(([x, y, f], i) => (
-          <circle key={i} cx={x} cy={y} r="2.2" fill={f as string}>
-            <animate attributeName="opacity" values="0.25;1;0.25" dur={`${2.6 + (i % 3) * 0.7}s`} begin={`${i * 0.45}s`} repeatCount="indefinite" />
-          </circle>
-        ))}
-      </svg>
-    </div>
-  )
-}

@@ -3,6 +3,7 @@
 # Turns the raw scene renders in the project root into web-ready assets:
 #   assets/media/video/1080/<id>.mp4   desktop  (H.264, fast-start, scrub-friendly GOP)
 #   assets/media/video/720/<id>.mp4    mobile   (H.264, fast-start, scrub-friendly GOP)
+#   assets/media/video/360/<id>.mp4    preview  (~0.9 MB, loads first so footage moves at once)
 #   assets/media/posters/<id>.jpg      1920px first frame (poster + fallback)
 #   assets/media/posters/<id>-sm.jpg   960px first frame (mobile poster)
 # The original renders are never modified.
@@ -37,12 +38,15 @@ MANIFEST=(
 for row in "${MANIFEST[@]}"; do
   id=${row%%|*}; src=${row#*|}
   if [[ ! -f "$src" ]]; then echo "skip  $id  (missing: $src)"; continue; fi
-  for res in 1080 720; do
+  for res in 1080 720 360; do
     dst="$OUT/video/$res/$id.mp4"
     if [[ -n "$FORCE" || ! -f "$dst" ]]; then
       # Scroll-scrubbed footage: keyframe every 4 frames, no B-frames (see tools/scrub-encode.swift).
-      if [[ $res == 1080 ]]; then "$ENC" "$src" "$dst" 1920 1080 10000000 4
-      else "$ENC" "$src" "$dst" 1280 720 6000000 4; fi
+      case $res in
+        1080) "$ENC" "$src" "$dst" 1920 1080 10000000 4 ;;
+        720)  "$ENC" "$src" "$dst" 1280 720 6000000 4 ;;
+        360)  "$ENC" "$src" "$dst" 640 360 800000 4 ;;  # instant-start preview tier
+      esac
       echo "video $dst"
     fi
   done

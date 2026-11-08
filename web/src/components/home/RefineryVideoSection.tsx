@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
 import { ArrowRight } from 'lucide-react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
-import { cn } from '@/lib/cn'
 import { getNetworkTier } from '@/lib/network'
-import { attachClip, createScrubber, fetchClip, richEffects } from '@/lib/videoScrub'
+import { PREVIEW, createClipQueue, createScrubLayer, pickFull, richEffects } from '@/lib/videoScrub'
 import { resolveMedia } from '@/data/media'
 import { REFINERY_BEATS } from '@/data/homeChapters'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -39,45 +38,39 @@ const OUTRO = 0.15
 export function RefineryVideoSection() {
   const media = resolveMedia('home.refinery')
   const wrapRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const previewRef = useRef<HTMLVideoElement>(null)
+  const fullRef = useRef<HTMLVideoElement>(null)
   const beatRefs = useRef<(HTMLDivElement | null)[]>([])
   const mediaRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
   const outroRef = useRef<HTMLDivElement>(null)
   const seamGridRef = useRef<HTMLDivElement>(null)
-  const [ready, setReady] = useState(false)
   const reduced = usePrefersReducedMotion()
 
   useEffect(() => {
     const wrap = wrapRef.current
-    const v = videoRef.current
-    if (!wrap || !v || !media) return
+    const preview = previewRef.current
+    const full = fullRef.current
+    if (!wrap || !preview || !full || !media) return
     const ctrl = new AbortController()
-    let url: string | null = null
-    const large = window.matchMedia('(min-width: 1400px)').matches && getNetworkTier() === 'fast'
-    const src = large ? media.asset.sources.hd : media.asset.sources.sd
-    const dur = () => (Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 17.04)
+    const fast = getNetworkTier() === 'fast'
+    const dur = () => {
+      for (const v of [full, preview]) if (Number.isFinite(v.duration) && v.duration > 0) return v.duration
+      return 17.04
+    }
     const fx = richEffects()
-    const scrubber = createScrubber(v, EASE)
+    const layer = createScrubLayer({ preview, full }, EASE, ctrl.signal)
+    // Preview first (under 2 MB, so the footage moves immediately), then full quality.
+    const queue = createClipQueue(1, (_, t) => layer.load(t, t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, fast)))
 
-    // Fetch the clip into memory when near, so seeking is instant while scrubbing.
+    // Start downloading a few screens before the section arrives.
     const io = new IntersectionObserver(
       (es) => {
         if (!es.some((e) => e.isIntersecting)) return
         io.disconnect()
-        fetchClip(src, ctrl.signal)
-          .then((clip) => {
-            if (clip.blob) url = clip.url
-            return attachClip(v, clip.url, ctrl.signal)
-          })
-          .then(() => {
-            if (ctrl.signal.aborted) return
-            scrubber.markReady()
-            setReady(true)
-          })
-          .catch(() => undefined)
+        queue.focus(0)
       },
-      { rootMargin: '150% 0px' },
+      { rootMargin: '300% 0px' },
     )
     io.observe(wrap)
 
@@ -102,7 +95,7 @@ export function RefineryVideoSection() {
       const t = clamp(p / (1 - OUTRO)) * (dur() - 0.06)
       const o = clamp((p - (1 - OUTRO)) / OUTRO)
       const textOut = 1 - clamp(o * 2.4)
-      scrubber.set(t)
+      layer.set(t)
       REFINERY_BEATS.forEach((b, i) => {
         const el = beatRefs.current[i]
         if (!el) return
@@ -147,7 +140,7 @@ export function RefineryVideoSection() {
     let raf = 0
     let last = 0
     const loop = (now: number) => {
-      scrubber.tick(last ? (now - last) / 1000 : 1 / 60)
+      layer.tick(last ? (now - last) / 1000 : 1 / 60, true)
       last = now
       raf = requestAnimationFrame(loop)
     }
@@ -163,11 +156,10 @@ export function RefineryVideoSection() {
       onScreen.disconnect()
       window.removeEventListener('resize', syncSeam)
       io.disconnect()
+      queue.stop()
       st.kill()
       ctrl.abort()
-      v.removeAttribute('src')
-      v.load()
-      if (url) URL.revokeObjectURL(url)
+      layer.destroy()
     }
   }, [media, reduced])
 
@@ -177,16 +169,9 @@ export function RefineryVideoSection() {
         {/* Footage, full screen */}
         <div ref={mediaRef} className="absolute inset-0 will-change-transform">
           {media && <Picture src={media.asset.poster} small={media.asset.posterSmall} alt="" className="absolute inset-0 h-full w-full object-cover" />}
-          <video
-            ref={videoRef}
-            muted
-            playsInline
-            preload="auto"
-            disablePictureInPicture
-            tabIndex={-1}
-            aria-hidden
-            className={cn('absolute inset-0 h-full w-full object-cover transition-opacity duration-1000', ready ? 'opacity-100' : 'opacity-0')}
-          />
+          {/* Preview (below) and full quality (above); each fades in over the poster when ready. */}
+          <video ref={previewRef} {...VIDEO_PROPS} />
+          <video ref={fullRef} {...VIDEO_PROPS} />
         </div>
 
         {/* Legibility washes */}
@@ -261,6 +246,16 @@ export function RefineryVideoSection() {
     </section>
   )
 }
+
+const VIDEO_PROPS = {
+  muted: true,
+  playsInline: true,
+  preload: 'auto',
+  disablePictureInPicture: true,
+  tabIndex: -1,
+  'aria-hidden': true,
+  className: 'absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500',
+} as const
 
 function clamp(n: number): number {
   return Math.min(1, Math.max(0, n))

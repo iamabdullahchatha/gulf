@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/cn'
 import { buttonStyles } from '@/lib/buttonStyles'
 import { getNetworkTier } from '@/lib/network'
-import { attachClip, createClipQueue, createScrubber, fetchClip, richEffects } from '@/lib/videoScrub'
+import { FULL, PREVIEW, createClipQueue, createScrubLayer, pickFull, richEffects } from '@/lib/videoScrub'
 import { scrollToElement } from '@/lib/lenis'
 import { resolveMedia } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -83,9 +83,10 @@ const HOME_FINALE: Cta[] = [
  *    soft bloom of light carries the eye across the cut. There are no scene
  *    numbers, frames or chapter bars — it reads as a single journey.
  *
- * Seeking is local: clips are fetched into Blobs one at a time, nearest scene
- * first, and driven frame-by-frame by `lib/videoScrub` (no redundant or
- * overlapping seeks, time-based easing).
+ * Loading is progressive: a <1 MB preview of each scene arrives first so the
+ * footage moves straight away, then the full-quality clip crossfades in on the
+ * same frame. Clips are held in memory and driven frame-by-frame by
+ * `lib/videoScrub` (no redundant or overlapping seeks, time-based easing).
  * Reduced motion / Save-Data: a static sequence of stills with the same copy.
  */
 export function CinematicFilm(props: Props) {
@@ -103,7 +104,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   const bloomRef = useRef<HTMLDivElement>(null)
   const cueRef = useRef<HTMLDivElement>(null)
   const layerRefs = useRef<(HTMLDivElement | null)[]>([])
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  /** Per scene: [preview, full] video elements. */
+  const videoRefs = useRef<[HTMLVideoElement | null, HTMLVideoElement | null][]>(scenes.map(() => [null, null]))
   const beatRefs = useRef<(HTMLDivElement | null)[][]>(scenes.map(() => []))
   const ctaRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -121,37 +123,32 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     if (!wrap) return
 
     const tier = getNetworkTier()
-    const large = window.matchMedia('(min-width: 1400px)').matches && tier === 'fast'
     const fx = richEffects()
-    const urls: (string | null)[] = scenes.map(() => null)
     const ctrl = new AbortController()
-    const scrubbers = scenes.map((_, j) => {
-      const v = videoRefs.current[j]
-      return v ? createScrubber(v, ease) : null
+    const layers = scenes.map((_, j) => {
+      const [preview, full] = videoRefs.current[j] ?? []
+      if (!preview || !full) return null
+      return createScrubLayer({ preview, full }, ease, ctrl.signal, () => layerRefs.current[j]?.classList.add('is-ready'))
     })
     let lastAlign = ''
 
-    // Clips download one at a time, nearest to the viewer first. On a fast
-    // connection the whole film is fetched ahead; on 3G only the neighbours.
+    // Previews of every scene plus full-quality clips, one download at a time
+    // in order of need (see lib/videoScrub). On 3G, full quality is only
+    // fetched for the neighbouring scenes.
     const queue = createClipQueue(
       N,
-      async (j) => {
-        const v = videoRefs.current[j]
+      async (j, t) => {
         const media = resolveMedia(scenes[j]!.section)
-        if (!v || !media) return
-        const clip = await fetchClip(large ? media.asset.sources.hd : media.asset.sources.sd, ctrl.signal)
-        if (clip.blob) urls[j] = clip.url
-        await attachClip(v, clip.url, ctrl.signal)
-        if (ctrl.signal.aborted) return
-        scrubbers[j]?.markReady()
-        layerRefs.current[j]?.classList.add('is-ready')
+        if (!media) return
+        const src = t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, tier === 'fast')
+        await layers[j]?.load(t, src)
       },
-      { window: tier === 'fast' ? undefined : 2 },
+      { fullWindow: tier === 'fast' ? undefined : 2 },
     )
 
     const duration = (j: number) => {
-      const d = videoRefs.current[j]?.duration
-      return d && Number.isFinite(d) ? d : 8.04
+      for (const v of videoRefs.current[j] ?? []) if (v && Number.isFinite(v.duration) && v.duration > 0) return v.duration
+      return 8.04
     }
     /** Clip time for scene j at in-scene progress p (0–1). Scenes after the first start LEAD seconds in. */
     const timeAt = (j: number, p: number) => {
@@ -168,8 +165,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
 
       queue.focus(k > 0.5 ? i + 1 : i)
 
-      scrubbers[i]?.set(timeAt(i, local))
-      if (k > 0) scrubbers[i + 1]?.set(k * LEAD)
+      layers[i]?.set(timeAt(i, local))
+      if (k > 0) layers[i + 1]?.set(k * LEAD)
 
       layerRefs.current.forEach((el, j) => {
         if (!el) return
@@ -232,9 +229,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const loop = (now: number) => {
       const dt = last ? (now - last) / 1000 : 1 / 60
       last = now
-      scrubbers.forEach((s, j) => {
-        if (s && layerRefs.current[j]?.style.visibility !== 'hidden') s.tick(dt)
-      })
+      layers.forEach((l, j) => l?.tick(dt, layerRefs.current[j]?.style.visibility !== 'hidden'))
       raf = requestAnimationFrame(loop)
     }
     const io = new IntersectionObserver(([e]) => {
@@ -244,19 +239,13 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     })
     io.observe(wrap)
 
-    const videos = videoRefs.current
     return () => {
       cancelAnimationFrame(raf)
       io.disconnect()
       queue.stop()
       st.kill()
       ctrl.abort()
-      videos.forEach((v) => {
-        if (!v) return
-        v.removeAttribute('src')
-        v.load()
-      })
-      urls.forEach((u) => u && URL.revokeObjectURL(u))
+      layers.forEach((l) => l?.destroy())
     }
   }, [scenes, N, ease])
 
@@ -294,18 +283,22 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
                     className="absolute inset-0 h-full w-full object-cover"
                   />
               )}
-              <video
-                ref={(el) => {
-                  videoRefs.current[j] = el
-                }}
-                muted
-                playsInline
-                preload="auto"
-                disablePictureInPicture
-                disableRemotePlayback
-                tabIndex={-1}
-                className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700 group-[.is-ready]/layer:opacity-100"
-              />
+              {/* Preview (below) and full quality (above); each fades in over the poster when ready. */}
+              {([PREVIEW, FULL] as const).map((t) => (
+                <video
+                  key={t}
+                  ref={(el) => {
+                    ;(videoRefs.current[j] ??= [null, null])[t] = el
+                  }}
+                  muted
+                  playsInline
+                  preload="auto"
+                  disablePictureInPicture
+                  disableRemotePlayback
+                  tabIndex={-1}
+                  className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500"
+                />
+              ))}
             </div>
           )
         })}

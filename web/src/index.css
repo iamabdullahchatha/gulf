@@ -342,3 +342,19 @@ html.lenis, html.lenis body { height: auto; }
   50% { transform: translate3d(8%, -6%, 0) scale(1.15); }
   100% { transform: translate3d(-6%, 5%, 0) scale(0.95); }
 }
+
+/* Footer enquiry panel: a hairline frame with a slowly orbiting light. */
+@property --orbit-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes orbit {
+  to { --orbit-angle: 360deg; }
+}
+.footer-orbit {
+  background:
+    conic-gradient(from var(--orbit-angle), transparent 0deg 250deg, rgb(0 185 154 / 0.9) 300deg, rgb(8 126 219 / 0.9) 330deg, transparent 360deg),
+    linear-gradient(rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.12));
+  animation: orbit 7s linear infinite;
+}

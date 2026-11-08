@@ -6,8 +6,14 @@
 export interface MediaSources {
   /** H.264 1920x1080, fast-start, ~10 MB — served to desktops. */
   hd: string
-  /** H.264 1280x720, fast-start, ~7 MB — served to mobile and slow networks. */
+  /** H.264 1280x720, fast-start, ~6 MB — served to mobile and slow networks. */
   sd: string
+  /**
+   * H.264 640x360, ~0.9 MB. Loads first so scroll-scrubbed footage moves within
+   * a moment of arriving on the page; the full-quality clip crossfades in once
+   * it has downloaded.
+   */
+  preview: string
 }
 
 export interface MediaAsset {

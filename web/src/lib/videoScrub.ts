@@ -2,23 +2,36 @@
  * Shared engine for scroll-scrubbed video (the cinematic films and the
  * refinery section).
  *
- * Why it exists: setting `video.currentTime` on every scroll frame is only
- * smooth when
- *   1. the clip is already in memory (fetched once into a Blob),
- *   2. each seek lands on a *new* frame (sub-frame seeks cost a full decode
- *      but change nothing on screen),
- *   3. a new seek is never queued while the previous one is still decoding,
- *      and the playhead keeps moving meanwhile so a slow seek drops frames
- *      instead of falling behind the scroll,
- *   4. easing is time-based, so 60 Hz, 120 Hz and throttled mobile frames all
- *      feel the same.
- * The clips themselves are encoded with a keyframe every 4 frames and no
- * B-frames (`tools/scrub-encode.swift`), so a seek in either direction
- * decodes at most 3 extra frames.
+ * Smooth scrubbing needs the clip in memory: seeking a clip that is still
+ * streaming stalls on network requests, and iOS will not buffer a paused video
+ * ahead at all. But a full-quality clip is 6–11 MB, so on a first visit the
+ * viewer would scroll through still posters while it downloads. Each scene
+ * therefore loads in two tiers:
+ *
+ *   1. preview — 640x360, under 1 MB. Arrives in well under a second on 4G,
+ *      so the footage moves almost as soon as the page opens.
+ *   2. full    — 720p (1080p on large fast screens). Downloads behind the
+ *      preview, then crossfades in on the same frame and the preview is freed.
+ *
+ * Downloads run one at a time in priority order — the previews of the scene
+ * on screen and the ones ahead first (they are what keeps the footage moving
+ * however fast someone scrolls), then full quality nearest-first.
+ *
+ * Seeking itself: each seek lands on a *new* frame only, a new seek is never
+ * issued while one is still decoding (the playhead keeps moving, so a slow
+ * seek drops frames instead of falling behind), and easing is time-based so
+ * 60 Hz, 120 Hz and throttled phones feel the same. The clips are encoded
+ * with a keyframe every 4 frames and no B-frames (`tools/scrub-encode.swift`),
+ * so any seek, forwards or backwards, decodes at most 3 extra frames.
  */
 
 /** Frame rate of every encoded clip. */
 export const CLIP_FPS = 24
+
+/** Quality tiers, in load order. */
+export const PREVIEW = 0
+export const FULL = 1
+export type Tier = typeof PREVIEW | typeof FULL
 
 /**
  * Fetch a clip fully into memory and return an object URL for it, so every
@@ -49,33 +62,41 @@ export function attachClip(v: HTMLVideoElement, url: string, signal: AbortSignal
       resolve()
     }
     v.addEventListener('loadeddata', done, { once: true, signal })
+    v.addEventListener('error', () => resolve(), { once: true, signal })
     v.src = url
     if (v.readyState >= 2) done()
   })
 }
 
 /**
- * Downloads clips one at a time, always choosing the not-yet-loaded clip
- * closest to the one on screen (ties go forward, the usual scroll direction).
- * One-at-a-time matters on real connections: parallel downloads would make the
- * clip the viewer actually needs arrive last.
+ * Runs downloads one at a time, always picking the cheapest pending
+ * (scene, tier): cost = distance from the scene on screen (scenes behind cost
+ * 1.5× — people mostly scroll forwards) + FULL_COST for the full tier. Previews
+ * are ~1 MB and full clips 6–11 MB, so at scene 0 this yields: previews 0–4,
+ * full 0, preview 5, full 1, … — motion everywhere first, then sharpness.
+ * `fullWindow` limits full-quality downloads to nearby scenes (slow networks).
  */
-export function createClipQueue(count: number, load: (index: number) => Promise<unknown>, opts: { window?: number } = {}) {
-  const state: ('idle' | 'busy' | 'done')[] = Array.from({ length: count }, () => 'idle')
+const FULL_COST = 4.5
+
+export function createClipQueue(count: number, load: (index: number, tier: Tier) => Promise<unknown>, opts: { fullWindow?: number } = {}) {
+  const state = Array.from({ length: count }, () => [false, false])
   let center = 0
   let busy = false
   let stopped = false
 
-  const pick = (): number => {
-    let best = -1
-    let bestDist = Infinity
+  const pick = (): [number, Tier] | null => {
+    let best: [number, Tier] | null = null
+    let bestCost = Infinity
     for (let j = 0; j < count; j++) {
-      if (state[j] !== 'idle') continue
       const d = j >= center ? j - center : (center - j) * 1.5
-      if (opts.window !== undefined && Math.abs(j - center) > opts.window) continue
-      if (d < bestDist) {
-        bestDist = d
-        best = j
+      for (const tier of [PREVIEW, FULL] as const) {
+        if (state[j]![tier]) continue
+        if (tier === FULL && opts.fullWindow !== undefined && Math.abs(j - center) > opts.fullWindow) continue
+        const cost = d + tier * FULL_COST
+        if (cost < bestCost) {
+          bestCost = cost
+          best = [j, tier]
+        }
       }
     }
     return best
@@ -83,14 +104,14 @@ export function createClipQueue(count: number, load: (index: number) => Promise<
 
   const pump = () => {
     if (busy || stopped) return
-    const j = pick()
-    if (j < 0) return
+    const next = pick()
+    if (!next) return
+    const [j, tier] = next
     busy = true
-    state[j] = 'busy'
-    load(j)
+    state[j]![tier] = true
+    load(j, tier)
       .catch(() => undefined)
       .finally(() => {
-        state[j] = 'done'
         busy = false
         pump()
       })
@@ -148,7 +169,99 @@ export function createScrubber(v: HTMLVideoElement, ease: number) {
   }
 }
 
+/** Resolve on the element's next `seeked`, or after `ms` at the latest. */
+function nextSeeked(v: HTMLVideoElement, ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve) => {
+    const t = window.setTimeout(resolve, ms)
+    v.addEventListener(
+      'seeked',
+      () => {
+        window.clearTimeout(t)
+        resolve()
+      },
+      { once: true, signal },
+    )
+  })
+}
+
+/**
+ * One scrubbed shot backed by two stacked <video> elements: `preview` below,
+ * `full` above (both start at opacity 0 over the poster).
+ */
+export function createScrubLayer(els: { preview: HTMLVideoElement; full: HTMLVideoElement }, ease: number, signal: AbortSignal, onLive?: () => void) {
+  const scrub = { preview: createScrubber(els.preview, ease), full: createScrubber(els.full, ease) }
+  const urls: string[] = []
+  let previewOn = false
+  let fullOn = false
+  let visible = false
+
+  const show = (v: HTMLVideoElement) => {
+    v.style.opacity = '1'
+    onLive?.()
+  }
+  const releasePreview = () => {
+    previewOn = false
+    els.preview.removeAttribute('src')
+    els.preview.load()
+  }
+
+  return {
+    set(t: number) {
+      scrub.preview.set(t)
+      scrub.full.set(t)
+    },
+    /** Call every animation frame; `isVisible` is whether the shot is on screen. */
+    tick(dt: number, isVisible: boolean) {
+      visible = isVisible
+      if (!isVisible) return
+      if (fullOn) scrub.full.tick(dt)
+      if (previewOn) scrub.preview.tick(dt)
+    },
+    async load(tier: Tier, src: string) {
+      const clip = await fetchClip(src, signal)
+      if (clip.blob) urls.push(clip.url)
+      if (tier === PREVIEW) {
+        if (fullOn) return // full quality beat it here; nothing to do
+        await attachClip(els.preview, clip.url, signal)
+        if (signal.aborted || fullOn) return
+        scrub.preview.markReady()
+        previewOn = true
+        show(els.preview)
+        return
+      }
+      await attachClip(els.full, clip.url, signal)
+      if (signal.aborted) return
+      scrub.full.markReady()
+      fullOn = true
+      if (previewOn && visible) {
+        // On screen: wait until the full clip shows the current frame, then
+        // crossfade over the preview and free it once the fade has finished.
+        await nextSeeked(els.full, 400, signal)
+        if (signal.aborted) return
+        show(els.full)
+        window.setTimeout(() => !signal.aborted && releasePreview(), 600)
+      } else {
+        els.full.style.transition = 'none'
+        show(els.full)
+        if (previewOn) releasePreview()
+      }
+    },
+    destroy() {
+      for (const v of [els.preview, els.full]) {
+        v.removeAttribute('src')
+        v.load()
+      }
+      urls.forEach((u) => URL.revokeObjectURL(u))
+    },
+  }
+}
+
 /** True on devices with a precise pointer that can afford per-frame filters. */
 export function richEffects(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+}
+
+/** Which full-quality source to use: 1080p only on large screens with a fast connection. */
+export function pickFull(sources: { hd: string; sd: string }, fast: boolean): string {
+  return fast && window.matchMedia('(min-width: 1400px)').matches ? sources.hd : sources.sd
 }
