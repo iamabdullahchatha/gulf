@@ -108,7 +108,7 @@ async function siteSections() {
   ]
   for (const [key, a] of Object.entries(ASSETS)) {
     const labels = usedBy(key)
-    for (const u of [a.sources.hd, a.sources.sd, a.poster]) for (const l of labels.length ? labels : ['Catalogued, not currently used']) add(u, l)
+    for (const u of [a.sources.hd, a.sources.sd, a.poster].map((x) => x.split('?')[0])) for (const l of labels.length ? labels : ['Catalogued, not currently used']) add(u, l)
   }
   return map
 }

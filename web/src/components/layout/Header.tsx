@@ -37,7 +37,11 @@ export function Header() {
   }
 
   useEffect(() => {
-    const onScroll = () => {
+    // At most one update per frame: the hero check reads layout, and doing that
+    // on every raw scroll event competes with the scroll-driven video.
+    let frame = 0
+    const update = () => {
+      frame = 0
       const y = window.scrollY
       setScrolled(y > 24)
       const dy = y - lastY.current
@@ -50,8 +54,14 @@ export function Header() {
         lastY.current = y
       }
     }
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   useEffect(() => {

@@ -57,6 +57,11 @@ export function AnimatedSection({
         return
       }
 
+      // `.reveal` carries a CSS transition on opacity/transform for the
+      // no-JS/reduced-motion path. Left on, it re-animates every GSAP frame
+      // over 0.9 s, so reveals stutter and trail behind the scroll.
+      targets.forEach((t) => (t.style.transition = 'none'))
+
       gsap.fromTo(
         targets,
         { opacity: 0, y },
@@ -68,7 +73,11 @@ export function AnimatedSection({
           delay,
           ease: 'power3.out',
           scrollTrigger: { trigger: root, start, once: true },
-          onComplete: () => targets.forEach((t) => t.classList.add('is-in')),
+          onComplete: () =>
+            targets.forEach((t) => {
+              t.classList.add('is-in')
+              t.style.transition = ''
+            }),
         },
       )
     },

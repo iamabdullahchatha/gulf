@@ -236,7 +236,7 @@ export function SectorConnections() {
       <Container className="relative">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading tone="light" index="02" eyebrow="Services by sector" title={<>See how the services <em>connect</em>.</>} />
-          <p className="reveal max-w-md text-steel-700 lg:text-right">Choose a sector to light up the services that support it, or hover a service to see where it applies.</p>
+          <p className="reveal max-w-md text-steel-700 lg:text-right">Choose a sector to light up the services that support it<span className="[@media(hover:none)]:hidden">, or hover a service to see where it applies</span>.</p>
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">

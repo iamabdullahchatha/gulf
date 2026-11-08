@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/cn'
 import { buttonStyles } from '@/lib/buttonStyles'
 import { getNetworkTier } from '@/lib/network'
+import { attachClip, createClipQueue, createScrubber, fetchClip, richEffects } from '@/lib/videoScrub'
 import { scrollToElement } from '@/lib/lenis'
 import { resolveMedia } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -82,8 +83,9 @@ const HOME_FINALE: Cta[] = [
  *    soft bloom of light carries the eye across the cut. There are no scene
  *    numbers, frames or chapter bars — it reads as a single journey.
  *
- * Seeking is local: each clip is fetched into a Blob shortly before it is
- * needed and a new seek is only issued when the previous one has finished.
+ * Seeking is local: clips are fetched into Blobs one at a time, nearest scene
+ * first, and driven frame-by-frame by `lib/videoScrub` (no redundant or
+ * overlapping seeks, time-based easing).
  * Reduced motion / Save-Data: a static sequence of stills with the same copy.
  */
 export function CinematicFilm(props: Props) {
@@ -118,41 +120,34 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const wrap = wrapRef.current
     if (!wrap) return
 
-    const large = window.matchMedia('(min-width: 1400px)').matches && getNetworkTier() === 'fast'
-    const loadState: ('idle' | 'loading' | 'ready')[] = scenes.map(() => 'idle')
+    const tier = getNetworkTier()
+    const large = window.matchMedia('(min-width: 1400px)').matches && tier === 'fast'
+    const fx = richEffects()
     const urls: (string | null)[] = scenes.map(() => null)
-    const targets = scenes.map(() => 0)
     const ctrl = new AbortController()
+    const scrubbers = scenes.map((_, j) => {
+      const v = videoRefs.current[j]
+      return v ? createScrubber(v, ease) : null
+    })
     let lastAlign = ''
 
-    const load = (j: number) => {
-      const v = videoRefs.current[j]
-      const media = resolveMedia(scenes[j]!.section)
-      if (!v || !media || loadState[j] !== 'idle') return
-      loadState[j] = 'loading'
-      const src = large ? media.asset.sources.hd : media.asset.sources.sd
-      fetch(src, { signal: ctrl.signal })
-        .then((r) => {
-          if (!r.ok) throw new Error(String(r.status))
-          return r.blob()
-        })
-        .then((blob) => {
-          urls[j] = URL.createObjectURL(blob)
-          v.src = urls[j]
-        })
-        .catch(() => {
-          if (!ctrl.signal.aborted) v.src = src
-        })
-      v.addEventListener(
-        'loadeddata',
-        () => {
-          loadState[j] = 'ready'
-          v.play().then(() => v.pause()).catch(() => undefined) // iOS paints seeks only after play()
-          layerRefs.current[j]?.classList.add('is-ready')
-        },
-        { once: true, signal: ctrl.signal },
-      )
-    }
+    // Clips download one at a time, nearest to the viewer first. On a fast
+    // connection the whole film is fetched ahead; on 3G only the neighbours.
+    const queue = createClipQueue(
+      N,
+      async (j) => {
+        const v = videoRefs.current[j]
+        const media = resolveMedia(scenes[j]!.section)
+        if (!v || !media) return
+        const clip = await fetchClip(large ? media.asset.sources.hd : media.asset.sources.sd, ctrl.signal)
+        if (clip.blob) urls[j] = clip.url
+        await attachClip(v, clip.url, ctrl.signal)
+        if (ctrl.signal.aborted) return
+        scrubbers[j]?.markReady()
+        layerRefs.current[j]?.classList.add('is-ready')
+      },
+      { window: tier === 'fast' ? undefined : 2 },
+    )
 
     const duration = (j: number) => {
       const d = videoRefs.current[j]?.duration
@@ -171,30 +166,29 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
       const k = i < N - 1 && local > 1 - TR ? (local - (1 - TR)) / TR : 0
       const ek = easeInOut(k)
 
-      for (let j = Math.max(0, i - 1); j <= Math.min(N - 1, i + 2); j++) load(j)
+      queue.focus(k > 0.5 ? i + 1 : i)
 
-      targets[i] = timeAt(i, local)
-      if (k > 0) targets[i + 1] = k * LEAD
+      scrubbers[i]?.set(timeAt(i, local))
+      if (k > 0) scrubbers[i + 1]?.set(k * LEAD)
 
       layerRefs.current.forEach((el, j) => {
         if (!el) return
         if (j === i) {
-          el.style.visibility = 'visible'
-          el.style.zIndex = '1'
-          el.style.opacity = '1'
-          el.style.transform = `scale(${(1 + local * 0.08 + ek * 0.12).toFixed(4)})`
+          setLayer(el, 'visible', '1', '1', `scale(${(1 + local * 0.08 + ek * 0.12).toFixed(4)})`)
         } else if (j === i + 1 && k > 0) {
-          el.style.visibility = 'visible'
-          el.style.zIndex = '2'
-          el.style.opacity = ek.toFixed(3)
-          el.style.transform = `scale(${(1.1 - 0.1 * ek).toFixed(4)})`
+          setLayer(el, 'visible', '2', ek.toFixed(3), `scale(${(1.1 - 0.1 * ek).toFixed(4)})`)
         } else {
-          el.style.visibility = 'hidden'
+          setLayer(el, 'hidden')
         }
       })
 
       // Soft bloom of light at the midpoint of each join.
-      if (bloomRef.current) bloomRef.current.style.opacity = (Math.sin(Math.PI * k) * 0.55).toFixed(3)
+      const bloom = bloomRef.current
+      if (bloom) {
+        const b = Math.sin(Math.PI * k) * 0.55
+        bloom.style.opacity = b.toFixed(3)
+        bloom.style.visibility = b < 0.005 ? 'hidden' : 'visible'
+      }
 
       const t = timeAt(i, local)
       const current = scenes[i]!
@@ -214,10 +208,10 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
           const isLast = b === scene.beats.length - 1
           const o = j === i ? beatOpacity(t, beat, b === 0, isLast) * textOut : 0
           if (isActionBeat(j, b, N, scene)) actionVisible = Math.max(actionVisible, o)
-          setVisible(el, o, t < beat.from ? 26 : -26)
+          setVisible(el, o, t < beat.from ? 26 : -26, fx)
         })
         const cta = ctaRefs.current[j]
-        if (cta) setVisible(cta, j === i ? textOut * (1 - actionVisible) : 0, 12)
+        if (cta) setVisible(cta, j === i ? textOut * (1 - actionVisible) : 0, 12, fx)
       })
 
       if (cueRef.current) cueRef.current.style.opacity = String(clamp(1 - p * N * 4))
@@ -232,21 +226,29 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     })
     apply(st.progress)
 
+    // Only run the frame loop while the film is on screen.
     let raf = 0
-    const loop = () => {
-      videoRefs.current.forEach((v, j) => {
-        if (!v || loadState[j] !== 'ready' || v.seeking) return
-        if (layerRefs.current[j]?.style.visibility === 'hidden') return
-        const diff = targets[j]! - v.currentTime
-        if (Math.abs(diff) > 0.012) v.currentTime = Math.abs(diff) < 0.05 ? targets[j]! : v.currentTime + diff * ease
+    let last = 0
+    const loop = (now: number) => {
+      const dt = last ? (now - last) / 1000 : 1 / 60
+      last = now
+      scrubbers.forEach((s, j) => {
+        if (s && layerRefs.current[j]?.style.visibility !== 'hidden') s.tick(dt)
       })
       raf = requestAnimationFrame(loop)
     }
-    raf = requestAnimationFrame(loop)
+    const io = new IntersectionObserver(([e]) => {
+      cancelAnimationFrame(raf)
+      last = 0
+      if (e?.isIntersecting) raf = requestAnimationFrame(loop)
+    })
+    io.observe(wrap)
 
     const videos = videoRefs.current
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
+      queue.stop()
       st.kill()
       ctrl.abort()
       videos.forEach((v) => {
@@ -313,7 +315,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
           ref={bloomRef}
           aria-hidden
           className="pointer-events-none absolute inset-0 z-[3] opacity-0 mix-blend-screen"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgb(255 240 220 / 0.55), rgb(108 182 242 / 0.25) 45%, transparent 75%)' }}
+          style={{ visibility: 'hidden', background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgb(255 240 220 / 0.55), rgb(108 182 242 / 0.25) 45%, transparent 75%)' }}
         />
 
         <div ref={overlayRef} aria-hidden className="pointer-events-none absolute inset-0 z-[4]" style={{ background: overlayFor(scenes[0]?.beats[0]?.align ?? scenes[0]?.align ?? 'center') }} />
@@ -548,12 +550,35 @@ function beatOpacity(t: number, beat: FilmBeat, isFirst: boolean, isLast: boolea
   return Math.min(fadeIn, fadeOut)
 }
 
-function setVisible(el: HTMLElement, o: number, shift: number): void {
-  el.style.opacity = o.toFixed(3)
+/** Last state written to each element, so unchanged frames cost no style work. */
+const written = new WeakMap<HTMLElement, string>()
+
+/**
+ * Fade/slide a text block. The soft blur is reserved for desktop pointers:
+ * re-rasterising blurred headline text every frame is what makes phones drop
+ * frames while scrolling.
+ */
+function setVisible(el: HTMLElement, o: number, shift: number, blur: boolean): void {
+  const op = o.toFixed(3)
+  const key = op + (o > 0.01 && o < 0.999 ? shift : '')
+  if (written.get(el) === key) return
+  written.set(el, key)
+  el.style.opacity = op
   el.style.visibility = o < 0.01 ? 'hidden' : 'visible'
   el.style.pointerEvents = o > 0.5 ? 'auto' : 'none'
   el.style.transform = o >= 0.999 ? '' : `translate3d(0, ${((1 - o) * shift).toFixed(1)}px, 0)`
-  el.style.filter = o >= 0.999 ? '' : `blur(${((1 - o) * 6).toFixed(1)}px)`
+  if (blur) el.style.filter = o >= 0.999 ? '' : `blur(${((1 - o) * 6).toFixed(1)}px)`
+}
+
+function setLayer(el: HTMLElement, visibility: 'visible' | 'hidden', z = '', opacity = '', transform = ''): void {
+  const key = visibility === 'hidden' ? 'h' : `${z}|${opacity}|${transform}`
+  if (written.get(el) === key) return
+  written.set(el, key)
+  el.style.visibility = visibility
+  if (visibility === 'hidden') return
+  el.style.zIndex = z
+  el.style.opacity = opacity
+  el.style.transform = transform
 }
 
 function overlayFor(align: FilmScene['align']): string {

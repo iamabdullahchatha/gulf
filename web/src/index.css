@@ -251,6 +251,9 @@
  * Lenis
  * ------------------------------------------------------------------------- */
 html.lenis, html.lenis body { height: auto; }
+/* Lenis does the smoothing; native smooth scroll on top of it (from
+   html:focus-within above) would animate every Lenis step a second time. */
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
 .lenis [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-smooth iframe { pointer-events: none; }

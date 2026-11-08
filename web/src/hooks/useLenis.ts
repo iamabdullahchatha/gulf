@@ -17,7 +17,11 @@ export function useLenis(): void {
   useEffect(() => {
     if (reduced) return
 
-    const lenis = new Lenis({ autoRaf: false, duration: 1.1 })
+    // Lerp smoothing (Lenis' default) follows the wheel continuously; a fixed
+    // `duration` restarts a 1.1 s ease on every wheel tick, which reads as lag
+    // when it is layered over scroll-scrubbed video. Touch keeps native
+    // momentum scrolling (syncTouch off) — the smoothest option on phones.
+    const lenis = new Lenis({ autoRaf: false, lerp: 0.1, smoothWheel: true, syncTouch: false })
     registerLenis(lenis)
     const onScroll = () => ScrollTrigger.update()
     lenis.on('scroll', onScroll)

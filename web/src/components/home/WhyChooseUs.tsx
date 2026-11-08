@@ -92,7 +92,9 @@ function FlipCard({ reason, index }: { reason: (typeof REASONS)[number]; index: 
           <span className="mt-auto block font-display text-2xl font-bold text-midnight">{reason.t}</span>
           <span className="mt-2 block text-sm text-steel-700">{reason.tag}</span>
           <span className="mt-5 flex items-center gap-2 label-tech text-teal-500">
-            <RotateCw className="size-3.5" aria-hidden /> Hover to explore
+            <RotateCw className="size-3.5" aria-hidden />
+            <span className="[@media(hover:none)]:hidden">Hover to explore</span>
+            <span className="hidden [@media(hover:none)]:inline">Tap to explore</span>
           </span>
         </span>
 

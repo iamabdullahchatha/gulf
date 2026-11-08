@@ -15,6 +15,13 @@ import type { MediaAsset, MediaSection, ResolvedMedia, SectionKey } from '@/type
 
 const VIDEOS = '/assets/videos'
 const POSTERS = '/assets/posters'
+/**
+ * Bump whenever the encoded clips change. Video files are cached by browsers
+ * and the CDN (see vercel.json), so a new version string is what makes
+ * returning visitors fetch the new encode. v2: scrub-friendly re-encode
+ * (keyframe every 4 frames, no B-frames).
+ */
+const VIDEO_VERSION = 'v2'
 
 function asset(
   id: string,
@@ -23,7 +30,7 @@ function asset(
   return Object.freeze({
     id,
     ...meta,
-    sources: { hd: `${VIDEOS}/1080/${id}.mp4`, sd: `${VIDEOS}/720/${id}.mp4` },
+    sources: { hd: `${VIDEOS}/1080/${id}.mp4?${VIDEO_VERSION}`, sd: `${VIDEOS}/720/${id}.mp4?${VIDEO_VERSION}` },
     poster: `${POSTERS}/${id}.jpg`,
     posterSmall: `${POSTERS}/${id}-sm.jpg`,
   })

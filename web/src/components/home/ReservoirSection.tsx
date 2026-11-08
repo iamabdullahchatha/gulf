@@ -279,8 +279,9 @@ export function ReservoirSection() {
                     style={{ transition: 'opacity .5s' }}
                     opacity="0.28"
                   >
-                    <line x1="40" y1={top + 22} x2="70" y2={top + 22} stroke="#00b99a" />
-                    <text x="78" y={top + 27} fill="#e3e8ee" fontFamily="JetBrains Mono, monospace" fontSize="13" letterSpacing="2">
+                    {/* The SVG scales down with the screen; on phones a 13-unit label would render ~5px tall. */}
+                    <line x1="40" y1={top + (desktop ? 22 : 27)} x2="70" y2={top + (desktop ? 22 : 27)} stroke="#00b99a" />
+                    <text x="78" y={top + (desktop ? 27 : 37)} fill="#e3e8ee" fontFamily="JetBrains Mono, monospace" fontSize={desktop ? 13 : 28} letterSpacing={desktop ? 2 : 1}>
                       {name.toUpperCase()}
                     </text>
                   </g>

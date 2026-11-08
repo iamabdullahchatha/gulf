@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
-import { scrollToElement } from '@/lib/lenis'
+import { jumpTo, scrollToElement } from '@/lib/lenis'
 
 /**
  * Scrolls to the top on every route change. When the destination carries a
@@ -11,7 +11,7 @@ export function useScrollToTop(): void {
   const { pathname, hash } = useLocation()
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      jumpTo(0)
       return
     }
     const id = decodeURIComponent(hash.slice(1))

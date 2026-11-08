@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import { cn } from '@/lib/cn'
 import { getNetworkTier } from '@/lib/network'
+import { attachClip, createScrubber, fetchClip, richEffects } from '@/lib/videoScrub'
 import { resolveMedia } from '@/data/media'
 import { REFINERY_BEATS } from '@/data/homeChapters'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -19,8 +20,12 @@ gsap.registerPlugin(ScrollTrigger)
 const FADE = 0.45
 /** Scroll length of the whole film, in svh: 17 s of footage over about 8.5 screens, then the dissolve. */
 const LENGTH = 1000
-/** How quickly the playhead catches up with the scroll position (lower is slower and silkier). */
-const EASE = 0.055
+/**
+ * How quickly the playhead catches up with the scroll position (lower is slower
+ * and silkier). Raised from 0.055 now that seeks are cheap: at the old value the
+ * footage trailed a quick flick on mobile by over a second.
+ */
+const EASE = 0.09
 /** Share of the scroll at the end spent dissolving into the next section. */
 const OUTRO = 0.15
 
@@ -49,25 +54,28 @@ export function RefineryVideoSection() {
     if (!wrap || !v || !media) return
     const ctrl = new AbortController()
     let url: string | null = null
-    let target = 0
     const large = window.matchMedia('(min-width: 1400px)').matches && getNetworkTier() === 'fast'
     const src = large ? media.asset.sources.hd : media.asset.sources.sd
     const dur = () => (Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 17.04)
+    const fx = richEffects()
+    const scrubber = createScrubber(v, EASE)
 
-    // Fetch the clip as a blob when near, so seeking is instant while scrubbing.
+    // Fetch the clip into memory when near, so seeking is instant while scrubbing.
     const io = new IntersectionObserver(
       (es) => {
         if (!es.some((e) => e.isIntersecting)) return
         io.disconnect()
-        fetch(src, { signal: ctrl.signal })
-          .then((r) => r.blob())
-          .then((b) => {
-            url = URL.createObjectURL(b)
-            v.src = url
+        fetchClip(src, ctrl.signal)
+          .then((clip) => {
+            if (clip.blob) url = clip.url
+            return attachClip(v, clip.url, ctrl.signal)
           })
-          .catch(() => {
-            if (!ctrl.signal.aborted) v.src = src
+          .then(() => {
+            if (ctrl.signal.aborted) return
+            scrubber.markReady()
+            setReady(true)
           })
+          .catch(() => undefined)
       },
       { rootMargin: '150% 0px' },
     )
@@ -94,7 +102,7 @@ export function RefineryVideoSection() {
       const t = clamp(p / (1 - OUTRO)) * (dur() - 0.06)
       const o = clamp((p - (1 - OUTRO)) / OUTRO)
       const textOut = 1 - clamp(o * 2.4)
-      target = t
+      scrubber.set(t)
       REFINERY_BEATS.forEach((b, i) => {
         const el = beatRefs.current[i]
         if (!el) return
@@ -109,7 +117,8 @@ export function RefineryVideoSection() {
       if (titleRef.current) titleRef.current.style.opacity = textOut.toFixed(3)
       if (mediaRef.current) {
         mediaRef.current.style.transform = o > 0 ? `scale(${(1 + o * 0.08).toFixed(4)})` : ''
-        mediaRef.current.style.filter = o > 0 ? `blur(${(o * 8).toFixed(2)}px) saturate(${(1 - o * 0.4).toFixed(3)})` : ''
+        // A full-screen video blur every frame is too heavy for phones; they get the scale and wipe only.
+        if (fx) mediaRef.current.style.filter = o > 0 ? `blur(${(o * 8).toFixed(2)}px) saturate(${(1 - o * 0.4).toFixed(3)})` : ''
       }
       const outro = outroRef.current
       if (outro) {
@@ -134,18 +143,24 @@ export function RefineryVideoSection() {
     })
     apply(reduced ? 0 : st.progress)
 
+    // Frame loop runs only while the section is on screen.
     let raf = 0
-    const loop = () => {
-      if (v.readyState >= 2 && !v.seeking) {
-        const d = target - v.currentTime
-        if (Math.abs(d) > 0.006) v.currentTime = Math.abs(d) < 0.015 ? target : v.currentTime + d * EASE
-      }
+    let last = 0
+    const loop = (now: number) => {
+      scrubber.tick(last ? (now - last) / 1000 : 1 / 60)
+      last = now
       raf = requestAnimationFrame(loop)
     }
-    if (!reduced) raf = requestAnimationFrame(loop)
+    const onScreen = new IntersectionObserver(([e]) => {
+      cancelAnimationFrame(raf)
+      last = 0
+      if (e?.isIntersecting && !reduced) raf = requestAnimationFrame(loop)
+    })
+    onScreen.observe(wrap)
 
     return () => {
       cancelAnimationFrame(raf)
+      onScreen.disconnect()
       window.removeEventListener('resize', syncSeam)
       io.disconnect()
       st.kill()
@@ -170,10 +185,6 @@ export function RefineryVideoSection() {
             disablePictureInPicture
             tabIndex={-1}
             aria-hidden
-            onLoadedData={(e) => {
-              setReady(true)
-              e.currentTarget.play().then(() => e.currentTarget.pause()).catch(() => undefined)
-            }}
             className={cn('absolute inset-0 h-full w-full object-cover transition-opacity duration-1000', ready ? 'opacity-100' : 'opacity-0')}
           />
         </div>

@@ -1,8 +1,8 @@
 #!/bin/zsh
-# GULF NEXT — media build pipeline (macOS built-ins only: avconvert, qlmanage, sips).
+# GULF NEXT — media build pipeline (macOS built-ins only: AVFoundation via swiftc, avconvert, qlmanage, sips).
 # Turns the raw scene renders in the project root into web-ready assets:
-#   assets/media/video/1080/<id>.mp4   desktop  (H.264, fast-start)
-#   assets/media/video/720/<id>.mp4    mobile   (H.264, fast-start)
+#   assets/media/video/1080/<id>.mp4   desktop  (H.264, fast-start, scrub-friendly GOP)
+#   assets/media/video/720/<id>.mp4    mobile   (H.264, fast-start, scrub-friendly GOP)
 #   assets/media/posters/<id>.jpg      1920px first frame (poster + fallback)
 #   assets/media/posters/<id>-sm.jpg   960px first frame (mobile poster)
 # The original renders are never modified.
@@ -15,6 +15,10 @@ FORCE=${1:-}
 OUT=assets/media
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
+
+# Compile the scrub-friendly encoder once (Swift ships with the Xcode Command Line Tools).
+ENC="$TMP/scrub-encode"
+swiftc -O tools/scrub-encode.swift -o "$ENC" 2>/dev/null
 
 # id | original file (exact filename on disk)
 MANIFEST=(
@@ -36,8 +40,9 @@ for row in "${MANIFEST[@]}"; do
   for res in 1080 720; do
     dst="$OUT/video/$res/$id.mp4"
     if [[ -n "$FORCE" || ! -f "$dst" ]]; then
-      preset=Preset1920x1080; [[ $res == 720 ]] && preset=Preset1280x720
-      avconvert -s "$src" -p $preset -o "$dst" --replace >/dev/null
+      # Scroll-scrubbed footage: keyframe every 4 frames, no B-frames (see tools/scrub-encode.swift).
+      if [[ $res == 1080 ]]; then "$ENC" "$src" "$dst" 1920 1080 10000000 4
+      else "$ENC" "$src" "$dst" 1280 720 6000000 4; fi
       echo "video $dst"
     fi
   done
