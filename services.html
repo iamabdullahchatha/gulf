@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Services | GULF NEXT Oil and Gas</title>
+  <meta name="description" content="Upstream support, mechanical engineering, facilities construction, maintenance and supply.">
+  <meta name="theme-color" content="#040c1c">
+  <link rel="icon" type="image/webp" href="assets/brand/logo.webp">
+  <link rel="preload" as="image" href="assets/media/posters/scene-05-mechanical-engineering.jpg" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/media/posters/scene-05-mechanical-engineering-sm.jpg" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+        <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html" aria-current="page">Services</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li class="nav-cta"><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Services hero is mapped to Scene 11 (services.hero). Scene 11 was not found
+         in the asset audit, so the media map serves Scene 05 as interim footage. -->
+    <cinematic-hero section="services.hero" loading="eager"
+      align="left" overlay="medium" height="full" mobile-focal="35% 50%"
+      eyebrow="Services"
+      heading="Industrial capability across the full asset lifecycle."
+      description="From upstream field support to mechanical works, facilities construction and long-term maintenance, our services are built to keep energy assets productive and safe."
+      primary-label="View all services" primary-href="#services-list"
+      secondary-label="Talk to an engineer" secondary-href="#contact"></cinematic-hero>
+
+    <section class="section" id="services-list" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">What we do</p>
+          <h2 id="services-heading">Core services</h2>
+          <p class="lead">Each service can be delivered on its own or combined into a single integrated scope with one point of accountability.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal" id="upstream"><p class="card-index">01</p><h3>Upstream &amp; drilling support</h3><p>Rig-site services, well-site facilities and field crews for onshore extraction programmes.</p></article>
+          <article class="card reveal" id="mechanical"><p class="card-index">02</p><h3>Mechanical engineering</h3><p>Fabrication, piping, rotating equipment installation and heavy-lift coordination.</p></article>
+          <article class="card reveal" id="facilities"><p class="card-index">03</p><h3>Facilities &amp; pipelines</h3><p>Construction and commissioning of processing facilities, tank farms and pipeline networks.</p></article>
+          <article class="card reveal" id="maintenance"><p class="card-index">04</p><h3>Maintenance &amp; turnarounds</h3><p>Planned maintenance, shutdowns and turnarounds executed to tight windows.</p></article>
+          <article class="card reveal" id="supply"><p class="card-index">05</p><h3>Procurement &amp; supply</h3><p>Sourcing and expediting of equipment and materials through trusted regional and global partners.</p></article>
+          <article class="card reveal" id="hse"><p class="card-index">06</p><h3>HSE &amp; quality</h3><p>Safety, health, environmental and quality management embedded in every scope.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="services-cta">
+      <div class="container">
+        <div>
+          <h2 id="services-cta">Need a team that can scale with your scope?</h2>
+          <p>Tell us what you are planning and we will put the right specialists on it.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact">Request a consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+            <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430" loading="lazy">
+          </a>
+          <p class="footer-about">Engineering, construction and operations support for the oil, gas and petrochemical sector.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>Company</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact</h2>
+          <!-- TODO: add official phone, email and office address. -->
+          <p>Tell us about your project and our team will be in touch.</p>
+        </div>
+      </div>
+      <p class="footer-base">&copy; <span data-year>2026</span> GULF NEXT Oil and Gas. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Order matters: media map, then component, then page behaviour. -->
+  <script src="assets/js/media-map.js"></script>
+  <script src="assets/js/cinematic-hero.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

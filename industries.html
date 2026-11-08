@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Industries | GULF NEXT Oil and Gas</title>
+  <meta name="description" content="Onshore, offshore, refining, gas processing, midstream and power.">
+  <meta name="theme-color" content="#040c1c">
+  <link rel="icon" type="image/webp" href="assets/brand/logo.webp">
+  <link rel="preload" as="image" href="assets/media/posters/scene-12-industries.jpg" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/media/posters/scene-12-industries-sm.jpg" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+        <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="industries.html" aria-current="page">Industries</a></li>
+          <li class="nav-cta"><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <cinematic-hero section="industries.hero" loading="eager"
+      align="left" overlay="medium" height="full" focal="60% 50%" mobile-focal="62% 50%"
+      eyebrow="Industries"
+      heading="Trusted across every link of the energy value chain."
+      description="Onshore fields, offshore platforms, refineries and gas plants each bring their own demands. We bring teams who already know them."
+      primary-label="Explore industries" primary-href="#industries-list"
+      secondary-label="Our services" secondary-href="services.html"></cinematic-hero>
+
+    <section class="section section-dark" id="industries-list" aria-labelledby="industries-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">Where we work</p>
+          <h2 id="industries-heading">Industries we serve</h2>
+          <p class="lead">Sector experience that lets us anticipate problems before they reach the critical path.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal" id="onshore"><p class="card-index">01</p><h3>Onshore oil &amp; gas</h3><p>Field development, production facilities and well-site support across desert operations.</p></article>
+          <article class="card reveal" id="offshore"><p class="card-index">02</p><h3>Offshore</h3><p>Platform engineering, maintenance campaigns and marine logistics.</p></article>
+          <article class="card reveal" id="refining"><p class="card-index">03</p><h3>Refining &amp; petrochemicals</h3><p>Plant upgrades, mechanical works and turnaround support for complex process units.</p></article>
+          <article class="card reveal" id="gas"><p class="card-index">04</p><h3>Gas processing</h3><p>Construction and maintenance for gas treatment and processing facilities.</p></article>
+          <article class="card reveal" id="midstream"><p class="card-index">05</p><h3>Pipelines &amp; midstream</h3><p>Pipeline construction, integrity support and storage terminals.</p></article>
+          <article class="card reveal" id="power"><p class="card-index">06</p><h3>Power &amp; utilities</h3><p>Mechanical and balance-of-plant works for energy and utility infrastructure.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="industries-cta">
+      <div class="container">
+        <div>
+          <h2 id="industries-cta">Operating in a sector not listed here?</h2>
+          <p>Our engineering capabilities transfer well. Let’s talk about your requirements.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+            <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430" loading="lazy">
+          </a>
+          <p class="footer-about">Engineering, construction and operations support for the oil, gas and petrochemical sector.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>Company</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact</h2>
+          <!-- TODO: add official phone, email and office address. -->
+          <p>Tell us about your project and our team will be in touch.</p>
+        </div>
+      </div>
+      <p class="footer-base">&copy; <span data-year>2026</span> GULF NEXT Oil and Gas. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Order matters: media map, then component, then page behaviour. -->
+  <script src="assets/js/media-map.js"></script>
+  <script src="assets/js/cinematic-hero.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

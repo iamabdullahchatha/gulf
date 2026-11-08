@@ -1,0 +1,341 @@
+@import "tailwindcss";
+
+/* ============================================================================
+ * GULF NEXT DESIGN SYSTEM
+ * ----------------------------------------------------------------------------
+ * Source of identity: the original GULF NEXT Oil and Gas logo.
+ *
+ * Brand palette (canonical):
+ *   Midnight Navy   #06172F   page base
+ *   Deep Navy       #09264B   raised surfaces, alternate sections
+ *   Royal Blue      #073B75   panels, gradients
+ *   Electric Blue   #087EDB   primary action
+ *   Emerald Teal    #00B99A   accent, focus, highlights
+ *   Metallic Silver #C5CED8   metallic text, hairlines, borders
+ *   Pure White      #FFFFFF   type
+ *
+ * The older scale names (navy-*, signal-*, teal-*, steel-*) are mapped onto
+ * the canonical palette so every component inherits the brand at once.
+ * Prefer the semantic names (midnight, deep, royal, electric, emerald,
+ * silver) in new code.
+ * ========================================================================== */
+
+@theme {
+  /* Canonical brand colours */
+  --color-midnight: #06172f;
+  --color-deep: #09264b;
+  --color-royal: #073b75;
+  --color-electric: #087edb;
+  --color-emerald: #00b99a;
+  --color-silver: #c5ced8;
+  --color-abyss: #030d1d; /* derived: deepest shadow, footer base */
+
+  /* Scales mapped to the canonical palette */
+  --color-navy-950: #06172f;
+  --color-navy-900: #09264b;
+  --color-navy-800: #073b75;
+  --color-navy-700: #0b4c93;
+  --color-navy-600: #1460b0;
+  --color-signal-500: #087edb;
+  --color-signal-400: #2e96ea;
+  --color-signal-300: #6cb6f2;
+  --color-teal-500: #009c82;
+  --color-teal-400: #00b99a;
+  --color-teal-300: #4dd6bd;
+  --color-steel-100: #eef2f6;
+  --color-steel-200: #dce3ea;
+  --color-steel-300: #c5ced8;
+  --color-steel-400: #a3afbd;
+  --color-steel-500: #7c8a9c;
+  --color-steel-700: #43526a;
+  --color-ink: #06172f;
+  --color-paper: #f4f7fa;
+
+  /* Typography
+   *   display — Archivo (variable width): engineered, structural headings
+   *   serif   — Instrument Serif italic: editorial emphasis inside headings
+   *   sans    — Inter: body copy
+   *   mono    — JetBrains Mono: technical labels, indices, metadata */
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Editorial display scale (fluid) */
+  --text-display-2xl: clamp(3.25rem, 8vw, 7.5rem);
+  --text-display-2xl--line-height: 0.92;
+  --text-display-2xl--letter-spacing: -0.035em;
+  --text-display-xl: clamp(2.75rem, 6.2vw, 5.75rem);
+  --text-display-xl--line-height: 0.96;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-lg: clamp(2.25rem, 4.6vw, 4.25rem);
+  --text-display-lg--line-height: 1;
+  --text-display-lg--letter-spacing: -0.025em;
+  --text-display-md: clamp(1.875rem, 3.2vw, 3rem);
+  --text-display-md--line-height: 1.05;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --ease-cinematic: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-glow: 0 18px 50px -14px rgb(8 126 219 / 0.55);
+  --shadow-glow-emerald: 0 18px 50px -14px rgb(0 185 154 / 0.45);
+  --shadow-soft: 0 24px 60px -24px rgb(0 0 0 / 0.6);
+  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 0.07), 0 30px 80px -30px rgb(0 0 0 / 0.7);
+}
+
+/* ----------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-midnight font-sans text-white antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+    font-stretch: 104%;
+    text-wrap: balance;
+  }
+  /* Editorial emphasis: <em> inside any heading becomes the serif italic,
+     tinted with a metallic-emerald gradient. */
+  :is(h1, h2, h3) em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: -0.01em;
+    padding-right: 0.06em;
+    background: linear-gradient(100deg, #e9eef3 0%, #c5ced8 35%, #4dd6bd 75%, #00b99a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-emerald;
+  }
+  ::selection {
+    @apply bg-emerald/40 text-white;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Design-system utilities
+ * ------------------------------------------------------------------------- */
+
+/* Premium glass — panels, cards, form shells. */
+@utility glass {
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.075) 0%, rgb(255 255 255 / 0.02) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgb(197 206 216 / 0.14);
+  box-shadow: var(--shadow-panel);
+}
+
+/* Dark glass — header bar and mega menu. */
+@utility glass-dark {
+  background: linear-gradient(180deg, rgb(7 30 60 / 0.96) 0%, rgb(9 38 75 / 0.92) 100%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+}
+
+/* Metallic silver lettering. */
+@utility text-metallic {
+  background: linear-gradient(180deg, #ffffff 0%, #dfe5eb 32%, #c5ced8 52%, #8e9bab 72%, #e3e8ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Emerald → electric accent lettering. */
+@utility text-accent-gradient {
+  background: linear-gradient(95deg, #4dd6bd 0%, #00b99a 40%, #087edb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hairline metallic border drawn with a masked gradient (needs a radius). */
+@utility border-metallic {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgb(229 235 241 / 0.55) 0%, rgb(197 206 216 / 0.1) 38%, rgb(197 206 216 / 0.06) 62%, rgb(8 126 219 / 0.45) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Metallic surface — brushed royal-to-deep panel. */
+@utility surface-metal {
+  background:
+    linear-gradient(115deg, rgb(255 255 255 / 0.06) 0%, transparent 30%, transparent 70%, rgb(255 255 255 / 0.04) 100%),
+    linear-gradient(160deg, #0b3a70 0%, #09264b 45%, #06172f 100%);
+}
+
+/* Diagonal light sweep on hover (buttons, featured cards). */
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.22) 48%, transparent 66%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-out-expo);
+    pointer-events: none;
+  }
+  &:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+/* Animated underline for text links. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s var(--ease-out-expo), color 0.2s;
+  &:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Technical label — mono, uppercase, wide tracking. */
+@utility label-tech {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Expanded display width for eyebrows and short caps. */
+@utility font-expanded {
+  font-stretch: 122%;
+}
+
+/* Cinematic image treatment: desaturated duotone that blooms on hover.
+   Apply to an <img> inside a `group`. */
+@utility img-cinematic {
+  filter: saturate(0.55) contrast(1.08) brightness(0.82);
+  transform: scale(1.02);
+  transition: filter 0.9s var(--ease-cinematic), transform 1.4s var(--ease-out-expo);
+  :where(.group):hover & {
+    filter: saturate(1) contrast(1.05) brightness(0.95);
+    transform: scale(1.07);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Lenis
+ * ------------------------------------------------------------------------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ----------------------------------------------------------------------------
+ * Motion primitives
+ * ------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s var(--ease-cinematic), transform 0.9s var(--ease-cinematic);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(340%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ----------------------------------------------------------------------------
+ * Light sections
+ * Bright editorial bands between the cinematic moments. Wrap a section in
+ * `theme-light` (paper or white background) and use `tone="light"` on
+ * SectionHeading / FAQAccordion.
+ * ------------------------------------------------------------------------- */
+.theme-light {
+  color-scheme: light;
+  color: var(--color-ink);
+}
+.theme-light :is(h1, h2, h3) em {
+  background: linear-gradient(100deg, #073b75 0%, #087edb 55%, #00b99a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.theme-light ::selection {
+  background: rgb(8 126 219 / 0.2);
+  color: var(--color-ink);
+}
+
+/* Soft card for light sections. */
+@utility card-light {
+  background: #ffffff;
+  border: 1px solid rgb(9 38 75 / 0.08);
+  box-shadow: 0 1px 2px rgb(9 38 75 / 0.04), 0 24px 50px -28px rgb(9 38 75 / 0.25);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Footer panel: slow drifting light behind the closing statement. */
+@keyframes aurora {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8%, -6%, 0) scale(1.15); }
+  100% { transform: translate3d(-6%, 5%, 0) scale(0.95); }
+}

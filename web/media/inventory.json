@@ -1,0 +1,4042 @@
+{
+  "generated": "2026-11-08T16:15:49.309Z",
+  "license": {
+    "name": "Unsplash License",
+    "url": "https://unsplash.com/license",
+    "summary": "Free to use for commercial and non-commercial purposes; no permission or attribution required. Not permitted: selling unaltered copies or compiling photos into a competing service."
+  },
+  "assets": [
+    {
+      "file": "/assets/images/about/quality-safety-sm.avif",
+      "format": "avif",
+      "dimensions": "602x446",
+      "bytes": 30730,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/about/quality-safety-sm.jpg",
+      "format": "jpg",
+      "dimensions": "602x446",
+      "bytes": 92951,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/about/quality-safety-sm.webp",
+      "format": "webp",
+      "dimensions": "602x446",
+      "bytes": 44292,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/about/quality-safety.avif",
+      "format": "avif",
+      "dimensions": "602x446",
+      "bytes": 30721,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/about/quality-safety.jpg",
+      "format": "jpg",
+      "dimensions": "602x446",
+      "bytes": 99144,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/about/quality-safety.webp",
+      "format": "webp",
+      "dimensions": "602x446",
+      "bytes": 44462,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "src/pages/AboutPage.tsx"
+    },
+    {
+      "file": "/assets/images/industries/construction-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 27281,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/construction-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 95118,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/construction-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 40312,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/construction.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 53114,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/construction.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 206539,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/construction.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 74060,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 26509,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 92780,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 39054,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 50570,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 201073,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-inner.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 72038,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 27753,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 92110,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 40440,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 50678,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 195991,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/oil-gas.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 72338,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Oil & Gas"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 25417,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 91350,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 33132,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 54122,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 229394,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 63146,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Industries page sector card: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 28252,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 97574,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 43764,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 51430,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 208310,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/industries/petrochemical.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 77528,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage industries showcase and industry cards: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/images/sections/contact-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 40019,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/contact-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 96119,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/contact-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 65350,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/contact.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 88195,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/contact.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 290302,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/contact.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 142734,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/ContactCTA.tsx"
+    },
+    {
+      "file": "/assets/images/sections/refinery-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 40019,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/refinery-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 96119,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/refinery-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 65350,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/refinery.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 88195,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/refinery.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 290302,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/refinery.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 142734,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/images/sections/why-gulf-next.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 72706,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 17687,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 44692,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 20852,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 37192,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 129030,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/sections/why.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 45122,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "src/components/home/WhyChooseUs.tsx"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 27130,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 99074,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 33506,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 57684,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 253729,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 67852,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Electromechanical Installation & Maintenance\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-sm.avif",
+      "format": "avif",
+      "dimensions": "678x453",
+      "bytes": 16360,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-sm.jpg",
+      "format": "jpg",
+      "dimensions": "678x453",
+      "bytes": 59291,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/electromechanical-sm.webp",
+      "format": "webp",
+      "dimensions": "678x453",
+      "bytes": 20604,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/electromechanical.avif",
+      "format": "avif",
+      "dimensions": "678x453",
+      "bytes": 16156,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/electromechanical.jpg",
+      "format": "jpg",
+      "dimensions": "678x453",
+      "bytes": 63070,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/electromechanical.webp",
+      "format": "webp",
+      "dimensions": "678x453",
+      "bytes": 20796,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x531",
+      "bytes": 36155,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x531",
+      "bytes": 139846,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x531",
+      "bytes": 56676,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1061",
+      "bytes": 106660,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1061",
+      "bytes": 450871,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1061",
+      "bytes": 169654,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oilfield Equipment & Material Supply\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 21029,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 78793,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 31984,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 40012,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 169390,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/equipment-supply.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 57178,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 42603,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 140437,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 64936,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 93434,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 347573,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 118682,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Onshore & Offshore Field Services\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/field-services-sm.avif",
+      "format": "avif",
+      "dimensions": "640x683",
+      "bytes": 39659,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/field-services-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x683",
+      "bytes": 136268,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/field-services-sm.webp",
+      "format": "webp",
+      "dimensions": "640x683",
+      "bytes": 57266,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/field-services.avif",
+      "format": "avif",
+      "dimensions": "1000x1068",
+      "bytes": 80368,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/field-services.jpg",
+      "format": "jpg",
+      "dimensions": "1000x1068",
+      "bytes": 320239,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/field-services.webp",
+      "format": "webp",
+      "dimensions": "1000x1068",
+      "bytes": 118474,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Onshore & Offshore Field Services"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "679x452",
+      "bytes": 37817,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "679x452",
+      "bytes": 116518,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "679x452",
+      "bytes": 59432,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner.avif",
+      "format": "avif",
+      "dimensions": "679x452",
+      "bytes": 37862,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner.jpg",
+      "format": "jpg",
+      "dimensions": "679x452",
+      "bytes": 123525,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-inner.webp",
+      "format": "webp",
+      "dimensions": "679x452",
+      "bytes": 59894,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Industrial Plant Construction\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-sm.avif",
+      "format": "avif",
+      "dimensions": "640x640",
+      "bytes": 42698,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x640",
+      "bytes": 166632,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction-sm.webp",
+      "format": "webp",
+      "dimensions": "640x640",
+      "bytes": 74660,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction.avif",
+      "format": "avif",
+      "dimensions": "1000x1000",
+      "bytes": 93386,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction.jpg",
+      "format": "jpg",
+      "dimensions": "1000x1000",
+      "bytes": 383138,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/industrial-construction.webp",
+      "format": "webp",
+      "dimensions": "1000x1000",
+      "bytes": 162554,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Industrial Plant Construction"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x491",
+      "bytes": 32538,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x491",
+      "bytes": 111813,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x491",
+      "bytes": 47032,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner.avif",
+      "format": "avif",
+      "dimensions": "1300x799",
+      "bytes": 80719,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1300x799",
+      "bytes": 287355,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-inner.webp",
+      "format": "webp",
+      "dimensions": "1300x799",
+      "bytes": 115756,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Facilities Maintenance & Turnarounds\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/maintenance-sm.avif",
+      "format": "avif",
+      "dimensions": "640x427",
+      "bytes": 23714,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/maintenance-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x427",
+      "bytes": 96180,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/maintenance-sm.webp",
+      "format": "webp",
+      "dimensions": "640x427",
+      "bytes": 36666,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/maintenance.avif",
+      "format": "avif",
+      "dimensions": "1000x667",
+      "bytes": 45507,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/maintenance.jpg",
+      "format": "jpg",
+      "dimensions": "1000x667",
+      "bytes": 203617,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/maintenance.webp",
+      "format": "webp",
+      "dimensions": "1000x667",
+      "bytes": 68100,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Facilities Maintenance & Turnarounds"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 24270,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 91086,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 30556,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner.avif",
+      "format": "avif",
+      "dimensions": "1000x667",
+      "bytes": 34930,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1000x667",
+      "bytes": 137474,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-inner.webp",
+      "format": "webp",
+      "dimensions": "1000x667",
+      "bytes": 42992,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Mechanical Engineering Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/mechanical-sm.avif",
+      "format": "avif",
+      "dimensions": "640x683",
+      "bytes": 33599,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/mechanical-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x683",
+      "bytes": 121188,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/mechanical-sm.webp",
+      "format": "webp",
+      "dimensions": "640x683",
+      "bytes": 48250,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/mechanical.avif",
+      "format": "avif",
+      "dimensions": "1000x1068",
+      "bytes": 64617,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/mechanical.jpg",
+      "format": "jpg",
+      "dimensions": "1000x1068",
+      "bytes": 261948,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/mechanical.webp",
+      "format": "webp",
+      "dimensions": "1000x1068",
+      "bytes": 90162,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Mechanical Engineering Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 40287,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 141071,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 62150,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 88483,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 352901,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 113198,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Oil & Gas Pipeline Works\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/pipelines-sm.avif",
+      "format": "avif",
+      "dimensions": "640x480",
+      "bytes": 37237,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x480",
+      "bytes": 129750,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines-sm.webp",
+      "format": "webp",
+      "dimensions": "640x480",
+      "bytes": 61544,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines.avif",
+      "format": "avif",
+      "dimensions": "1000x750",
+      "bytes": 67100,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines.jpg",
+      "format": "jpg",
+      "dimensions": "1000x750",
+      "bytes": 268319,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/pipelines.webp",
+      "format": "webp",
+      "dimensions": "1000x750",
+      "bytes": 105366,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 42103,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 147724,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 66674,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 93614,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 373065,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-inner.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 118254,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Steel Structure Fabrication & Erection\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-sm.avif",
+      "format": "avif",
+      "dimensions": "640x640",
+      "bytes": 22071,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-sm.jpg",
+      "format": "jpg",
+      "dimensions": "640x640",
+      "bytes": 80878,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/steel-structures-sm.webp",
+      "format": "webp",
+      "dimensions": "640x640",
+      "bytes": 32276,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/steel-structures.avif",
+      "format": "avif",
+      "dimensions": "1000x1000",
+      "bytes": 43743,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/steel-structures.jpg",
+      "format": "jpg",
+      "dimensions": "1000x1000",
+      "bytes": 179542,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/steel-structures.webp",
+      "format": "webp",
+      "dimensions": "1000x1000",
+      "bytes": 65048,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 33947,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 123603,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 49864,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner.avif",
+      "format": "avif",
+      "dimensions": "1536x1024",
+      "bytes": 105625,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner.jpg",
+      "format": "jpg",
+      "dimensions": "1536x1024",
+      "bytes": 462445,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-inner.webp",
+      "format": "webp",
+      "dimensions": "1536x1024",
+      "bytes": 158550,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Service page \"Drilling & Wellsite Support\": introduction photo; related-service cards"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-sm.avif",
+      "format": "avif",
+      "dimensions": "800x600",
+      "bytes": 29972,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x600",
+      "bytes": 105749,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling-sm.webp",
+      "format": "webp",
+      "dimensions": "800x600",
+      "bytes": 43784,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling.avif",
+      "format": "avif",
+      "dimensions": "1600x1200",
+      "bytes": 68384,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1200",
+      "bytes": 265358,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/services/wellsite-drilling.webp",
+      "format": "webp",
+      "dimensions": "1600x1200",
+      "bytes": 79576,
+      "source": "Supplied by GULF NEXT (client photography)",
+      "license": "Client-owned asset",
+      "section": "Homepage services grid and Services page card: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly-sm.avif",
+      "format": "avif",
+      "dimensions": "800x408",
+      "bytes": 29002,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x408",
+      "bytes": 56334,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly-sm.webp",
+      "format": "webp",
+      "dimensions": "800x408",
+      "bytes": 42934,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly.avif",
+      "format": "avif",
+      "dimensions": "1600x816",
+      "bytes": 81652,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly.jpg",
+      "format": "jpg",
+      "dimensions": "1600x816",
+      "bytes": 166963,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/compressor-gearbox-assembly.webp",
+      "format": "webp",
+      "dimensions": "1600x816",
+      "bytes": 114282,
+      "source": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "license": "Unsplash License (photographer: CAPTAIN NICK), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 13501,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 26257,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 18078,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 42229,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 86425,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/drilling-rig-sunset.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 57530,
+      "source": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "license": "Unsplash License (photographer: WORKSITE Ltd.), verified 2026-11-08",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 26411,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 62146,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 45830,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 65223,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 175253,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electric-motor-pump-hall.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 109748,
+      "source": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "license": "Unsplash License (photographer: Crystal Kwok), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 40786,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 80216,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 64374,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 105540,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 237012,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-panel.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 168196,
+      "source": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "license": "Unsplash License (photographer: Raymond Sime), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 18711,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 35947,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 22498,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 61752,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 118553,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/electrical-control-room.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 70300,
+      "source": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "license": "Unsplash License (photographer: Tao Yuan), verified 2026-11-08",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1000",
+      "bytes": 30175,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1000",
+      "bytes": 76413,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1000",
+      "bytes": 44430,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway.avif",
+      "format": "avif",
+      "dimensions": "1600x2000",
+      "bytes": 81199,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2000",
+      "bytes": 228635,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/engineer-plant-walkway.webp",
+      "format": "webp",
+      "dimensions": "1600x2000",
+      "bytes": 115210,
+      "source": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "license": "Unsplash License (photographer: Vlad Ionita), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment-sm.avif",
+      "format": "avif",
+      "dimensions": "800x532",
+      "bytes": 53246,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x532",
+      "bytes": 89933,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment-sm.webp",
+      "format": "webp",
+      "dimensions": "800x532",
+      "bytes": 87876,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment.avif",
+      "format": "avif",
+      "dimensions": "1600x1065",
+      "bytes": 180939,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1065",
+      "bytes": 318254,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/excavator-heavy-equipment.webp",
+      "format": "webp",
+      "dimensions": "1600x1065",
+      "bytes": 298854,
+      "source": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "license": "Unsplash License (photographer: Gerold Hinzen), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 28171,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 60037,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 41918,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 69803,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 162211,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/field-technician-tools.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 97730,
+      "source": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "license": "Unsplash License (photographer: Jeriden Villegas), verified 2026-11-08",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1067",
+      "bytes": 55902,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1067",
+      "bytes": 99437,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1067",
+      "bytes": 79930,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack.avif",
+      "format": "avif",
+      "dimensions": "1600x2133",
+      "bytes": 195496,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2133",
+      "bytes": 367614,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-flare-stack.webp",
+      "format": "webp",
+      "dimensions": "1600x2133",
+      "bytes": 277532,
+      "source": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "license": "Unsplash License (photographer: Ghostinmirror), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 29157,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 55979,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 40606,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 92588,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 183768,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/gas-processing-spheres.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 126546,
+      "source": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 96604,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 142524,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 161358,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 372554,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 557085,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/geological-rock-strata.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 628582,
+      "source": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "license": "Unsplash License (photographer: Sue Winston), verified 2026-11-08",
+      "section": "Not currently displayed"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel-sm.avif",
+      "format": "avif",
+      "dimensions": "800x549",
+      "bytes": 47629,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x549",
+      "bytes": 73180,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel-sm.webp",
+      "format": "webp",
+      "dimensions": "800x549",
+      "bytes": 71736,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel.avif",
+      "format": "avif",
+      "dimensions": "1600x1098",
+      "bytes": 207510,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1098",
+      "bytes": 328658,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-lift-crane-vessel.webp",
+      "format": "webp",
+      "dimensions": "1600x1098",
+      "bytes": 321802,
+      "source": "https://unsplash.com/photos/0eqs4wjebyc",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 53293,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 86531,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 82690,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 175457,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 303180,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/heavy-machinery-earthworks.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 261856,
+      "source": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "license": "Unsplash License (photographer: Dominik Vanyi), verified 2026-11-08",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 49034,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 92230,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 80614,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 154629,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 312275,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-construction-site.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 258216,
+      "source": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "license": "Unsplash License (photographer: david Griffiths), verified 2026-11-08",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 51007,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 81661,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 75826,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 197508,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 317620,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-infrastructure-coastal.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 298176,
+      "source": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room-sm.avif",
+      "format": "avif",
+      "dimensions": "800x571",
+      "bytes": 22119,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x571",
+      "bytes": 48501,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room-sm.webp",
+      "format": "webp",
+      "dimensions": "800x571",
+      "bytes": 30430,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room.avif",
+      "format": "avif",
+      "dimensions": "1600x1143",
+      "bytes": 64995,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1143",
+      "bytes": 155385,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-pump-room.webp",
+      "format": "webp",
+      "dimensions": "1600x1143",
+      "bytes": 85728,
+      "source": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "license": "Unsplash License (photographer: iSawRed), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1179",
+      "bytes": 80106,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1179",
+      "bytes": 134015,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1179",
+      "bytes": 110118,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing.avif",
+      "format": "avif",
+      "dimensions": "1600x2359",
+      "bytes": 302923,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2359",
+      "bytes": 503949,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/industrial-team-briefing.webp",
+      "format": "webp",
+      "dimensions": "1600x2359",
+      "bytes": 418748,
+      "source": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "license": "Unsplash License (photographer: Ben Wicks), verified 2026-11-08",
+      "section": "About: who we are"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1200",
+      "bytes": 67010,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1200",
+      "bytes": 128886,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1200",
+      "bytes": 101968,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig.avif",
+      "format": "avif",
+      "dimensions": "1600x2400",
+      "bytes": 184806,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2400",
+      "bytes": 400675,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/land-drilling-rig.webp",
+      "format": "webp",
+      "dimensions": "1600x2400",
+      "bytes": 278994,
+      "source": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "license": "Unsplash License (photographer: 微 风 (@weifeng15)), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 17225,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 36139,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 24002,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 41323,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 98844,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/mechanical-flanges-blueprints.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 55930,
+      "source": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "license": "Unsplash License (photographer: EnCata PD), verified 2026-11-08",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 32978,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 58111,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 51358,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 110928,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 205115,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-crane-vessel.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 177108,
+      "source": "https://unsplash.com/photos/3J2FB7BItdA",
+      "license": "Unsplash License (photographer: J.f Manzanero), verified 2026-11-08",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1200",
+      "bytes": 52831,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1200",
+      "bytes": 97894,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1200",
+      "bytes": 79778,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig.avif",
+      "format": "avif",
+      "dimensions": "1600x2400",
+      "bytes": 184465,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2400",
+      "bytes": 367227,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-jackup-rig.webp",
+      "format": "webp",
+      "dimensions": "1600x2400",
+      "bytes": 284960,
+      "source": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "license": "Unsplash License (photographer: Julia Taubitz), verified 2026-11-08",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 10863,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 19903,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 12822,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 36017,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 73887,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/offshore-platform-silhouette.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 46412,
+      "source": "https://unsplash.com/photos/VRp_gClx9jo",
+      "license": "Unsplash License (photographer: Leo_Visions), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 22814,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 37967,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 27202,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 86117,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 147948,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/onshore-oilfield-pumpjacks.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 108170,
+      "source": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "license": "Unsplash License (photographer: Aritra Roy), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 32884,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 59879,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 47280,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 143762,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 238727,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/petrochemical-complex-night.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 225928,
+      "source": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "license": "Unsplash License (photographer: PilMo Kang), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation-sm.avif",
+      "format": "avif",
+      "dimensions": "800x532",
+      "bytes": 40150,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x532",
+      "bytes": 75777,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation-sm.webp",
+      "format": "webp",
+      "dimensions": "800x532",
+      "bytes": 55420,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation.avif",
+      "format": "avif",
+      "dimensions": "1600x1064",
+      "bytes": 98653,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1064",
+      "bytes": 211231,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/pump-skid-installation.webp",
+      "format": "webp",
+      "dimensions": "1600x1064",
+      "bytes": 131334,
+      "source": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "license": "Unsplash License (photographer: IYYM IYYM), verified 2026-11-08",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront-sm.avif",
+      "format": "avif",
+      "dimensions": "800x532",
+      "bytes": 19644,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x532",
+      "bytes": 35948,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront-sm.webp",
+      "format": "webp",
+      "dimensions": "800x532",
+      "bytes": 25176,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront.avif",
+      "format": "avif",
+      "dimensions": "1600x1064",
+      "bytes": 58620,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1064",
+      "bytes": 113646,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-dusk-waterfront.webp",
+      "format": "webp",
+      "dimensions": "1600x1064",
+      "bytes": 74018,
+      "source": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "license": "Unsplash License (photographer: Naturalist Boat), verified 2026-11-08",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 24988,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 50317,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 34776,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 66583,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 146782,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/refinery-storage-tanks.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 88578,
+      "source": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "license": "Unsplash License (photographer: Red Shuheart), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1200",
+      "bytes": 96450,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1200",
+      "bytes": 165508,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1200",
+      "bytes": 149632,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes.avif",
+      "format": "avif",
+      "dimensions": "1600x2400",
+      "bytes": 288731,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2400",
+      "bytes": 566839,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-frame-tower-cranes.webp",
+      "format": "webp",
+      "dimensions": "1600x2400",
+      "bytes": 481488,
+      "source": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "license": "Unsplash License (photographer: Jacek Dylag), verified 2026-11-08",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure-sm.avif",
+      "format": "avif",
+      "dimensions": "800x450",
+      "bytes": 23299,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x450",
+      "bytes": 63434,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure-sm.webp",
+      "format": "webp",
+      "dimensions": "800x450",
+      "bytes": 41620,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure.avif",
+      "format": "avif",
+      "dimensions": "1600x900",
+      "bytes": 64417,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure.jpg",
+      "format": "jpg",
+      "dimensions": "1600x900",
+      "bytes": 167734,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-lattice-structure.webp",
+      "format": "webp",
+      "dimensions": "1600x900",
+      "bytes": 94608,
+      "source": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "license": "Unsplash License (photographer: Roman Serdyuk), verified 2026-11-08",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 46252,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 95647,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 80520,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 123207,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 284661,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/steel-truss-installation-crew.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 219878,
+      "source": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "license": "Unsplash License (photographer: Jimmy Nilsson Masth), verified 2026-11-08",
+      "section": "About: industrial construction"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1000",
+      "bytes": 37651,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1000",
+      "bytes": 84926,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1000",
+      "bytes": 60914,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane.avif",
+      "format": "avif",
+      "dimensions": "1600x2000",
+      "bytes": 103486,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2000",
+      "bytes": 257964,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/tower-crane.webp",
+      "format": "webp",
+      "dimensions": "1600x2000",
+      "bytes": 171922,
+      "source": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "license": "Unsplash License (photographer: James Sullivan), verified 2026-11-08",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway-sm.avif",
+      "format": "avif",
+      "dimensions": "800x1000",
+      "bytes": 15193,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x1000",
+      "bytes": 43353,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway-sm.webp",
+      "format": "webp",
+      "dimensions": "800x1000",
+      "bytes": 21752,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway.avif",
+      "format": "avif",
+      "dimensions": "1600x2000",
+      "bytes": 31775,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway.jpg",
+      "format": "jpg",
+      "dimensions": "1600x2000",
+      "bytes": 112624,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/turbine-compressor-cutaway.webp",
+      "format": "webp",
+      "dimensions": "1600x2000",
+      "bytes": 48472,
+      "source": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "license": "Unsplash License (photographer: ObjectType RAW), verified 2026-11-08",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 47210,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 76369,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 72642,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 189883,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 304898,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/twin-pipeline-corridor.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 290924,
+      "source": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "license": "Unsplash License (photographer: Quinten de Graaf), verified 2026-11-08",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication-sm.avif",
+      "format": "avif",
+      "dimensions": "800x533",
+      "bytes": 31694,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication-sm.jpg",
+      "format": "jpg",
+      "dimensions": "800x533",
+      "bytes": 60795,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication-sm.webp",
+      "format": "webp",
+      "dimensions": "800x533",
+      "bytes": 43290,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication.avif",
+      "format": "avif",
+      "dimensions": "1600x1067",
+      "bytes": 82839,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication.jpg",
+      "format": "jpg",
+      "dimensions": "1600x1067",
+      "bytes": 175895,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/images/stock/welder-fabrication.webp",
+      "format": "webp",
+      "dimensions": "1600x1067",
+      "bytes": 110844,
+      "source": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "license": "Unsplash License (photographer: Rob Lambert), verified 2026-11-08",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "file": "/assets/logos/gulf-next.webp",
+      "format": "webp",
+      "dimensions": "580x430",
+      "bytes": 41042,
+      "source": "Existing project asset; origin not recorded",
+      "license": "Unknown; confirm before publishing",
+      "section": "Not referenced (superseded; safe to remove)"
+    },
+    {
+      "file": "/assets/posters/refinery-operations-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 37347,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/refinery-operations-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 119042,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/refinery-operations-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 53914,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/refinery-operations.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 93619,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/refinery-operations.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 366102,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/refinery-operations.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 129264,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 50428,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 155360,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 78200,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 125690,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 470422,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-01-homepage-opening.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 185648,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 17059,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 64323,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 20072,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction.avif",
+      "format": "avif",
+      "dimensions": "1280x720",
+      "bytes": 25238,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction.jpg",
+      "format": "jpg",
+      "dimensions": "1280x720",
+      "bytes": 106881,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-02-oil-extraction.webp",
+      "format": "webp",
+      "dimensions": "1280x720",
+      "bytes": 30150,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 33574,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 110411,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 46894,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 86161,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 345904,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-03-offshore-extraction.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 115128,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 41787,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 150638,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 70398,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 107622,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 466627,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-04-onshore.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 170718,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 43497,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 137081,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 64016,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 112967,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 428822,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-05-mechanical-engineering.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 162318,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 46612,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 146551,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 70758,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 115605,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 440577,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-09-about-us.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 165504,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 32783,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 106306,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 49840,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 86454,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 327307,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-10-about-us.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 120166,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/posters/scene-11-services-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 41169,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-11-services-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 139919,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-11-services-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 62956,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-11-services.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 97622,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-11-services.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 410170,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-11-services.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 139864,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries-sm.avif",
+      "format": "avif",
+      "dimensions": "960x540",
+      "bytes": 27714,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries-sm.jpg",
+      "format": "jpg",
+      "dimensions": "960x540",
+      "bytes": 91475,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries-sm.webp",
+      "format": "webp",
+      "dimensions": "960x540",
+      "bytes": 35948,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries.avif",
+      "format": "avif",
+      "dimensions": "1920x1080",
+      "bytes": 76979,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries.jpg",
+      "format": "jpg",
+      "dimensions": "1920x1080",
+      "bytes": 297388,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/posters/scene-12-industries.webp",
+      "format": "webp",
+      "dimensions": "1920x1080",
+      "bytes": 96672,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/videos/1080/refinery-operations.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 20564353,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/videos/1080/scene-01-homepage-opening.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9814853,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/videos/1080/scene-02-oil-extraction.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6664522,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/videos/1080/scene-03-offshore-extraction.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9850693,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/videos/1080/scene-04-onshore.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9882028,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/videos/1080/scene-05-mechanical-engineering.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9637369,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/videos/1080/scene-09-about-us.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 8417916,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/videos/1080/scene-10-about-us.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9596598,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/videos/1080/scene-11-services.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9608786,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/videos/1080/scene-12-industries.mp4",
+      "format": "mp4",
+      "dimensions": "1920x1080",
+      "bytes": 9715048,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    },
+    {
+      "file": "/assets/videos/720/refinery-operations.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 14525128,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Refinery operations (scroll-synced); Service page hero: Facilities Maintenance & Turnarounds; Industry page hero: Petrochemical & Processing"
+    },
+    {
+      "file": "/assets/videos/720/scene-01-homepage-opening.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6946281,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Homepage hero; Service page hero: Steel Structure Fabrication & Erection"
+    },
+    {
+      "file": "/assets/videos/720/scene-02-oil-extraction.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6682789,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Oil extraction chapter; Service page hero: Drilling & Wellsite Support"
+    },
+    {
+      "file": "/assets/videos/720/scene-03-offshore-extraction.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6970260,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Offshore chapter; Service page hero: Onshore & Offshore Field Services; Industry page hero: Oil & Gas"
+    },
+    {
+      "file": "/assets/videos/720/scene-04-onshore.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 7006276,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Onshore chapter; Service page hero: Industrial Plant Construction; Industry page hero: Industrial Construction & Infrastructure"
+    },
+    {
+      "file": "/assets/videos/720/scene-05-mechanical-engineering.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6911062,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Mechanical engineering chapter; Service page hero: Mechanical Engineering Works; Industry page hero: Mechanical Engineering & Equipment"
+    },
+    {
+      "file": "/assets/videos/720/scene-09-about-us.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 5888790,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About teaser; Service page hero: Electromechanical Installation & Maintenance"
+    },
+    {
+      "file": "/assets/videos/720/scene-10-about-us.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6776473,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "About Us hero; Service page hero: Oil & Gas Pipeline Works"
+    },
+    {
+      "file": "/assets/videos/720/scene-11-services.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6781274,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Services hero; Service page hero: Oilfield Equipment & Material Supply"
+    },
+    {
+      "file": "/assets/videos/720/scene-12-industries.mp4",
+      "format": "mp4",
+      "dimensions": "1280x720",
+      "bytes": 6951777,
+      "source": "GULF NEXT cinematic scene (supplied by client)",
+      "license": "Client-owned asset",
+      "section": "Industries hero"
+    }
+  ]
+}

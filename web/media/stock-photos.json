@@ -1,0 +1,282 @@
+{
+  "license": {
+    "name": "Unsplash License",
+    "url": "https://unsplash.com/license",
+    "summary": "Free to use for commercial and non-commercial purposes; no permission or attribution required. Not permitted: selling unaltered copies or compiling photos into a competing service."
+  },
+  "verifiedOn": "2026-11-08",
+  "photos": [
+    {
+      "name": "refinery-storage-tanks",
+      "id": "1786532852011-443cba5dc9fe",
+      "page": "https://unsplash.com/photos/industrial-refinery-with-storage-tanks-Wb4vcBqyGT8",
+      "photographer": "Red Shuheart",
+      "category": "Massive oil refineries",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Storage facilities'"
+    },
+    {
+      "name": "refinery-dusk-waterfront",
+      "id": "1777915627530-fc3decb749cf",
+      "page": "https://unsplash.com/photos/industrial-refinery-complex-at-dusk-with-barges-J0NY4WnkUMY",
+      "photographer": "Naturalist Boat",
+      "category": "Massive oil refineries",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "name": "drilling-rig-sunset",
+      "id": "1562237553-36ad661d6f2c",
+      "page": "https://unsplash.com/photos/vehicle-near-tower-MVA-zlTQdSE",
+      "photographer": "WORKSITE Ltd.",
+      "category": "Oil drilling operations",
+      "section": "NOT USED: derrick shows a third-party drilling company name"
+    },
+    {
+      "name": "land-drilling-rig",
+      "id": "1697045314415-3f8d95f1a6aa",
+      "page": "https://unsplash.com/photos/a-red-and-white-drilling-rig-sitting-on-top-of-a-field--7AanO-XvDs",
+      "photographer": "微 风 (@weifeng15)",
+      "category": "Oil drilling operations",
+      "section": "Industry page Oil & Gas: focus area 'Onshore production'"
+    },
+    {
+      "name": "geological-rock-strata",
+      "id": "1758210607358-b91cf03ae02e",
+      "page": "https://unsplash.com/photos/stratified-rock-formation-with-sparse-vegetation-En9-4Hx5e3E",
+      "photographer": "Sue Winston",
+      "category": "Underground geological oil reservoirs",
+      "section": "Not currently displayed"
+    },
+    {
+      "name": "offshore-jackup-crane-vessel",
+      "id": "1749073668528-38ab64575f5d",
+      "page": "https://unsplash.com/photos/3J2FB7BItdA",
+      "photographer": "J.f Manzanero",
+      "category": "Offshore extraction platforms",
+      "section": "About: onshore and offshore operations"
+    },
+    {
+      "name": "offshore-jackup-rig",
+      "id": "1784915478622-ba6c29a4cdbb",
+      "page": "https://unsplash.com/photos/an-offshore-oil-rig-stands-in-calm-blue-water-Hoaq2grdmEk",
+      "photographer": "Julia Taubitz",
+      "category": "Offshore extraction platforms",
+      "section": "NOT USED: rig carries a named third-party rig sign"
+    },
+    {
+      "name": "offshore-platform-silhouette",
+      "id": "1786374228080-72d31024e7b5",
+      "page": "https://unsplash.com/photos/VRp_gClx9jo",
+      "photographer": "Leo_Visions",
+      "category": "Offshore extraction platforms",
+      "section": "Industry page Oil & Gas: focus area 'Offshore installations'"
+    },
+    {
+      "name": "onshore-oilfield-pumpjacks",
+      "id": "1773097259159-4516125de504",
+      "page": "https://unsplash.com/photos/3Ww8PTyD8po",
+      "photographer": "Aritra Roy",
+      "category": "Onshore extraction facilities",
+      "section": "Industry page Oil & Gas: focus area 'Field maintenance'"
+    },
+    {
+      "name": "gas-processing-spheres",
+      "id": "1786532852068-a3581fc5032d",
+      "page": "https://unsplash.com/photos/industrial-storage-tanks-near-forested-hillside-pPMXq52Tqgc",
+      "photographer": "Red Shuheart",
+      "category": "Natural gas processing",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "name": "gas-flare-stack",
+      "id": "1788377563485-92b5c6196fbd",
+      "page": "https://unsplash.com/photos/industrial-flare-stack-near-mountains-7wUEazOUxKc",
+      "photographer": "Ghostinmirror",
+      "category": "Natural gas processing",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "name": "twin-pipeline-corridor",
+      "id": "1507823690283-48b0929e727b",
+      "page": "https://unsplash.com/photos/metal-pipe-between-trees-at-daytime-L4gN0aeaPY4",
+      "photographer": "Quinten de Graaf",
+      "category": "Industrial pipelines",
+      "section": "Industry page Oil & Gas: focus area 'Pipelines and flowlines'"
+    },
+    {
+      "name": "mechanical-flanges-blueprints",
+      "id": "1769147339214-076740872485",
+      "page": "https://unsplash.com/photos/two-metal-mechanical-parts-on-engineering-blueprints-SRqJ3eli-4I",
+      "photographer": "EnCata PD",
+      "category": "Mechanical engineering",
+      "section": "About: mechanical engineering"
+    },
+    {
+      "name": "turbine-compressor-cutaway",
+      "id": "1779680058095-9e61f4a83342",
+      "page": "https://unsplash.com/photos/internal-view-of-a-jet-engines-turbine-and-compressor-4cI-KRfgxOk",
+      "photographer": "ObjectType RAW",
+      "category": "Mechanical engineering",
+      "section": "Mechanical Engineering Works service: equipment panel"
+    },
+    {
+      "name": "industrial-construction-site",
+      "id": "1649587345666-0f4ad68aa723",
+      "page": "https://unsplash.com/photos/a-construction-site-with-a-large-amount-of-construction-equipment-UtgKZUlRV78",
+      "photographer": "david Griffiths",
+      "category": "Industrial construction",
+      "section": "NOT USED: excavator carries a visible manufacturer logo"
+    },
+    {
+      "name": "steel-truss-installation-crew",
+      "id": "1662120399978-738d233edbec",
+      "page": "https://unsplash.com/photos/men-on-a-construction-site-ewvx5TahIFA",
+      "photographer": "Jimmy Nilsson Masth",
+      "category": "Industrial construction",
+      "section": "About: industrial construction"
+    },
+    {
+      "name": "steel-frame-tower-cranes",
+      "id": "1527335988388-b40ee248d80c",
+      "page": "https://unsplash.com/photos/gray-metal-building-frame-near-tower-crane-during-daytime-nhCPOp4A2Xo",
+      "photographer": "Jacek Dylag",
+      "category": "Industrial construction",
+      "section": "Industry page Industrial Construction & Infrastructure: hero"
+    },
+    {
+      "name": "steel-lattice-structure",
+      "id": "1509024368907-57294758cfc5",
+      "page": "https://unsplash.com/photos/photo-of-gray-metal-structure-during-daytime-wFFw_xUTXOY",
+      "photographer": "Roman Serdyuk",
+      "category": "Industrial construction",
+      "section": "Industries page: 'Operating in a sector not listed here?' band"
+    },
+    {
+      "name": "heavy-machinery-earthworks",
+      "id": "1523848309072-c199db53f137",
+      "page": "https://unsplash.com/photos/photography-of-excavators-at-mining-area-Mk2ls9UBO2E",
+      "photographer": "Dominik Vanyi",
+      "category": "Heavy machinery",
+      "section": "NOT USED: haul truck carries third-party company lettering"
+    },
+    {
+      "name": "excavator-heavy-equipment",
+      "id": "1580901369227-308f6f40bdeb",
+      "page": "https://unsplash.com/photos/yellow-and-black-excavator-on-rocky-ground-WoZs8gGyQBY",
+      "photographer": "Gerold Hinzen",
+      "category": "Heavy equipment rental",
+      "section": "Industry page Industrial Construction & Infrastructure: focus area 'Industrial plants'"
+    },
+    {
+      "name": "heavy-lift-crane-vessel",
+      "id": "1758902064778-c5c68c7e8f82",
+      "page": "https://unsplash.com/photos/0eqs4wjebyc",
+      "photographer": "J.f Manzanero",
+      "category": "Cranes and transportation",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "name": "tower-crane",
+      "id": "1535732759880-bbd5c7265e3f",
+      "page": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+      "photographer": "James Sullivan",
+      "category": "Cranes and transportation",
+      "section": "Industrial Plant Construction service: equipment panel"
+    },
+    {
+      "name": "pump-skid-installation",
+      "id": "1693463735697-73df1f35930d",
+      "page": "https://unsplash.com/photos/a-group-of-pipes-and-valves-in-a-room-KWZMx4T8Y1k",
+      "photographer": "IYYM IYYM",
+      "category": "Oilfield equipment installation",
+      "section": "Mechanical Engineering & Equipment industry: inner photo"
+    },
+    {
+      "name": "engineer-plant-walkway",
+      "id": "1771240550356-8216bef58a3c",
+      "page": "https://unsplash.com/photos/construction-worker-in-reflective-vest-on-walkway-GnLo1FkBKuI",
+      "photographer": "Vlad Ionita",
+      "category": "Industrial engineers",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "name": "field-technician-tools",
+      "id": "1589939705384-5185137a7f0f",
+      "page": "https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0",
+      "photographer": "Jeriden Villegas",
+      "category": "Professional refinery workers",
+      "section": "NOT USED: branded power tools visible"
+    },
+    {
+      "name": "welder-fabrication",
+      "id": "1455165814004-1126a7199f9b",
+      "page": "https://unsplash.com/photos/welder-working-on-metal-with-sparks-9Q_pLLP_jmA",
+      "photographer": "Rob Lambert",
+      "category": "Professional refinery workers",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Equipment supply'"
+    },
+    {
+      "name": "electrical-control-room",
+      "id": "1761141535640-c78744c4f369",
+      "page": "https://unsplash.com/photos/control-room-with-electrical-panels-and-gauges-KvG756qL6jI",
+      "photographer": "Tao Yuan",
+      "category": "Industrial control rooms",
+      "section": "Electromechanical Installation & Maintenance service: equipment panel"
+    },
+    {
+      "name": "petrochemical-complex-night",
+      "id": "1566221857770-508d35ee6220",
+      "page": "https://unsplash.com/photos/view-of-factory-during-nighttime-H72SCCTZPE8",
+      "photographer": "PilMo Kang",
+      "category": "Petrochemical facilities",
+      "section": "Petrochemical & Processing industry: gallery"
+    },
+    {
+      "name": "industrial-infrastructure-coastal",
+      "id": "1784915480177-e5787fd4e6e7",
+      "page": "https://unsplash.com/photos/industrial-complex-with-pipes-and-structures-by-the-water-RlY5ZtptWvM",
+      "photographer": "Julia Taubitz",
+      "category": "Industrial infrastructure",
+      "section": "Industrial Construction & Infrastructure industry: gallery"
+    },
+    {
+      "name": "compressor-gearbox-assembly",
+      "id": "1720670996646-2f5d69a10ee7",
+      "page": "https://unsplash.com/photos/a-large-blue-machine-in-a-room-mzORX7UtFMk",
+      "photographer": "CAPTAIN NICK",
+      "category": "Pumps and compressors",
+      "section": "Mechanical Engineering & Equipment industry: card photo"
+    },
+    {
+      "name": "electric-motor-pump-hall",
+      "id": "1513828583688-c52646db42da",
+      "page": "https://unsplash.com/photos/gray-commercial-machine-XUEdfpPIhXg",
+      "photographer": "Crystal Kwok",
+      "category": "Pumps and compressors",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "name": "industrial-pump-room",
+      "id": "1655874837055-7adc909ae602",
+      "page": "https://unsplash.com/photos/a-large-factory-machinery-C4c9iOcy4_8",
+      "photographer": "iSawRed",
+      "category": "Pumps and compressors",
+      "section": "Mechanical Engineering & Equipment industry: gallery"
+    },
+    {
+      "name": "industrial-team-briefing",
+      "id": "1787321280637-81ce957b60e7",
+      "page": "https://unsplash.com/photos/workers-in-high-visibility-vests-ft_t7P46zrE",
+      "photographer": "Ben Wicks",
+      "category": "Corporate industrial team photographs",
+      "section": "About: who we are"
+    },
+    {
+      "name": "electrical-control-panel",
+      "id": "1780034766312-73825064806c",
+      "page": "https://unsplash.com/photos/open-industrial-electrical-control-panel-with-wires-and-modules-NAchd3UmxXo",
+      "photographer": "Raymond Sime",
+      "category": "Electromechanical systems",
+      "section": "Industry page Mechanical Engineering & Equipment: focus area 'Electromechanical systems'"
+    }
+  ]
+}

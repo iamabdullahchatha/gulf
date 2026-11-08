@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GULF NEXT Oil and Gas | Energy infrastructure, engineered for what's next</title>
+  <meta name="description" content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector.">
+  <meta name="theme-color" content="#040c1c">
+  <link rel="icon" type="image/webp" href="assets/brand/logo.webp">
+  <link rel="preload" as="image" href="assets/media/posters/scene-01-homepage-opening.jpg" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/media/posters/scene-01-homepage-opening-sm.jpg" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+        <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li class="nav-cta"><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Homepage: the six approved scenes in storyboard order (01, 02, 03, 04, 05, 09).
+         Videos are mapped in assets/js/media-map.js under the "home.*" keys. -->
+    <nav class="chapter-rail" aria-label="Homepage chapters">
+      <a href="#opening" aria-current="true"><span class="num">01</span><span class="bar"></span><span class="visually-hidden">Introduction</span></a>
+      <a href="#extraction"><span class="num">02</span><span class="bar"></span><span class="visually-hidden">Oil extraction</span></a>
+      <a href="#offshore"><span class="num">03</span><span class="bar"></span><span class="visually-hidden">Offshore</span></a>
+      <a href="#onshore"><span class="num">04</span><span class="bar"></span><span class="visually-hidden">Onshore production</span></a>
+      <a href="#engineering"><span class="num">05</span><span class="bar"></span><span class="visually-hidden">Mechanical engineering</span></a>
+      <a href="#about"><span class="num">06</span><span class="bar"></span><span class="visually-hidden">About GULF NEXT</span></a>
+    </nav>
+
+    <cinematic-hero id="opening" section="home.opening" loading="eager"
+      align="center" overlay="medium" height="full"
+      eyebrow="GULF NEXT Oil and Gas"
+      heading="Energy infrastructure, engineered for what’s next."
+      description="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector, from the wellhead to the refinery gate."
+      primary-label="Explore our services" primary-href="services.html"
+      secondary-label="About GULF NEXT" secondary-href="about.html"></cinematic-hero>
+
+    <cinematic-hero id="extraction" section="home.extraction" heading-level="2"
+      align="left" overlay="medium" height="full" focal="50% 60%"
+      eyebrow="Oil extraction"
+      heading="Onshore drilling support, from first spud to steady flow."
+      description="Rig-site services, equipment and field crews that keep extraction programmes on schedule in the most demanding desert conditions."
+      primary-label="Upstream services" primary-href="services.html#upstream"></cinematic-hero>
+
+    <cinematic-hero id="offshore" section="home.offshore" heading-level="2"
+      align="right" overlay="medium" height="full" mobile-focal="45% 50%"
+      eyebrow="Offshore"
+      heading="Offshore delivery where conditions leave no margin."
+      description="Engineering, maintenance and logistics for platforms and marine assets, planned around weather windows and uncompromising safety."
+      primary-label="Offshore industry" primary-href="industries.html#offshore"></cinematic-hero>
+
+    <cinematic-hero id="onshore" section="home.onshore" heading-level="2"
+      align="left" overlay="medium" height="full"
+      eyebrow="Onshore production"
+      heading="Processing facilities built to run, and keep running."
+      description="Construction, commissioning and lifetime support for gathering stations, tank farms and production plants."
+      primary-label="Facilities services" primary-href="services.html#facilities"></cinematic-hero>
+
+    <cinematic-hero id="engineering" section="home.engineering" heading-level="2"
+      align="right" overlay="medium" height="full" mobile-focal="40% 50%"
+      eyebrow="Mechanical engineering"
+      heading="Precision mechanical works, lifted safely into place."
+      description="Fabrication, installation and heavy-lift coordination by engineers who understand process plant from the inside."
+      primary-label="Engineering services" primary-href="services.html#mechanical"></cinematic-hero>
+
+    <cinematic-hero id="about" section="home.about" heading-level="2"
+      align="center" overlay="strong" height="full"
+      eyebrow="About GULF NEXT"
+      heading="A regional partner built on engineering discipline."
+      description="We bring together specialist people, proven methods and local knowledge to help energy operators build and run assets with confidence."
+      primary-label="Discover our story" primary-href="about.html"
+      secondary-label="Talk to our team" secondary-href="#contact"></cinematic-hero>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="GULF NEXT Oil and Gas, home">
+            <img src="assets/brand/logo.webp" alt="GULF NEXT Oil and Gas" width="580" height="430" loading="lazy">
+          </a>
+          <p class="footer-about">Engineering, construction and operations support for the oil, gas and petrochemical sector.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>Company</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2>Contact</h2>
+          <!-- TODO: add official phone, email and office address. -->
+          <p>Tell us about your project and our team will be in touch.</p>
+        </div>
+      </div>
+      <p class="footer-base">&copy; <span data-year>2026</span> GULF NEXT Oil and Gas. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Order matters: media map, then component, then page behaviour. -->
+  <script src="assets/js/media-map.js"></script>
+  <script src="assets/js/cinematic-hero.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "gulf-next",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace=gulf-next-web",
+    "build": "npm run build --workspace=gulf-next-web",
+    "preview": "npm run preview --workspace=gulf-next-web",
+    "lint": "npm run lint --workspace=gulf-next-web",
+    "typecheck": "npm run typecheck --workspace=gulf-next-web",
+    "check": "npm run check --workspace=gulf-next-web"
+  }
+}
