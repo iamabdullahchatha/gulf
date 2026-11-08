@@ -31,6 +31,18 @@ export function jumpTo(top: number): void {
   else window.scrollTo({ top, left: 0, behavior: 'instant' })
 }
 
+/**
+ * Restore a scroll position after the page was scroll-locked (body fixed).
+ * While locked, Lenis measures the document as one viewport tall, so it must
+ * re-measure first or it clamps the restored position to 0.
+ */
+export function restoreScroll(top: number): void {
+  window.scrollTo({ top, left: 0, behavior: 'instant' })
+  if (!instance) return
+  instance.resize()
+  instance.scrollTo(top, { immediate: true, force: true })
+}
+
 /** Pause / resume smooth scrolling (e.g. while a full-screen menu is open). */
 export function setLenisPaused(paused: boolean): void {
   if (!instance) return

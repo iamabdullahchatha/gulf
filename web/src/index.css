@@ -230,6 +230,13 @@
   text-transform: uppercase;
 }
 
+/* Side gutters that never fall inside a notch or rounded corner when the page
+   runs edge to edge (viewport-fit=cover). Set the minimum with --gutter. */
+@utility gutter-safe {
+  padding-left: max(var(--gutter, 1rem), env(safe-area-inset-left));
+  padding-right: max(var(--gutter, 1rem), env(safe-area-inset-right));
+}
+
 /* Expanded display width for eyebrows and short caps. */
 @utility font-expanded {
   font-stretch: 122%;
