@@ -8,6 +8,8 @@ interface Props {
   /** White plate behind the logo (needed on dark backgrounds). Off on light surfaces. */
   plate?: boolean
   className?: string
+  /** Extra click handler on the home link (e.g. to close the mobile menu). */
+  onClick?: () => void
 }
 
 /**
@@ -18,8 +20,8 @@ interface Props {
  * surfaces such as the bright header it sits directly on white. The artwork itself is never
  * recoloured, cropped or redrawn.
  */
-export function Logo({ linked = true, size = 'md', plate: withPlate = true, className }: Props) {
-  const heights = { sm: 'h-9', md: 'h-11 md:h-12', lg: 'h-16', xl: 'h-20 md:h-24', header: 'h-14 md:h-16', headerFloating: 'h-12 md:h-14' }
+export function Logo({ linked = true, size = 'md', plate: withPlate = true, className, onClick }: Props) {
+  const heights = { sm: 'h-9', md: 'h-11 md:h-12', lg: 'h-16', xl: 'h-20 md:h-24', header: 'h-12 md:h-[3.25rem] lg:h-16', headerFloating: 'h-10 md:h-11 lg:h-14' }
   const plate = (
     <span
       className={cn(
@@ -41,7 +43,7 @@ export function Logo({ linked = true, size = 'md', plate: withPlate = true, clas
   )
   if (!linked) return plate
   return (
-    <Link to="/" aria-label="GULF NEXT Oil and Gas, home" className="inline-flex hover:[&>span]:-translate-y-0.5">
+    <Link to="/" onClick={onClick} aria-label="GULF NEXT Oil and Gas, home" className="inline-flex shrink-0 hover:[&>span]:-translate-y-0.5">
       {plate}
     </Link>
   )

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { jumpTo, setLenisPaused } from '@/lib/lenis'
+import { restoreScroll, setLenisPaused } from '@/lib/lenis'
 
 /**
  * Lock the page scroll while `locked` is true, restoring both `overflow` and
@@ -22,7 +22,7 @@ export function useScrollLock(locked: boolean): void {
       document.body.style.top = top
       document.body.style.width = width
       setLenisPaused(false)
-      jumpTo(scrollY)
+      restoreScroll(scrollY)
     }
   }, [locked])
 }

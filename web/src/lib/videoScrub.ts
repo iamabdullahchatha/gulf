@@ -4,18 +4,18 @@
  *
  * Smooth scrubbing needs the clip in memory: seeking a clip that is still
  * streaming stalls on network requests, and iOS will not buffer a paused video
- * ahead at all. But a full-quality clip is 6–11 MB, so on a first visit the
- * viewer would scroll through still posters while it downloads. Each scene
- * therefore loads in two tiers:
+ * ahead at all, so every clip is downloaded whole before it is shown. The
+ * sharp poster covers the scene until then.
  *
- *   1. preview — 640x360, under 1 MB. Arrives in well under a second on 4G,
- *      so the footage moves almost as soon as the page opens.
- *   2. full    — 720p (1080p on large fast screens). Downloads behind the
- *      preview, then crossfades in on the same frame and the preview is freed.
+ * Full quality is 1080p on any screen with at least ~1600 physical pixels
+ * across (laptops, desktops, tablets) on a fast connection, otherwise 720p.
  *
- * Downloads run one at a time in priority order — the previews of the scene
- * on screen and the ones ahead first (they are what keeps the footage moving
- * however fast someone scrolls), then full quality nearest-first.
+ * On slow (3G) connections a 640x360 preview tier is loaded first so the
+ * footage moves before the full clip arrives; the full clip then crossfades
+ * in on the same frame and the preview is freed. On fast connections the
+ * preview is skipped entirely, so viewers only ever see full quality.
+ *
+ * Downloads run one at a time, nearest scene first.
  *
  * Seeking itself: each seek lands on a *new* frame only, a new seek is never
  * issued while one is still decoding (the playhead keeps moving, so a slow
@@ -71,15 +71,22 @@ export function attachClip(v: HTMLVideoElement, url: string, signal: AbortSignal
 /**
  * Runs downloads one at a time, always picking the cheapest pending
  * (scene, tier): cost = distance from the scene on screen (scenes behind cost
- * 1.5× — people mostly scroll forwards) + FULL_COST for the full tier. Previews
- * are ~1 MB and full clips 6–11 MB, so at scene 0 this yields: previews 0–4,
- * full 0, preview 5, full 1, … — motion everywhere first, then sharpness.
+ * 1.5× — people mostly scroll forwards) + FULL_COST for the full tier.
+ * With `previews` off (fast connections) only full-quality clips are fetched,
+ * nearest first. With previews on, scene 0 yields: previews 0–4, full 0,
+ * preview 5, full 1, … — motion everywhere first, then sharpness.
  * `fullWindow` limits full-quality downloads to nearby scenes (slow networks).
  */
 const FULL_COST = 4.5
 
-export function createClipQueue(count: number, load: (index: number, tier: Tier) => Promise<unknown>, opts: { fullWindow?: number } = {}) {
-  const state = Array.from({ length: count }, () => [false, false])
+export function createClipQueue(
+  count: number,
+  load: (index: number, tier: Tier) => Promise<unknown>,
+  opts: { fullWindow?: number; previews?: boolean } = {},
+) {
+  const skipPreviews = opts.previews === false
+  // [preview done, full done] per scene; previews start "done" when skipped.
+  const state = Array.from({ length: count }, () => [skipPreviews, false])
   let center = 0
   let busy = false
   let stopped = false
@@ -261,7 +268,14 @@ export function richEffects(): boolean {
   return typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
 }
 
-/** Which full-quality source to use: 1080p only on large screens with a fast connection. */
+/**
+ * Which full-quality source to use. 1080p whenever the screen is at least
+ * ~1600 physical pixels wide on a fast connection — CSS width alone would
+ * hand 720p to Retina laptops, which then upscale it to 2–3× and look soft.
+ * Phones (≈1200 physical px) keep 720p, which is sharp at their size.
+ */
 export function pickFull(sources: { hd: string; sd: string }, fast: boolean): string {
-  return fast && window.matchMedia('(min-width: 1400px)').matches ? sources.hd : sources.sd
+  if (!fast) return sources.sd
+  const px = Math.max(window.screen?.width ?? 0, window.innerWidth) * (window.devicePixelRatio || 1)
+  return px >= 1600 ? sources.hd : sources.sd
 }

@@ -143,7 +143,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
         const src = t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, tier === 'fast')
         await layers[j]?.load(t, src)
       },
-      { fullWindow: tier === 'fast' ? undefined : 2 },
+      // Fast connections skip the 360p preview and go straight to full quality.
+      { fullWindow: tier === 'fast' ? undefined : 2, previews: tier !== 'fast' },
     )
 
     const duration = (j: number) => {
