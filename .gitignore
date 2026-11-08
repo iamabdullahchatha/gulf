@@ -9,6 +9,7 @@ coverage/
 .cache/
 .next/
 .vercel/
+*.local
 
 # Logs
 logs/
@@ -26,7 +27,17 @@ lerna-debug.log*
 
 # Editor and operating system files
 .DS_Store
-.vscode/
+**/.vscode/*
+!**/.vscode/extensions.json
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 *.swp
 *.swo
+*.sw?
+
+# Incoming photo drop folder
+web/photos-incoming/*
+!web/photos-incoming/README.txt
