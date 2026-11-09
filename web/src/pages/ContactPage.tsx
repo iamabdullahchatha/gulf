@@ -29,6 +29,7 @@ import { SectionHeading } from '@/components/SectionHeading'
 import { Texture } from '@/components/Texture'
 import { ProcessSteps } from '@/components/inner/InnerSections'
 import { AboutFaq } from '@/components/about/AboutSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 import { scrollToElement } from '@/lib/lenis'
@@ -73,8 +74,8 @@ export default function ContactPage() {
   return (
     <>
       <Seo
-        title="Contact"
-        description="Tell us about your project and our engineering team will come back with a practical plan."
+        title={PAGE_META['/contact'].title}
+        description={PAGE_META['/contact'].description}
         path="/contact"
         jsonLd={{
           '@context': 'https://schema.org',

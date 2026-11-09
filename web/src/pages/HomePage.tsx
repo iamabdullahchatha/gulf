@@ -9,6 +9,7 @@ import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 import { ContactCTA } from '@/components/home/ContactCTA'
 import { FaqShowcase } from '@/components/home/FaqShowcase'
 import { PageProgress } from '@/components/home/PageProgress'
+import { PAGE_META } from '@/config/site'
 import { Seo, organizationJsonLd } from '@/lib/seo'
 import { FILM_SCENES } from '@/data/homeChapters'
 
@@ -27,7 +28,8 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        description="Integrated Oil & Gas Contracting, Industrial Engineering and Infrastructure Solutions — engineering the energy future."
+        title={PAGE_META['/'].title}
+        description={PAGE_META['/'].description}
         path="/"
         jsonLd={organizationJsonLd()}
       />

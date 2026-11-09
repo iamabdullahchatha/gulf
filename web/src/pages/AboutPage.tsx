@@ -13,6 +13,7 @@ import { Picture } from '@/components/Picture'
 import { SectionHeading } from '@/components/SectionHeading'
 import { Texture } from '@/components/Texture'
 import { PageNav, SplitFeature } from '@/components/inner/InnerSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -86,8 +87,8 @@ export default function AboutPage() {
   return (
     <div ref={pageRef}>
       <Seo
-        title="About"
-        description="GULF NEXT Oil and Gas provides integrated engineering, construction, maintenance and supply services for oil, gas, petrochemical and industrial facilities."
+        title={PAGE_META['/about'].title}
+        description={PAGE_META['/about'].description}
         path="/about"
         jsonLd={faqJsonLd}
       />
