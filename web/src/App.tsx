@@ -15,6 +15,8 @@ const IndustriesPage = lazy(() => import('@/pages/IndustriesPage'))
 const IndustryDetailPage = lazy(() => import('@/pages/industries/IndustryDetailPage'))
 const ContactPage = lazy(() => import('@/pages/ContactPage'))
 const FaqPage = lazy(() => import('@/pages/FaqPage'))
+const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'))
+const TermsOfServicePage = lazy(() => import('@/pages/TermsOfServicePage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
 
 export default function App() {
@@ -34,6 +36,8 @@ export default function App() {
           </Route>
           <Route path="contact" element={<ContactPage />} />
           <Route path="faqs" element={<FaqPage />} />
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="terms-of-service" element={<TermsOfServicePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

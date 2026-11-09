@@ -365,3 +365,21 @@ html.lenis, html.lenis body { height: auto; }
     linear-gradient(rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.12));
   animation: orbit 7s linear infinite;
 }
+
+/* ----------------------------------------------------------------------------
+ * Print (legal pages offer "Print or save PDF")
+ * ------------------------------------------------------------------------- */
+@media print {
+  #root > header,
+  #root > footer,
+  #root > a,
+  [data-print="hide"] {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  .theme-light {
+    background: #fff !important;
+  }
+}

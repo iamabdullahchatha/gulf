@@ -64,6 +64,16 @@ export const PAGE_META = {
     description:
       'Tell us about your scope, site and schedule. Our engineering team will come back with a practical plan for your oil, gas or industrial project.',
   },
+  '/privacy-policy': {
+    title: 'Privacy Policy',
+    description:
+      'How GULF NEXT collects, uses and protects personal information shared through our website and enquiries, and the rights you have over it.',
+  },
+  '/terms-of-service': {
+    title: 'Terms of Service',
+    description:
+      'The terms that apply when you use the GULF NEXT website, including acceptable use, intellectual property, enquiries and governing law.',
+  },
 } as const satisfies Record<string, { title: string | undefined; description: string }>
 
 /** Public routes. The sitemap is generated from this list. */
@@ -74,4 +84,6 @@ export const ROUTES = [
   { path: '/industries', changefreq: 'monthly', priority: 0.9 },
   { path: '/faqs', changefreq: 'monthly', priority: 0.7 },
   { path: '/contact', changefreq: 'yearly', priority: 0.7 },
+  { path: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
+  { path: '/terms-of-service', changefreq: 'yearly', priority: 0.3 },
 ] as const

@@ -21,6 +21,11 @@ const PILLARS = [
 
 const SECTORS = ['Oil & Gas', 'Petrochemical', 'Construction', 'Mechanical']
 
+const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+]
+
 interface FooterLink {
   label: string
   href: string
@@ -41,7 +46,7 @@ export function Footer() {
   const { contact, registrationNumber, legalName } = COMPANY
   const verified = hasVerifiedContact(contact)
   const { pathname } = useLocation()
-  const showStatement = !['/', '/contact', '/faqs'].includes(pathname)
+  const showStatement = !['/', '/contact', '/faqs', ...LEGAL_LINKS.map((l) => l.href)].includes(pathname)
   const revealRef = useReveal<HTMLDivElement>()
 
   return (
@@ -180,16 +185,37 @@ export function Footer() {
       <div className="relative border-t border-white/10 bg-abyss/70 backdrop-blur-sm">
         <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <Container className="grid gap-5 py-6 text-xs text-steel-400 md:grid-cols-[1fr_auto_1fr] md:items-center">
-          <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
-            <p>
-              &copy; {year} {legalName}. All rights reserved.
-            </p>
-            {registrationNumber && (
-              <>
-                <span aria-hidden className="hidden h-3 w-px bg-white/15 sm:block" />
-                <p className="label-tech text-steel-500">CR No. {registrationNumber}</p>
-              </>
-            )}
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+              <p>
+                &copy; {year} {legalName}. All rights reserved.
+              </p>
+              {registrationNumber && (
+                <>
+                  <span aria-hidden className="hidden h-3 w-px bg-white/15 sm:block" />
+                  <p className="label-tech text-steel-500">CR No. {registrationNumber}</p>
+                </>
+              )}
+            </div>
+            <nav aria-label="Legal">
+              <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                {LEGAL_LINKS.map((l, i) => {
+                  const current = l.href === pathname
+                  return (
+                    <li key={l.href} className="flex items-center gap-5">
+                      {i > 0 && <span aria-hidden className="size-1 rounded-full bg-emerald/70" />}
+                      <Link
+                        to={l.href}
+                        aria-current={current ? 'page' : undefined}
+                        className={cn('link-underline font-medium transition-colors hover:text-white', current ? 'text-white' : 'text-steel-300')}
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </nav>
           </div>
           <p aria-hidden className="hidden items-center gap-3 label-tech text-steel-500 md:flex">
             Engineer <span className="size-1 rounded-full bg-emerald" /> Build <span className="size-1 rounded-full bg-electric" /> Maintain
