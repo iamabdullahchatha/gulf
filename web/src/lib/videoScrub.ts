@@ -4,25 +4,30 @@
  *
  * Smooth scrubbing needs the clip in memory: seeking a clip that is still
  * streaming stalls on network requests, and iOS will not buffer a paused video
- * ahead at all, so every clip is downloaded whole before it is shown. The
- * sharp poster covers the scene until then.
+ * ahead at all, so every clip is downloaded whole before it is shown. A
+ * full-quality clip is 8–13 MB, though, and a first-time visitor scrolls
+ * faster than that arrives — which is exactly the "frozen on the first scroll,
+ * fine on the way back" bug. Each scene therefore loads in two tiers:
  *
- * Full quality is 1080p on any screen with at least ~1600 physical pixels
- * across (laptops, desktops, tablets) on a fast connection, otherwise 720p.
+ *   1. preview — 960x540, ~1.6 MB. Arrives in about a second on 4G, so the
+ *      footage moves almost as soon as the page opens.
+ *   2. full    — 720p, or 1080p on high-resolution screens with a fast
+ *      connection. Crossfades in over the preview on the same frame, and the
+ *      preview is freed.
  *
- * On slow (3G) connections a 640x360 preview tier is loaded first so the
- * footage moves before the full clip arrives; the full clip then crossfades
- * in on the same frame and the preview is freed. On fast connections the
- * preview is skipped entirely, so viewers only ever see full quality.
- *
- * Downloads run one at a time, nearest scene first.
- *
+ * Download order adapts to the visitor's measured connection speed: on a fast
+ * line each scene's full clip follows right behind its preview (the preview is
+ * on screen for a moment at most); on a slow one the previews of the scenes
+ * ahead come first, so the footage never freezes, and sharpness follows.
+
  * Seeking itself: each seek lands on a *new* frame only, a new seek is never
  * issued while one is still decoding (the playhead keeps moving, so a slow
  * seek drops frames instead of falling behind), and easing is time-based so
  * 60 Hz, 120 Hz and throttled phones feel the same. The clips are encoded
- * with a keyframe every 4 frames and no B-frames (`tools/scrub-encode.swift`),
- * so any seek, forwards or backwards, decodes at most 3 extra frames.
+ * with a keyframe every 8 frames and no B-frames (`tools/scrub-encode.swift`),
+ * so any seek, forwards or backwards, decodes at most 7 extra frames — measured
+ * p95 under 9 ms, inside a single 60 Hz frame — while keeping the encode
+ * efficient enough for full sharpness at sensible file sizes.
  */
 
 /** Frame rate of every encoded clip. */
@@ -39,13 +44,26 @@ export type Tier = typeof PREVIEW | typeof FULL
  */
 export async function fetchClip(src: string, signal: AbortSignal): Promise<{ url: string; blob: boolean }> {
   try {
+    const started = performance.now()
     const r = await fetch(src, { signal })
     if (!r.ok) throw new Error(String(r.status))
-    return { url: URL.createObjectURL(await r.blob()), blob: true }
+    const blob = await r.blob()
+    recordThroughput(blob.size, (performance.now() - started) / 1000)
+    return { url: URL.createObjectURL(blob), blob: true }
   } catch (err) {
     if (signal.aborted) throw err
     return { url: src, blob: false }
   }
+}
+
+/** Smoothed download speed in bytes per second, from the clips fetched so far (0 = unknown). */
+let throughput = 0
+
+function recordThroughput(bytes: number, seconds: number): void {
+  // Ignore tiny/instant responses (served from cache) — they say nothing about the line.
+  if (bytes < 200_000 || seconds <= 0.02) return
+  const sample = bytes / seconds
+  throughput = throughput ? throughput * 0.6 + sample * 0.4 : sample
 }
 
 /**
@@ -71,35 +89,37 @@ export function attachClip(v: HTMLVideoElement, url: string, signal: AbortSignal
 /**
  * Runs downloads one at a time, always picking the cheapest pending
  * (scene, tier): cost = distance from the scene on screen (scenes behind cost
- * 1.5× — people mostly scroll forwards) + FULL_COST for the full tier.
- * With `previews` off (fast connections) only full-quality clips are fetched,
- * nearest first. With previews on, scene 0 yields: previews 0–4, full 0,
- * preview 5, full 1, … — motion everywhere first, then sharpness.
- * `fullWindow` limits full-quality downloads to nearby scenes (slow networks).
+ * 1.5× — people mostly scroll forwards) + a cost for the full tier that
+ * depends on how long a full clip takes on this connection:
+ *   - full clip in ≤ 1.5 s: preview 0, full 0, preview 1, full 1, …
+ *   - ≤ 3.5 s:             preview 0, preview 1, full 0, preview 2, full 1, …
+ *   - slower / unknown:    previews 0–4 first, then full quality nearest-first.
+ * `fullBytes` is the approximate size of one full clip; `fullWindow` limits
+ * full-quality downloads to nearby scenes (slow networks).
  */
-const FULL_COST = 4.5
-
-export function createClipQueue(
-  count: number,
-  load: (index: number, tier: Tier) => Promise<unknown>,
-  opts: { fullWindow?: number; previews?: boolean } = {},
-) {
-  const skipPreviews = opts.previews === false
-  // [preview done, full done] per scene; previews start "done" when skipped.
-  const state = Array.from({ length: count }, () => [skipPreviews, false])
+export function createClipQueue(count: number, load: (index: number, tier: Tier) => Promise<unknown>, opts: { fullBytes: number; fullWindow?: number }) {
+  // [preview done, full done] per scene.
+  const state = Array.from({ length: count }, () => [false, false])
   let center = 0
   let busy = false
   let stopped = false
 
+  const fullCost = () => {
+    if (!throughput) return 4.5
+    const seconds = opts.fullBytes / throughput
+    return seconds <= 1.5 ? 0.5 : seconds <= 3.5 ? 1.5 : 4.5
+  }
+
   const pick = (): [number, Tier] | null => {
     let best: [number, Tier] | null = null
     let bestCost = Infinity
+    const extra = fullCost()
     for (let j = 0; j < count; j++) {
       const d = j >= center ? j - center : (center - j) * 1.5
       for (const tier of [PREVIEW, FULL] as const) {
         if (state[j]![tier]) continue
         if (tier === FULL && opts.fullWindow !== undefined && Math.abs(j - center) > opts.fullWindow) continue
-        const cost = d + tier * FULL_COST
+        const cost = d + tier * extra
         if (cost < bestCost) {
           bestCost = cost
           best = [j, tier]
@@ -225,6 +245,7 @@ export function createScrubLayer(els: { preview: HTMLVideoElement; full: HTMLVid
       if (previewOn) scrub.preview.tick(dt)
     },
     async load(tier: Tier, src: string) {
+      if (tier === PREVIEW && fullOn) return // full quality is already here; skip the download
       const clip = await fetchClip(src, signal)
       if (clip.blob) urls.push(clip.url)
       if (tier === PREVIEW) {

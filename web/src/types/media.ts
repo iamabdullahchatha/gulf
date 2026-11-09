@@ -4,12 +4,12 @@
  * VideoBackground, ScrollScene) agree on.
  */
 export interface MediaSources {
-  /** H.264 1920x1080, fast-start, 16 Mb/s — served to laptops, desktops and tablets. */
+  /** H.264 1920x1080, fast-start, 13 Mb/s (~13 MB) — high-resolution screens on fast connections. */
   hd: string
-  /** H.264 1280x720, fast-start, 10 Mb/s — served to phones and slow networks. */
+  /** H.264 1280x720, fast-start, 8 Mb/s (~8 MB) — phones, standard screens and slow networks. */
   sd: string
   /**
-   * H.264 640x360, ~0.9 MB. Loads first so scroll-scrubbed footage moves within
+   * H.264 960x540, ~1.6 MB. Loads first so scroll-scrubbed footage moves within
    * a moment of arriving on the page; the full-quality clip crossfades in once
    * it has downloaded.
    */

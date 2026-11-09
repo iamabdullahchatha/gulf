@@ -133,8 +133,12 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     let lastAlign = ''
 
     // Previews of every scene plus full-quality clips, one download at a time
-    // in order of need (see lib/videoScrub). On 3G, full quality is only
-    // fetched for the neighbouring scenes.
+    // in an order adapted to the connection (see lib/videoScrub). On 3G, full
+    // quality is only fetched for the neighbouring scenes.
+    const hd = scenes.some((s) => {
+      const m = resolveMedia(s.section)
+      return m ? pickFull(m.asset.sources, tier === 'fast') === m.asset.sources.hd : false
+    })
     const queue = createClipQueue(
       N,
       async (j, t) => {
@@ -143,8 +147,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
         const src = t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, tier === 'fast')
         await layers[j]?.load(t, src)
       },
-      // Fast connections skip the 360p preview and go straight to full quality.
-      { fullWindow: tier === 'fast' ? undefined : 2, previews: tier !== 'fast' },
+      { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier === 'fast' ? undefined : 2 },
     )
 
     const duration = (j: number) => {

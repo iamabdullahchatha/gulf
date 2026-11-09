@@ -1,9 +1,9 @@
 #!/bin/zsh
 # GULF NEXT — media build pipeline (macOS built-ins only: AVFoundation via swiftc, avconvert, qlmanage, sips).
 # Turns the raw scene renders in the project root into web-ready assets:
-#   assets/media/video/1080/<id>.mp4   desktop  (H.264, fast-start, scrub-friendly GOP)
-#   assets/media/video/720/<id>.mp4    mobile   (H.264, fast-start, scrub-friendly GOP)
-#   assets/media/video/360/<id>.mp4    preview  (~0.9 MB, slow networks only: moves before full quality arrives)
+#   assets/media/video/1080/<id>.mp4   desktop  (H.264, fast-start, 8-frame GOP)
+#   assets/media/video/720/<id>.mp4    mobile   (H.264, fast-start, 8-frame GOP)
+#   assets/media/video/540/<id>.mp4    preview  (~1.6 MB, loads first so footage moves at once)
 #   assets/media/posters/<id>.jpg      1920px first frame (poster + fallback)
 #   assets/media/posters/<id>-sm.jpg   960px first frame (mobile poster)
 # The original renders are never modified.
@@ -38,17 +38,16 @@ MANIFEST=(
 for row in "${MANIFEST[@]}"; do
   id=${row%%|*}; src=${row#*|}
   if [[ ! -f "$src" ]]; then echo "skip  $id  (missing: $src)"; continue; fi
-  for res in 1080 720 360; do
+  for res in 1080 720 540; do
     dst="$OUT/video/$res/$id.mp4"
     if [[ -n "$FORCE" || ! -f "$dst" ]]; then
-      # Scroll-scrubbed footage: keyframe every 4 frames, no B-frames (see tools/scrub-encode.swift).
+      # Scroll-scrubbed footage: keyframe every 8 frames, no B-frames (see tools/scrub-encode.swift).
+      # Quality measured against the master renders (luma PSNR): 1080p 40.4 dB,
+      # 720p 39.8 dB — on par with the original long-GOP encode — at 8-frame GOP.
       case $res in
-        # A 4-frame GOP spends far more bits on keyframes than a normal encode,
-        # so the bitrates are raised to keep the picture as sharp as the source
-        # (measured: 1080p @ 16 Mb/s ≈ 36.6 dB PSNR vs 34.3 dB @ 10 Mb/s).
-        1080) "$ENC" "$src" "$dst" 1920 1080 16000000 4 ;;
-        720)  "$ENC" "$src" "$dst" 1280 720 10000000 4 ;;
-        360)  "$ENC" "$src" "$dst" 640 360 800000 4 ;;  # slow-network preview tier
+        1080) "$ENC" "$src" "$dst" 1920 1080 13000000 8 ;;
+        720)  "$ENC" "$src" "$dst" 1280 720 8000000 8 ;;
+        540)  "$ENC" "$src" "$dst" 960 540 1600000 8 ;;  # preview tier: loads first so footage moves at once
       esac
       echo "video $dst"
     fi

@@ -18,10 +18,11 @@ const POSTERS = '/assets/posters'
 /**
  * Bump whenever the encoded clips change. Video files are cached by browsers
  * and the CDN (see vercel.json), so a new version string is what makes
- * returning visitors fetch the new encode. v2: scrub-friendly re-encode
+ * returning visitors fetch the new encode. v4: 8-frame GOP re-encode with
+ * 540p previews. v2: scrub-friendly re-encode
  * (keyframe every 4 frames, no B-frames).
  */
-const VIDEO_VERSION = 'v3'
+const VIDEO_VERSION = 'v4'
 
 function asset(
   id: string,
@@ -33,7 +34,7 @@ function asset(
     sources: {
       hd: `${VIDEOS}/1080/${id}.mp4?${VIDEO_VERSION}`,
       sd: `${VIDEOS}/720/${id}.mp4?${VIDEO_VERSION}`,
-      preview: `${VIDEOS}/360/${id}.mp4?${VIDEO_VERSION}`,
+      preview: `${VIDEOS}/540/${id}.mp4?${VIDEO_VERSION}`,
     },
     poster: `${POSTERS}/${id}.jpg`,
     posterSmall: `${POSTERS}/${id}-sm.jpg`,

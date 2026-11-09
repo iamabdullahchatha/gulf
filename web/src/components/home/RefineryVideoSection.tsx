@@ -60,8 +60,11 @@ export function RefineryVideoSection() {
     }
     const fx = richEffects()
     const layer = createScrubLayer({ preview, full }, EASE, ctrl.signal)
-    // Full quality only on fast connections; slow ones get the preview first.
-    const queue = createClipQueue(1, (_, t) => layer.load(t, t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, fast)), { previews: !fast })
+    // Preview first (the footage moves immediately), then full quality.
+    const fullSrc = pickFull(media.asset.sources, fast)
+    const queue = createClipQueue(1, (_, t) => layer.load(t, t === PREVIEW ? media.asset.sources.preview : fullSrc), {
+      fullBytes: (fullSrc === media.asset.sources.hd ? 13e6 : 8e6) * 2.1, // 17 s clip
+    })
 
     // Start downloading a few screens before the section arrives.
     const io = new IntersectionObserver(
