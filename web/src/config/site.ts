@@ -7,9 +7,9 @@ export const SITE = {
   shortName: 'GULF NEXT',
   url: (import.meta.env?.VITE_SITE_URL as string | undefined) || 'https://www.gulfnext.ae',
   /** Full title of the homepage (other pages use "<Page> | <name>"). */
-  homeTitle: 'GULF NEXT Oil and Gas | Engineering the Energy Future',
+  homeTitle: 'GULF NEXT Oil and Gas',
   defaultDescription:
-    'Integrated oil and gas contracting, industrial engineering and infrastructure: field services, pipelines, plant construction, maintenance and turnarounds.',
+    'Integrated engineering, construction and operations support for the oil, gas and petrochemical sector.',
   /**
    * Link-preview image (WhatsApp, LinkedIn, Facebook, X, iMessage, Slack):
    * the original branded artwork, uncropped. Width/height/type are declared
@@ -18,12 +18,10 @@ export const SITE = {
    */
   defaultImage: '/brand/og-image.webp',
   defaultImageType: 'image/webp',
-  defaultImageAlt: 'GULF NEXT Oil and Gas logo over an offshore platform, refinery and pipeline at sunset',
+  defaultImageAlt: 'GULF NEXT Oil and Gas',
   defaultImageSize: { width: 1672, height: 941 },
   logo: '/brand/logo.webp',
   locale: 'en',
-  /** Open Graph locale; the site is written in British English. */
-  ogLocale: 'en_GB',
   themeColor: '#040c1c',
 } as const
 

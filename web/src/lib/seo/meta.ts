@@ -51,7 +51,6 @@ export function buildMeta({
     ...(noIndex ? [meta({ name: 'robots', content: 'noindex, nofollow' })] : []),
 
     meta({ property: 'og:site_name', content: SITE.name }),
-    meta({ property: 'og:locale', content: SITE.ogLocale }),
     meta({ property: 'og:type', content: type }),
     meta({ property: 'og:title', content: t }),
     meta({ property: 'og:description', content: description }),
@@ -71,24 +70,27 @@ export function buildMeta({
     meta({ name: 'twitter:title', content: t }),
     meta({ name: 'twitter:description', content: description }),
     meta({ name: 'twitter:image', content: img }),
-    meta({ name: 'twitter:image:alt', content: alt }),
   ]
 }
 
 const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 /**
- * Serialise tags as static HTML. Each tag carries `data-seo` so the app can
- * drop them on start-up and let <Seo> own the head from then on.
+ * Serialise tags as static HTML, in the plain format link-preview apps parse
+ * reliably: `<meta property="og:..." content="..." />`, property/name first,
+ * no extra attributes. (An extra attribute in front of `property` made
+ * WhatsApp ignore og:image and show a small icon instead of the large card.)
+ * The app removes everything between the seo markers on start-up — see
+ * src/main.tsx — so <Seo> owns the head from then on.
  */
 export function metaToHtml(tags: MetaTag[], indent = '    '): string {
   return tags
     .map((m) => {
-      if (m.tag === 'title') return `${indent}<title data-seo>${escapeHtml(m.text)}</title>`
+      if (m.tag === 'title') return `${indent}<title>${escapeHtml(m.text)}</title>`
       const attrs = Object.entries(m.attrs)
         .map(([k, v]) => `${k}="${escapeHtml(v)}"`)
         .join(' ')
-      return `${indent}<${m.tag} data-seo ${attrs} />`
+      return `${indent}<${m.tag} ${attrs} />`
     })
     .join('\n')
 }
