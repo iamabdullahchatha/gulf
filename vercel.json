@@ -1,6 +1,5 @@
 {
   "outputDirectory": "web/dist",
-  "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
     {
