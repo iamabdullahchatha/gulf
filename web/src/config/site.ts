@@ -11,14 +11,15 @@ export const SITE = {
   defaultDescription:
     'Integrated oil and gas contracting, industrial engineering and infrastructure: field services, pipelines, plant construction, maintenance and turnarounds.',
   /**
-   * Link-preview image (WhatsApp, LinkedIn, Facebook, X, iMessage, Slack).
-   * JPEG at 1200x630 (the 1.91:1 ratio every platform crops to) and under
-   * 300 KB: LinkedIn and some WhatsApp versions do not render WebP previews,
-   * and WhatsApp drops images that are too heavy.
+   * Link-preview image (WhatsApp, LinkedIn, Facebook, X, iMessage, Slack):
+   * the original branded artwork, uncropped. Width/height/type are declared
+   * so apps render the large-image card straight away. Pair with
+   * `twitter:card=summary_large_image` (set in lib/seo/meta.ts).
    */
-  defaultImage: '/brand/og-image.jpg',
+  defaultImage: '/brand/og-image.webp',
+  defaultImageType: 'image/webp',
   defaultImageAlt: 'GULF NEXT Oil and Gas logo over an offshore platform, refinery and pipeline at sunset',
-  defaultImageSize: { width: 1200, height: 630 },
+  defaultImageSize: { width: 1672, height: 941 },
   logo: '/brand/logo.webp',
   locale: 'en',
   /** Open Graph locale; the site is written in British English. */

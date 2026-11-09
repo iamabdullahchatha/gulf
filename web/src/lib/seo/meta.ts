@@ -15,7 +15,7 @@ export interface MetaInput {
   description?: string
   /** Route path, e.g. "/about". Used for the canonical URL and og:url. */
   path?: string
-  /** Custom preview image (path or URL). Defaults to the branded 1200x630 card. */
+  /** Custom preview image (path or URL). Defaults to the original branded artwork. */
   image?: string
   imageAlt?: string
   type?: 'website' | 'article'
@@ -60,7 +60,7 @@ export function buildMeta({
     meta({ property: 'og:image:secure_url', content: img }),
     ...(isDefault
       ? [
-          meta({ property: 'og:image:type', content: 'image/jpeg' }),
+          meta({ property: 'og:image:type', content: SITE.defaultImageType }),
           meta({ property: 'og:image:width', content: String(SITE.defaultImageSize.width) }),
           meta({ property: 'og:image:height', content: String(SITE.defaultImageSize.height) }),
         ]
