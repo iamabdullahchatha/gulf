@@ -1,21 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 /**
- * Reactive `matchMedia`. Returns a stable initial value during SSR (`false`)
- * and subscribes to changes once mounted. Avoid for render-critical decisions
- * — lay out mobile-first in CSS and reach for this only for JS-driven ones.
+ * Reactive `matchMedia`, safe for pre-rendered pages.
+ *
+ * Pages are rendered to HTML at build time, where there is no screen, so the
+ * server value is `false` (the phone-first layout). During hydration React
+ * uses that same value, so the markup always matches, and then re-renders
+ * with the real answer straight away. Afterwards it tracks changes. Prefer CSS
+ * breakpoints for anything above the fold; use this for JS-driven behaviour.
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false,
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      const mql = window.matchMedia(query)
+      mql.addEventListener('change', onChange)
+      return () => mql.removeEventListener('change', onChange)
+    },
+    [query],
   )
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return
-    const mql = window.matchMedia(query)
-    const onChange = () => setMatches(mql.matches)
-    onChange()
-    mql.addEventListener('change', onChange)
-    return () => mql.removeEventListener('change', onChange)
-  }, [query])
-  return matches
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false,
+  )
 }

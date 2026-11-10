@@ -11,6 +11,7 @@ import { FULL, PREVIEW, createClipQueue, createScrubLayer, pageSettled, pickFull
 import { scrollToElement } from '@/lib/lenis'
 import { resolveMedia } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useNetworkTier } from '@/hooks/useNetworkTier'
 import { Texture } from '@/components/Texture'
 import { AccentTitle } from '@/components/home/AccentTitle'
 import type { FilmBeat, FilmScene } from '@/data/homeChapters'
@@ -91,7 +92,8 @@ const HOME_FINALE: Cta[] = [
  */
 export function CinematicFilm(props: Props) {
   const reduced = usePrefersReducedMotion()
-  const scrub = !reduced && getNetworkTier() !== 'none'
+  const tier = useNetworkTier()
+  const scrub = !reduced && tier !== 'none'
   return scrub ? <FilmStage {...props} /> : <FilmStatic {...props} />
 }
 

@@ -80,7 +80,30 @@ function Highlight({ text, query }: { text: string; query: string }) {
 export function QuestionCarousel({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => void }) {
   const reduced = usePrefersReducedMotion()
   const desktop = useMediaQuery('(min-width: 1024px)')
-  return desktop && !reduced ? <Ring items={items} onPick={onPick} /> : <Row items={items} onPick={onPick} />
+  if (reduced) return <Row items={items} onPick={onPick} />
+  // Both layouts are in the pre-rendered HTML and CSS shows the right one at
+  // first paint, so the hero is correct at every width before JavaScript runs.
+  // The ring only animates on desktop.
+  return (
+    <>
+      <div className="lg:hidden">
+        <Row items={items} onPick={onPick} />
+      </div>
+      <div className="hidden lg:block">
+        <Ring items={items} onPick={onPick} running={desktop} />
+      </div>
+    </>
+  )
+}
+
+/** Ring transform and per-card fade for a given angle and pointer lean (shared by the first paint and every frame). */
+function ringPose(angle: number, x: number, y: number, R: number) {
+  return `translateZ(${-R}px) rotateX(${(-7 + y * 8).toFixed(2)}deg) rotateY(${(-angle + x * 14).toFixed(2)}deg)`
+}
+function cardPose(i: number, step: number, angle: number) {
+  const rel = ((((i * step - angle) % 360) + 540) % 360) - 180
+  const facing = Math.max(0, Math.cos((rel * Math.PI) / 180))
+  return { opacity: (0.12 + 0.88 * facing ** 1.8).toFixed(3), filter: `brightness(${(0.5 + 0.5 * facing).toFixed(3)})`, pointerEvents: facing > 0.75 ? 'auto' : 'none' } as const
 }
 
 function QuestionCard({ f, onPick, className }: { f: CatalogFaq; onPick: (id: string) => void; className?: string }) {
@@ -107,7 +130,7 @@ function QuestionCard({ f, onPick, className }: { f: CatalogFaq; onPick: (id: st
   )
 }
 
-function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => void }) {
+function Ring({ items, onPick, running }: { items: CatalogFaq[]; onPick: (id: string) => void; running: boolean }) {
   const ringRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const angle = useRef(0)
@@ -118,27 +141,24 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
   const R = 430
 
   useEffect(() => {
+    if (!running) return
     let raf = 0
     const tick = () => {
       if (!paused.current) angle.current = (angle.current + 0.07) % 360
       const ring = ringRef.current
-      if (ring) {
-        const { x, y } = pointer.current
-        ring.style.transform = `translateZ(${-R}px) rotateX(${(-7 + y * 8).toFixed(2)}deg) rotateY(${(-angle.current + x * 14).toFixed(2)}deg)`
-      }
+      if (ring) ring.style.transform = ringPose(angle.current, pointer.current.x, pointer.current.y, R)
       cardRefs.current.forEach((el, i) => {
         if (!el) return
-        const rel = ((((i * STEP - angle.current) % 360) + 540) % 360) - 180
-        const facing = Math.max(0, Math.cos((rel * Math.PI) / 180))
-        el.style.opacity = (0.12 + 0.88 * facing ** 1.8).toFixed(3)
-        el.style.filter = `brightness(${(0.5 + 0.5 * facing).toFixed(3)})`
-        el.style.pointerEvents = facing > 0.75 ? 'auto' : 'none'
+        const p = cardPose(i, STEP, angle.current)
+        el.style.opacity = p.opacity
+        el.style.filter = p.filter
+        el.style.pointerEvents = p.pointerEvents
       })
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [STEP])
+  }, [STEP, running])
 
   return (
     <div
@@ -156,7 +176,7 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
       <div aria-hidden className="absolute left-1/2 top-[62%] h-[16rem] w-[46rem] -translate-x-1/2 rounded-[50%] border border-emerald/20 [transform:rotateX(76deg)]" />
       <div aria-hidden className="absolute left-1/2 top-[62%] h-[12rem] w-[34rem] -translate-x-1/2 animate-[spin_50s_linear_infinite] rounded-[50%] border border-dashed border-electric/25 [transform:rotateX(76deg)]" />
       <div aria-hidden className="absolute bottom-6 left-1/2 h-24 w-[60%] -translate-x-1/2 rounded-[50%] bg-electric/25 blur-3xl" />
-      <div ref={ringRef} className="absolute inset-0 [transform-style:preserve-3d]">
+      <div ref={ringRef} className="absolute inset-0 [transform-style:preserve-3d]" style={{ transform: ringPose(0, 0, 0, R) }}>
         {items.map((f, i) => (
           <div
             key={f.id}
@@ -164,7 +184,7 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
               cardRefs.current[i] = el
             }}
             className="absolute left-1/2 top-1/2 -ml-[8.75rem] -mt-[10rem] h-[20rem] w-[17.5rem] [backface-visibility:hidden]"
-            style={{ transform: `rotateY(${i * STEP}deg) translateZ(${R}px)` }}
+            style={{ transform: `rotateY(${i * STEP}deg) translateZ(${R}px)`, ...cardPose(i, STEP, 0) }}
           >
             <QuestionCard f={f} onPick={onPick} />
           </div>

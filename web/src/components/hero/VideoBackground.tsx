@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { cn } from '@/lib/cn'
-import { getNetworkTier, prefersReducedMotion } from '@/lib/network'
+import type { NetworkTier } from '@/lib/network'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useNetworkTier } from '@/hooks/useNetworkTier'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { Picture } from '@/components/Picture'
 
 export interface VideoBackgroundProps {
@@ -34,12 +36,10 @@ const STALL_TIMEOUT_MS = 15000
 type Mode = 'auto' | 'manual' | 'none'
 type State = 'idle' | 'loading' | 'playing' | 'paused' | 'poster' | 'fallback'
 
-function computeMode(isMobile: boolean, mobileVideo: boolean): Mode {
-  if (typeof window === 'undefined') return 'auto'
-  const tier = getNetworkTier()
+function computeMode(isMobile: boolean, mobileVideo: boolean, tier: NetworkTier, reduced: boolean): Mode {
   if (tier === 'none') return 'none'
   if (!mobileVideo && isMobile) return 'none'
-  if (prefersReducedMotion()) return 'manual'
+  if (reduced) return 'manual'
   return 'auto'
 }
 
@@ -69,12 +69,14 @@ export function VideoBackground({
 
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT)
   const isSdScreen = useMediaQuery(SD_BREAKPOINT)
+  const tier = useNetworkTier()
+  const reduced = usePrefersReducedMotion()
 
   // Derived mode (reactive to media queries). A user/runtime override — set
   // when autoplay is blocked or the viewer taps the pause/play control —
   // takes precedence.
   const [userMode, setUserMode] = useState<Mode | null>(null)
-  const derivedMode = useMemo(() => computeMode(isMobile, mobileVideo), [isMobile, mobileVideo])
+  const derivedMode = useMemo(() => computeMode(isMobile, mobileVideo, tier, reduced), [isMobile, mobileVideo, tier, reduced])
   const mode: Mode = userMode ?? derivedMode
 
   // Lazy initialisers keep the correct first-paint state without an effect.

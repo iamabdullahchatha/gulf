@@ -25,7 +25,9 @@ import { MobileMenu } from './MobileMenu'
  *    put and the toggle morphs into a close button in the same spot.
  */
 export function Header() {
-  const [scrolled, setScrolled] = useState(() => (typeof window !== 'undefined' ? window.scrollY > 24 : false))
+  // Starts false to match the pre-rendered HTML; the first scroll frame (or a
+  // restored scroll position, below) sets the real value.
+  const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mega, setMega] = useState<MegaKey | null>(null)
@@ -84,6 +86,8 @@ export function Header() {
       if (!frame) frame = requestAnimationFrame(update)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
+    // A reload mid-page restores the scroll position without a scroll event.
+    onScroll()
     return () => {
       cancelAnimationFrame(frame)
       window.removeEventListener('scroll', onScroll)

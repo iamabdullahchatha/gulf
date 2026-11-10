@@ -372,8 +372,10 @@ html.lenis, html.lenis body { height: auto; }
   box-shadow: 0 1px 2px rgb(9 38 75 / 0.04), 0 24px 50px -28px rgb(9 38 75 / 0.25);
 }
 
+/* Entrances start at 1% opacity, not 0: identical to the eye, but the browser
+   counts the content as painted from the first frame (Largest Contentful Paint). */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0.01; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
 }
 

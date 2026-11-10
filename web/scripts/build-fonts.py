@@ -77,6 +77,11 @@ def main() -> None:
             face = re.sub(r",\s*url\(\./files/[^)]+\.woff\)\s*format\('woff'\)", "", face)
             for prop, value in overrides.items():
                 face = re.sub(rf"{prop}:\s*[^;]+;", f"{prop}: {value};", face)
+            # Pages are pre-rendered, so text can paint before fonts arrive. The
+            # fonts are preloaded with the HTML; `block` holds text for that short
+            # moment instead of showing a fallback face and swapping (no flash of
+            # the wrong font, no layout shift).
+            face = re.sub(r"font-display:\s*[^;]+;", "font-display: block;", face)
             css.append(face)
     (OUT / "fonts.css").write_text("\n".join(css) + "\n")
     print(f"{len(css) - 1} faces, {before / 1024:.0f} KB -> {after / 1024:.0f} KB")

@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 // Typefaces are self-hosted (Google Fonts sources, trimmed to the weights and
 // widths the site uses by scripts/build-fonts.py): no render-blocking request
 // to another origin, and visitors' IP addresses are not sent to a third party.
@@ -26,8 +26,15 @@ function removeStaticSeo(): void {
 const root = document.getElementById('root')
 if (!root) throw new Error('Root element #root not found')
 
-createRoot(root).render(
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+// Pages are pre-rendered to HTML at build time (scripts/prerender-meta.ts) and
+// paint before any JavaScript runs; their boot script loads this module after
+// the first frame, and React hydrates the markup in place. The app shell
+// (unknown URLs) has an empty root and renders normally.
+if (root.firstElementChild) hydrateRoot(root, app)
+else createRoot(root).render(app)
