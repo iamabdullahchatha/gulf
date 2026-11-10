@@ -140,7 +140,7 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
 
   return (
     <div
-      className="relative h-[30rem] [perspective:1700px]"
+      className="relative h-[30rem] [perspective:1700px] lg:max-xl:scale-[0.8]"
       onPointerEnter={() => (paused.current = true)}
       onPointerLeave={() => {
         paused.current = false

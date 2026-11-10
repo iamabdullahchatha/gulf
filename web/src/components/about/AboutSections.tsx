@@ -166,7 +166,8 @@ function ValuesRing() {
             </div>
           </div>
 
-          <div className="relative h-[34rem] [perspective:1700px]">
+          {/* The ring is sized for wide screens; 1024–1279px (iPad landscape, small laptops) shows it at 78% so it clears the copy and the screen edge. */}
+          <div className="relative h-[34rem] [perspective:1700px] lg:max-xl:scale-[0.78]">
             <div className="absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald/10 [transform:rotateX(78deg)]" aria-hidden />
             <div ref={ringRef} className="absolute inset-0 transition-transform duration-300 ease-out [transform-style:preserve-3d]">
               {VALUES.map((v, i) => (
