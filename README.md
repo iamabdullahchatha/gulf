@@ -14,6 +14,19 @@ HTML pages are a separate static version; to serve those directly:
 ruby -run -e httpd . -p 8000      # then visit http://localhost:8000
 ```
 
+## Scroll-scrubbed films (React app)
+
+The home, About, Services and Industries heroes and the homepage refinery
+section are driven by scroll. They render on a `<canvas>` through
+`web/src/lib/frameEngine.ts`: the clip is demuxed in memory
+(`web/src/lib/mp4.ts`), decoded with WebCodecs a GOP at a time around the
+playhead, and the exact frame for the scroll position is drawn every
+animation frame, blended with the next frame so 24 fps footage moves
+smoothly at 60/120 Hz. Browsers without WebCodecs (or a decode error) fall
+back to seeking `<video>` elements on the same frame. The clips themselves
+are unchanged and still come from `tools/build-media.sh`; keep the 8-frame
+GOP and no B-frames, which the engine relies on.
+
 ## Cinematic media integration
 
 The static site and its media tooling are documented below.
