@@ -278,6 +278,16 @@ html.lenis, html.lenis body { height: auto; }
   transform: none;
 }
 
+/* A photo that arrives while the page is showing fades in instead of popping
+   (added by useImageWarmup). Only opacity animates, towards the element's own
+   value, so images with their own opacity, filters or transforms are unchanged. */
+@keyframes img-fade-in {
+  from { opacity: 0; }
+}
+.img-fade-in {
+  animation: img-fade-in 0.6s var(--ease-cinematic);
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
