@@ -40,6 +40,7 @@ export function RefineryVideoSection() {
   const wrapRef = useRef<HTMLElement>(null)
   const previewRef = useRef<HTMLVideoElement>(null)
   const fullRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const beatRefs = useRef<(HTMLDivElement | null)[]>([])
   const mediaRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
@@ -54,12 +55,9 @@ export function RefineryVideoSection() {
     if (!wrap || !preview || !full || !media) return
     const ctrl = new AbortController()
     const fast = getNetworkTier() === 'fast'
-    const dur = () => {
-      for (const v of [full, preview]) if (Number.isFinite(v.duration) && v.duration > 0) return v.duration
-      return 17.04
-    }
     const fx = richEffects()
-    const layer = createScrubLayer({ preview, full }, EASE, ctrl.signal)
+    const layer = createScrubLayer({ preview, full, canvas: canvasRef.current }, EASE, ctrl.signal)
+    const dur = () => layer.duration() ?? 17.04
     // Preview first (the footage moves immediately), then full quality.
     const fullSrc = pickFull(media.asset.sources, fast)
     const queue = createClipQueue(1, (_, t) => layer.load(t, t === PREVIEW ? media.asset.sources.preview : fullSrc), {
@@ -172,7 +170,9 @@ export function RefineryVideoSection() {
         {/* Footage, full screen */}
         <div ref={mediaRef} className="absolute inset-0 will-change-transform">
           {media && <Picture src={media.asset.poster} small={media.asset.posterSmall} alt="" className="absolute inset-0 h-full w-full object-cover" />}
-          {/* Preview (below) and full quality (above); each fades in over the poster when ready. */}
+          {/* Frame engine output, fading in over the poster on its first frame. */}
+          <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500" />
+          {/* <video> fallback: preview (below) and full quality (above); each fades in when ready. */}
           <video ref={previewRef} {...VIDEO_PROPS} />
           <video ref={fullRef} {...VIDEO_PROPS} />
         </div>

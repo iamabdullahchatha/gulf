@@ -104,8 +104,10 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   const bloomRef = useRef<HTMLDivElement>(null)
   const cueRef = useRef<HTMLDivElement>(null)
   const layerRefs = useRef<(HTMLDivElement | null)[]>([])
-  /** Per scene: [preview, full] video elements. */
+  /** Per scene: [preview, full] video elements (fallback when WebCodecs is unavailable). */
   const videoRefs = useRef<[HTMLVideoElement | null, HTMLVideoElement | null][]>(scenes.map(() => [null, null]))
+  /** Per scene: the canvas the frame engine paints on. */
+  const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([])
   const beatRefs = useRef<(HTMLDivElement | null)[][]>(scenes.map(() => []))
   const ctaRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -128,9 +130,12 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const layers = scenes.map((_, j) => {
       const [preview, full] = videoRefs.current[j] ?? []
       if (!preview || !full) return null
-      return createScrubLayer({ preview, full }, ease, ctrl.signal, () => layerRefs.current[j]?.classList.add('is-ready'))
+      return createScrubLayer({ preview, full, canvas: canvasRefs.current[j] }, ease, ctrl.signal, () => layerRefs.current[j]?.classList.add('is-ready'))
     })
     let lastAlign = ''
+    /** Scene on screen and whether the next one is dissolving in (drives each layer's state). */
+    let cur = 0
+    let incoming = false
 
     // Previews of every scene plus full-quality clips, one download at a time
     // in an order adapted to the connection (see lib/videoScrub). On 3G, full
@@ -150,10 +155,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
       { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier === 'fast' ? undefined : 2 },
     )
 
-    const duration = (j: number) => {
-      for (const v of videoRefs.current[j] ?? []) if (v && Number.isFinite(v.duration) && v.duration > 0) return v.duration
-      return 8.04
-    }
+    const duration = (j: number) => layers[j]?.duration() ?? 8.04
     /** Clip time for scene j at in-scene progress p (0–1). Scenes after the first start LEAD seconds in. */
     const timeAt = (j: number, p: number) => {
       const lead = j === 0 ? 0 : LEAD
@@ -168,6 +170,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
       const ek = easeInOut(k)
 
       queue.focus(k > 0.5 ? i + 1 : i)
+      cur = i
+      incoming = k > 0
 
       layers[i]?.set(timeAt(i, local))
       if (k > 0) layers[i + 1]?.set(k * LEAD)
@@ -233,7 +237,9 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const loop = (now: number) => {
       const dt = last ? (now - last) / 1000 : 1 / 60
       last = now
-      layers.forEach((l, j) => l?.tick(dt, layerRefs.current[j]?.style.visibility !== 'hidden'))
+      // On screen: the current shot (and the next while it dissolves in). Warm:
+      // the next shot, decoded and painted while hidden so the join is instant.
+      layers.forEach((l, j) => l?.tick(dt, j === cur || (j === cur + 1 && incoming) ? 'visible' : j === cur + 1 ? 'warm' : 'cold'))
       raf = requestAnimationFrame(loop)
     }
     const io = new IntersectionObserver(([e]) => {
@@ -287,7 +293,14 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
                     className="absolute inset-0 h-full w-full object-cover"
                   />
               )}
-              {/* Preview (below) and full quality (above); each fades in over the poster when ready. */}
+              {/* Frame engine output: fades in over the poster on its first frame. */}
+              <canvas
+                ref={(el) => {
+                  canvasRefs.current[j] = el
+                }}
+                className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500"
+              />
+              {/* <video> fallback: preview (below) and full quality (above); each fades in when ready. */}
               {([PREVIEW, FULL] as const).map((t) => (
                 <video
                   key={t}
