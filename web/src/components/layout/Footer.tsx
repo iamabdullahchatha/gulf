@@ -12,6 +12,7 @@ import { COMPANY_LINKS } from '@/data/navigation'
 import { SERVICES } from '@/data/services'
 import { INDUSTRIES } from '@/data/industries'
 import { COMPANY, hasVerifiedContact } from '@/data/company'
+import { LinkedInIcon } from '@/components/icons/LinkedInIcon'
 
 const PILLARS = [
   { icon: Layers, t: 'Integrated delivery', d: 'One contract. One owner.' },
@@ -79,6 +80,21 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+              {COMPANY.social.linkedin && (
+                <a
+                  href={COMPANY.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-1.5 pr-4 text-sm font-medium text-steel-200 transition hover:border-[#0a66c2]/60 hover:bg-[#0a66c2]/15 hover:text-white"
+                >
+                  <span className="inline-flex size-7 items-center justify-center rounded-full bg-[#0a66c2] text-white">
+                    <LinkedInIcon className="size-3.5" />
+                  </span>
+                  Follow us on LinkedIn
+                  <ArrowUpRight className="size-3.5 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              )}
             </div>
 
             <ul className="reveal grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-panel sm:grid-cols-3 lg:col-span-7">

@@ -1,4 +1,5 @@
 import { SITE } from '@/config/site'
+import { COMPANY } from '@/data/company'
 import { absoluteUrl } from './url'
 
 export type JsonLd = Record<string, unknown>
@@ -11,6 +12,8 @@ export function organizationJsonLd(): JsonLd {
     name: SITE.name,
     url: SITE.url,
     logo: absoluteUrl(SITE.logo),
+    ...(COMPANY.contact.email ? { email: COMPANY.contact.email } : {}),
+    ...(COMPANY.social.linkedin ? { sameAs: [COMPANY.social.linkedin] } : {}),
   }
 }
 

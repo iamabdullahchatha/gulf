@@ -35,6 +35,7 @@ import { cn } from '@/lib/cn'
 import { scrollToElement } from '@/lib/lenis'
 import logoSrc from '@/assets/brand/logo.webp'
 import { COMPANY, hasVerifiedContact } from '@/data/company'
+import { LinkedInIcon } from '@/components/icons/LinkedInIcon'
 import { CONTACT_FAQ } from '@/data/faq'
 import { SERVICES } from '@/data/services'
 import { INDUSTRIES } from '@/data/industries'
@@ -211,6 +212,14 @@ export default function ContactPage() {
                         )}
                         {contact.hours && (
                           <li className="flex gap-3"><Clock className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden /><span className="text-white">{contact.hours}</span></li>
+                        )}
+                        {COMPANY.social.linkedin && (
+                          <li className="flex gap-3">
+                            <LinkedInIcon className="mt-0.5 size-4 shrink-0 text-emerald" />
+                            <a className="link-underline text-white" href={COMPANY.social.linkedin} target="_blank" rel="noopener noreferrer">
+                              Follow GULF NEXT on LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+                            </a>
+                          </li>
                         )}
                       </ul>
                     </div>

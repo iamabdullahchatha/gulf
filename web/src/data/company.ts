@@ -6,8 +6,8 @@
  * company's registration documents. Components render nothing for `null`
  * fields — they never fall back to sample or placeholder values.
  *
- * Status (2026-11-08): no registration document has been supplied, so no
- * contact details are verified yet.
+ * Status (2026-11-10): email and LinkedIn page confirmed by the company.
+ * Phone, address, hours and registration number are still unverified.
  */
 export interface CompanyContact {
   email: string | null
@@ -24,6 +24,10 @@ export interface Company {
   /** Commercial registration number, once verified. */
   registrationNumber: string | null
   contact: CompanyContact
+  /** Official social profiles (also published as schema.org `sameAs`). */
+  social: {
+    linkedin: string | null
+  }
 }
 
 export const COMPANY: Company = {
@@ -31,10 +35,13 @@ export const COMPANY: Company = {
   tradingName: 'GULF NEXT',
   registrationNumber: null,
   contact: {
-    email: null,
+    email: 'info@gulfnext.ae',
     phone: null,
     address: null,
     hours: null,
+  },
+  social: {
+    linkedin: 'https://www.linkedin.com/company/gulf-next-oil-and-gas',
   },
 }
 

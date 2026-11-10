@@ -11,6 +11,7 @@ import {
   Handshake,
   Layers,
   Link2,
+  Mail,
   MessageSquareText,
   Plus,
   Quote,
@@ -19,6 +20,7 @@ import {
   ShieldCheck,
   X,
 } from 'lucide-react'
+import { COMPANY } from '@/data/company'
 import { Container } from '@/components/Container'
 import { Texture } from '@/components/Texture'
 import { Tilt3D } from '@/components/animations/Tilt3D'
@@ -323,6 +325,12 @@ export function FaqBrowser({ query, setQuery, open, toggle, setAll }: BrowserPro
             <Link to="/contact" className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-midnight transition hover:bg-emerald">
               Send a question <ArrowUpRight className="size-4" aria-hidden />
             </Link>
+            {COMPANY.contact.email && (
+              <a href={`mailto:${COMPANY.contact.email}`} className="relative mt-4 flex items-center gap-2 text-sm text-steel-300 transition hover:text-white">
+                <Mail className="size-4 text-emerald" aria-hidden />
+                <span className="link-underline">{COMPANY.contact.email}</span>
+              </a>
+            )}
           </div>
         </Tilt3D>
       </aside>
@@ -538,6 +546,14 @@ export function StillHaveQuestion({ children }: { children?: ReactNode }) {
               We will answer it <em>directly</em>.
             </h2>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-steel-300">Send us your question with a little context about the asset and scope, and a member of our engineering team will come back to you.</p>
+            {COMPANY.contact.email && (
+              <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-steel-300">
+                <Mail className="size-4 text-emerald" aria-hidden /> Email us at
+                <a href={`mailto:${COMPANY.contact.email}`} className="link-underline font-semibold text-white">
+                  {COMPANY.contact.email}
+                </a>
+              </p>
+            )}
             {children}
           </div>
           <div className="grid gap-4 [perspective:1600px] sm:grid-cols-3 lg:grid-cols-1">
