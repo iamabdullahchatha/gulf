@@ -1,5 +1,6 @@
 import { cn } from '@/lib/cn'
 import logoSrc from '@/assets/brand/logo.webp'
+import { LOGO_SRCSET } from '@/components/Logo'
 
 interface Props {
   /** When true, fills the full viewport (used by Suspense in Layout). */
@@ -31,6 +32,8 @@ export function LoadingFallback({ fullScreen = true, label = 'Loading', classNam
         <span className="inline-flex items-center rounded-xl bg-white/95 px-4 py-2 shadow-lg shadow-navy-950/40">
           <img
             src={logoSrc}
+            srcSet={LOGO_SRCSET}
+            sizes="76px"
             alt=""
             width={580}
             height={430}
@@ -43,7 +46,6 @@ export function LoadingFallback({ fullScreen = true, label = 'Loading', classNam
         </div>
         <span className="sr-only">{label}</span>
       </div>
-      <style>{`@keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(340%); } }`}</style>
     </div>
   )
 }

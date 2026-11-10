@@ -210,9 +210,9 @@ function FloatField({ icon: Icon, label, value, onChange, required, type = 'text
           )}
         >
           {label}
-          {required && <span className="ml-0.5 text-teal-500">*</span>}
+          {required && <span className="ml-0.5 text-teal-600">*</span>}
         </label>
-        {hint && <span className={cn('absolute bottom-3 right-4 font-mono text-[0.7rem]', hintOk ? 'text-teal-500' : 'text-steel-400')}>{hint}</span>}
+        {hint && <span className={cn('absolute bottom-3 right-4 font-mono text-[0.7rem]', hintOk ? 'text-teal-600' : 'text-steel-400')}>{hint}</span>}
       </div>
       {error && (
         <p id={`${id}-err`} role="alert" className="mt-1.5 pl-1 text-xs text-red-600">

@@ -267,7 +267,8 @@ export function SectorConnections() {
                     <span className={cn('block label-tech', on ? 'text-emerald' : 'text-steel-400')}>Industry {ind.index}</span>
                     <span className="mt-0.5 block font-display text-lg font-bold leading-tight">{ind.title}</span>
                   </span>
-                  <span className={cn('font-display text-3xl font-black', on ? 'text-white' : 'text-royal/15')}>{count}</span>
+                  <span aria-hidden data-wm={String(count)} className={cn('font-display text-3xl font-black', on ? 'text-white' : 'text-royal/15')} />
+                  <span className="sr-only">, {count} services</span>
                   {on && <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-emerald to-electric" />}
                 </button>
               )
@@ -344,7 +345,6 @@ export function StandardsFlip() {
                 <button
                   type="button"
                   aria-pressed={on}
-                  aria-label={`${s.title}: ${s.back}`}
                   onClick={() => setFlipped(on ? null : i)}
                   onMouseEnter={() => setFlipped(i)}
                   onMouseLeave={() => setFlipped(null)}

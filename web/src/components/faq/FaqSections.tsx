@@ -367,6 +367,7 @@ function SearchBox({ query, setQuery, large = false, onSubmit }: { query: string
   return (
     <form
       role="search"
+      aria-label={large ? 'Search all questions' : 'Filter questions'}
       onSubmit={(e) => {
         e.preventDefault()
         onSubmit?.()
@@ -442,7 +443,7 @@ function TopicGroup({ cat, items, query, open, toggle }: { cat: (typeof FAQ_CATE
                   <Highlight text={group} query={query} />
                 </h3>
                 {list[0]?.link && (
-                  <Link to={list[0].link.href} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-teal-300 transition hover:text-white">
+                  <Link to={list[0].link.href} aria-label={`Open page: ${group}`} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-teal-300 transition hover:text-white">
                     <span className="hidden sm:inline">Open page</span> <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                   </Link>
                 )}
@@ -486,7 +487,7 @@ function FaqCard({ f, n, query, isOpen, toggle }: { f: CatalogFaq; n: number; qu
       >
         <span aria-hidden className={cn('absolute inset-y-0 left-0 w-1 origin-top bg-gradient-to-b from-emerald to-electric transition-transform duration-500', isOpen ? 'scale-y-100' : 'scale-y-0')} />
         <h3>
-          <button type="button" aria-expanded={isOpen} aria-controls={`${f.id}-answer`} onClick={() => toggle(f.id)} className="flex w-full items-start gap-4 px-5 py-5 text-left md:px-6">
+          <button type="button" id={`${f.id}-question`} aria-expanded={isOpen} aria-controls={`${f.id}-answer`} onClick={() => toggle(f.id)} className="flex w-full items-start gap-4 px-5 py-5 text-left md:px-6">
             <span className={cn('mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg font-mono text-xs transition-colors', isOpen ? 'bg-emerald text-midnight' : 'bg-white/5 text-steel-400 group-hover:text-white')}>{pad(n)}</span>
             <span className={cn('flex-1 font-display text-[1.0625rem] font-semibold leading-snug transition-colors md:text-lg', isOpen ? 'text-white' : 'text-steel-100')}>
               <Highlight text={f.q} query={query} />
@@ -496,7 +497,7 @@ function FaqCard({ f, n, query, isOpen, toggle }: { f: CatalogFaq; n: number; qu
             </span>
           </button>
         </h3>
-        <div id={`${f.id}-answer`} role="region" className="grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)]" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
+        <div id={`${f.id}-answer`} role="region" aria-labelledby={`${f.id}-question`} className="grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)]" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
           <div className="overflow-hidden">
             <div className={cn('origin-top pb-6 pl-[4.25rem] pr-6 transition-[transform,opacity] duration-500 ease-[var(--ease-out-expo)] md:pl-[4.5rem]', isOpen ? 'opacity-100 [transform:rotateX(0deg)]' : 'opacity-0 [transform:rotateX(-18deg)]')}>
               <p className="max-w-3xl leading-relaxed text-steel-300">

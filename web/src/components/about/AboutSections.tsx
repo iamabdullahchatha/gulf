@@ -150,7 +150,7 @@ function ValuesRing() {
               <h3 className="mt-4 font-display text-4xl font-bold text-white">{current.title}</h3>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-steel-300">{current.detail}</p>
             </div>
-            <div className="mt-8 flex items-center gap-2" role="tablist" aria-label="Core values">
+            <div className="mt-8 flex items-center" role="tablist" aria-label="Core values">
               {VALUES.map((v, i) => (
                 <button
                   key={v.title}
@@ -159,8 +159,10 @@ function ValuesRing() {
                   aria-selected={i === active}
                   aria-label={v.title}
                   onClick={() => goTo(i)}
-                  className={cn('h-2 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-2 bg-silver/25 hover:bg-silver/60')}
-                />
+                  className="group/dot inline-flex h-6 min-w-6 items-center justify-center"
+                >
+                  <span className={cn('h-2 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-2 bg-silver/25 group-hover/dot:bg-silver/60')} />
+                </button>
               ))}
               <span className="ml-4 label-tech text-steel-500">Scroll to turn</span>
             </div>

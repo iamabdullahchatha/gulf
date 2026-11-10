@@ -64,10 +64,10 @@ export function ContactCTA() {
         <div className="relative">
           <span aria-hidden className="absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgb(0_185_154/0.35),transparent)] blur-2xl" />
           <div className="rounded-[2rem] bg-[linear-gradient(140deg,rgb(255_255_255/0.75),rgb(0_185_154/0.7)_45%,rgb(8_126_219/0.8))] p-px shadow-[0_50px_100px_-30px_rgb(3_13_29/0.75)]">
-          <div className="relative rounded-[calc(2rem-1px)] bg-white p-6 md:p-10">
+          <div className="theme-light relative rounded-[calc(2rem-1px)] bg-white p-6 md:p-10">
           <div className="mb-8 flex items-start justify-between gap-4">
             <div>
-              <p className="label-tech text-teal-500">Project enquiry</p>
+              <p className="label-tech text-teal-600">Project enquiry</p>
               <h3 className="mt-2 font-display text-2xl font-bold text-midnight md:text-3xl">Tell us about your scope.</h3>
             </div>
             <span className="hidden size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-electric to-royal text-white shadow-[0_12px_24px_-10px_rgb(8_126_219/0.8)] sm:inline-flex">

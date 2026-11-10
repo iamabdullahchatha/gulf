@@ -34,6 +34,7 @@ import { Seo } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 import { scrollToElement } from '@/lib/lenis'
 import logoSrc from '@/assets/brand/logo.webp'
+import { LOGO_SRCSET } from '@/components/Logo'
 import { COMPANY, hasVerifiedContact } from '@/data/company'
 import { LinkedInIcon } from '@/components/icons/LinkedInIcon'
 import { CONTACT_FAQ } from '@/data/faq'
@@ -226,7 +227,7 @@ export default function ContactPage() {
                   ) : (
                     <div className="relative flex items-start gap-4">
                       <span className="inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white p-2 shadow-[0_14px_30px_-12px_rgb(0_0_0/0.6)] [transform:translateZ(40px)]">
-                        <img src={logoSrc} alt="" className="h-full w-full object-contain" />
+                        <img src={logoSrc} srcSet={LOGO_SRCSET} sizes="40px" alt="" className="h-full w-full object-contain" />
                       </span>
                       <div>
                         <h3 className="font-display text-lg font-bold text-white">Who reads your enquiry</h3>
@@ -282,7 +283,7 @@ export default function ContactPage() {
                       <ArrowUpRight className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <p className="relative mt-10 label-tech text-teal-500">{c.eyebrow}</p>
+                  <p className="relative mt-10 label-tech text-teal-600">{c.eyebrow}</p>
                   <h3 className="relative mt-2 font-display text-2xl font-bold text-midnight [transform:translateZ(30px)]">{c.title}</h3>
                   <p className="relative mt-2 text-sm leading-relaxed text-steel-700">{c.text}</p>
                   <span aria-hidden className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-emerald via-electric to-royal transition-transform duration-700 group-hover:scale-x-100" />

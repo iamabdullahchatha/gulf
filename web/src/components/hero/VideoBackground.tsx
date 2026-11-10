@@ -262,8 +262,6 @@ export function VideoBackground({
         </button>
       )}
 
-      <style>{`@keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(340%); } }`}</style>
-      <style>{`@media (max-width: 768px) { [data-state] img, [data-state] video { object-position: var(--focal-mobile, var(--focal, 50% 50%)) !important; } }`}</style>
     </div>
   )
 }

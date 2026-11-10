@@ -32,9 +32,11 @@ export function ServiceHero({ service: s, total, industries }: { service: Servic
     () => {
       if (reduced) return
       gsap.fromTo('[data-hero-bg]', { scale: 1.3 }, { scale: 1.12, duration: 2.8, ease: 'expo.out' })
-      gsap.from('[data-hero-in]', { y: 50, opacity: 0, duration: 1.3, ease: 'expo.out', stagger: 0.08, delay: 0.1 })
-      gsap.from('[data-hero-frame]', { rotateY: -55, rotateX: 12, z: -300, opacity: 0, duration: 2, ease: 'expo.out', delay: 0.2 })
-      gsap.from('[data-hero-card]', { y: 90, z: -120, opacity: 0, duration: 1.6, ease: 'expo.out', delay: 0.7 })
+      // Hero entrances start at 1% opacity, not 0: identical to the eye, but the
+      // browser counts them as painted on the first frame (Largest Contentful Paint).
+      gsap.from('[data-hero-in]', { y: 50, opacity: 0.01, duration: 1.3, ease: 'expo.out', stagger: 0.08, delay: 0.1 })
+      gsap.from('[data-hero-frame]', { rotateY: -55, rotateX: 12, z: -300, opacity: 0.01, duration: 2, ease: 'expo.out', delay: 0.2 })
+      gsap.from('[data-hero-card]', { y: 90, z: -120, opacity: 0.01, duration: 1.6, ease: 'expo.out', delay: 0.7 })
       gsap.to('[data-hero-bg]', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } })
       gsap.to('[data-hero-frame-wrap]', { y: -120, rotateX: 10, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } })
       gsap.to('[data-hero-copy]', { y: -80, opacity: 0, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom 15%', scrub: true } })

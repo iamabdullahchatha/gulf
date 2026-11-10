@@ -148,7 +148,7 @@ function DeckScroller() {
             </div>
 
             <div className="mt-6 flex items-center gap-4">
-              <div className="flex items-center gap-1.5" role="tablist" aria-label="Service lines">
+              <div className="flex items-center" role="tablist" aria-label="Service lines">
                 {SERVICES.map((x, i) => (
                   <button
                     key={x.slug}
@@ -157,8 +157,10 @@ function DeckScroller() {
                     aria-selected={i === active}
                     aria-label={x.title}
                     onClick={() => goTo(i)}
-                    className={cn('h-1.5 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-4 bg-silver/20 hover:bg-silver/50')}
-                  />
+                    className="group/dot inline-flex h-6 min-w-6 items-center justify-center"
+                  >
+                    <span className={cn('h-1.5 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-4 bg-silver/20 group-hover/dot:bg-silver/50')} />
+                  </button>
                 ))}
               </div>
               <span className="label-tech text-steel-500">
@@ -256,7 +258,7 @@ export function ServiceGroups() {
               <Tilt3D key={g.heading} max={6} lift={18} className="h-full rounded-[2rem]" wrapperClassName="reveal h-full">
                 <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_40px_80px_-50px_rgb(9_38_75/0.6)] ring-1 ring-royal/10 transition-shadow duration-500 group-hover/tilt:shadow-[0_60px_100px_-50px_rgb(8_126_219/0.55)]">
                   <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald via-electric to-royal" />
-                  <span aria-hidden className="absolute -right-3 -top-6 font-display text-[9rem] font-black leading-none text-royal/[0.05]">{pad(gi + 1)}</span>
+                  <span aria-hidden data-wm={pad(gi + 1)} className="absolute -right-3 -top-6 font-display text-[9rem] font-black leading-none text-royal/[0.05]" />
 
                   <div className="relative h-20 [transform-style:preserve-3d]">
                     {items.map((s, i) => {
@@ -277,7 +279,7 @@ export function ServiceGroups() {
                     })}
                   </div>
 
-                  <p className="relative mt-8 label-tech text-teal-500">Group {pad(gi + 1)}</p>
+                  <p className="relative mt-8 label-tech text-teal-600">Group {pad(gi + 1)}</p>
                   <h3 className="relative mt-2 font-display text-[1.75rem] font-bold leading-tight text-midnight">{g.heading}</h3>
                   <p className="relative mt-3 text-[0.9375rem] leading-relaxed text-steel-700">{g.note}</p>
 
@@ -294,7 +296,7 @@ export function ServiceGroups() {
                               <span className="block label-tech text-steel-400">{s.index}</span>
                               <span className="block font-semibold leading-snug text-midnight">{s.title}</span>
                             </span>
-                            <ArrowUpRight className="size-4 text-steel-400 transition group-hover:rotate-45 group-hover:text-teal-500" aria-hidden />
+                            <ArrowUpRight className="size-4 text-steel-400 transition group-hover:rotate-45 group-hover:text-teal-600" aria-hidden />
                           </Link>
                         </li>
                       )
@@ -416,7 +418,7 @@ export function ServiceTile({ service: s, tone = 'dark', className }: { service:
           </span>
         </div>
         <div className="relative mt-auto pt-10 [transform:translateZ(36px)]">
-          <p className={cn('label-tech', light ? 'text-teal-500' : 'text-emerald')}>Service {s.index}</p>
+          <p className={cn('label-tech', light ? 'text-teal-600' : 'text-emerald')}>Service {s.index}</p>
           <h3 className={cn('mt-2 font-display text-[1.45rem] font-bold leading-tight', light ? 'text-midnight' : 'text-white')}>{s.title}</h3>
           <p className={cn('mt-2 text-sm leading-relaxed', light ? 'text-steel-700' : 'text-steel-400')}>{s.short}</p>
         </div>
@@ -443,7 +445,7 @@ export function IndustryTile({ industry: ind, tone = 'dark', className }: { indu
           <Icon className="size-6" aria-hidden />
         </span>
         <div className="relative mt-auto pt-10 [transform:translateZ(36px)]">
-          <p className={cn('label-tech', light ? 'text-teal-500' : 'text-emerald')}>Industry {ind.index}</p>
+          <p className={cn('label-tech', light ? 'text-teal-600' : 'text-emerald')}>Industry {ind.index}</p>
           <h3 className={cn('mt-2 font-display text-[1.45rem] font-bold leading-tight', light ? 'text-midnight' : 'text-white')}>{ind.title}</h3>
           <p className={cn('mt-2 text-sm leading-relaxed', light ? 'text-steel-700' : 'text-steel-400')}>{ind.short}</p>
           <span className={cn('mt-5 inline-flex items-center gap-2 text-sm font-semibold', light ? 'text-royal' : 'text-white')}>

@@ -18,6 +18,7 @@ import { Seo } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import logoSrc from '@/assets/brand/logo.webp'
+import { LOGO_SRCSET } from '@/components/Logo'
 import { ABOUT_FAQ } from '@/data/faq'
 import { AboutFaq, CoreValues, HowWeWork } from '@/components/about/AboutSections'
 import { SERVICE_GROUPS, servicesIn } from '@/data/services'
@@ -141,7 +142,7 @@ export default function AboutPage() {
                 <figcaption className="absolute bottom-5 left-5 right-5 font-display text-lg font-semibold text-white">People, planning and field experience</figcaption>
               </figure>
               <span className="absolute left-2 top-8 rounded-2xl sm:-left-6 bg-white p-3 shadow-[0_24px_50px_-18px_rgb(3_13_29/0.7)] [transform:translateZ(80px)]" data-float>
-                <img src={logoSrc} alt="GULF NEXT Oil and Gas" width={580} height={430} className="h-12 w-auto" />
+                <img src={logoSrc} srcSet={LOGO_SRCSET} sizes="65px" alt="GULF NEXT Oil and Gas" width={580} height={430} className="h-12 w-auto" />
               </span>
               <div className="absolute -bottom-7 right-2 flex items-center gap-3 rounded-2xl bg-midnight/90 px-4 py-3 shadow-[0_24px_50px_-18px_rgb(0_0_0/0.8)] ring-1 ring-emerald/30 backdrop-blur-md [transform:translateZ(100px)] sm:-right-8" data-float>
                 <span className="inline-flex size-9 items-center justify-center rounded-full bg-emerald/15 text-emerald">
@@ -178,7 +179,7 @@ export default function AboutPage() {
           <Tilt3D max={6} lift={14} className="rounded-[2rem]" wrapperClassName="reveal">
             <dl className="relative grid gap-px overflow-hidden rounded-[2rem] bg-royal/10 shadow-[0_40px_80px_-44px_rgb(9_38_75/0.6)] ring-1 ring-royal/10">
               <div className="bg-white p-7">
-                <dt className="flex items-center gap-2 label-tech text-teal-500">
+                <dt className="flex items-center gap-2 label-tech text-teal-600">
                   <Compass className="size-4" aria-hidden /> Industries
                 </dt>
                 <dd className="mt-4 flex flex-wrap gap-2 [transform:translateZ(30px)]">
@@ -194,14 +195,14 @@ export default function AboutPage() {
                 </dd>
               </div>
               <div className="bg-white p-7">
-                <dt className="flex items-center gap-2 label-tech text-teal-500">
+                <dt className="flex items-center gap-2 label-tech text-teal-600">
                   <Layers className="size-4" aria-hidden /> Service lines
                 </dt>
                 <dd className="mt-2 font-display text-2xl font-bold text-midnight [transform:translateZ(24px)]">Nine services in three groups</dd>
                 <dd className="mt-1 text-sm text-steel-700">{SERVICE_GROUPS.map((g) => g.heading).join(' · ')}</dd>
               </div>
               <div className="bg-white p-7">
-                <dt className="flex items-center gap-2 label-tech text-teal-500">
+                <dt className="flex items-center gap-2 label-tech text-teal-600">
                   <Workflow className="size-4" aria-hidden /> Delivery model
                 </dt>
                 <dd className="mt-2 font-display text-2xl font-bold text-midnight [transform:translateZ(24px)]">Standalone or integrated scope</dd>
@@ -291,7 +292,7 @@ export default function AboutPage() {
                         />
                       ))}
                     </div>
-                    <p className="mt-6 label-tech text-teal-500">Group {String(gi + 1).padStart(2, '0')}</p>
+                    <p className="mt-6 label-tech text-teal-600">Group {String(gi + 1).padStart(2, '0')}</p>
                     <h3 className="mt-2 font-display text-2xl font-bold text-midnight">{g.heading}</h3>
                     <p className="mt-2 text-sm text-steel-700">{g.note}</p>
                     <ul className="mt-6 space-y-2">

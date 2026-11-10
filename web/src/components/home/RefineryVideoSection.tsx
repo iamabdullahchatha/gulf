@@ -62,6 +62,7 @@ export function RefineryVideoSection() {
     const fullSrc = pickFull(media.asset.sources, fast)
     const queue = createClipQueue(1, (_, t) => layer.load(t, t === PREVIEW ? media.asset.sources.preview : fullSrc), {
       fullBytes: (fullSrc === media.asset.sources.hd ? 13e6 : 8e6) * 2.1, // 17 s clip
+      signal: ctrl.signal,
     })
 
     // Start downloading a few screens before the section arrives.

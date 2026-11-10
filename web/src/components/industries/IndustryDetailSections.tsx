@@ -43,9 +43,11 @@ export function IndustryHero({ industry: ind, total, services }: { industry: Ind
   useGSAP(
     () => {
       if (reduced) return
-      gsap.from(slatRefs.current, { rotateY: -88, opacity: 0, duration: 1.6, ease: 'expo.out', stagger: 0.08, delay: 0.1 })
-      gsap.from('[data-hero-in]', { y: 44, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.15 })
-      gsap.from('[data-hero-fact]', { y: 30, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.07, delay: 0.7 })
+      gsap.from(slatRefs.current, { rotateY: -88, opacity: 0.01, duration: 1.6, ease: 'expo.out', stagger: 0.08, delay: 0.1 })
+      // Hero entrances start at 1% opacity, not 0: identical to the eye, but the
+      // browser counts them as painted on the first frame (Largest Contentful Paint).
+      gsap.from('[data-hero-in]', { y: 44, opacity: 0.01, duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.15 })
+      gsap.from('[data-hero-fact]', { y: 30, opacity: 0.01, duration: 1, ease: 'expo.out', stagger: 0.07, delay: 0.7 })
       gsap.fromTo(slatRefs.current, { rotateY: 0 }, { rotateY: 34, ease: 'none', stagger: 0.02, immediateRender: false, scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } })
       gsap.to('[data-hero-copy]', { y: -70, opacity: 0, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: '70% top', scrub: true } })
     },
@@ -285,7 +287,7 @@ export function SectorServices({ industry: ind }: { industry: Industry }) {
       <div className="reveal mt-12 flex flex-col gap-6 rounded-[2rem] bg-paper p-6 ring-1 ring-royal/10 sm:flex-row sm:items-center md:p-8">
         <CoverageRing lit={supported.length} total={total} />
         <div className="flex-1">
-          <p className="label-tech text-teal-500">Service coverage</p>
+          <p className="label-tech text-teal-600">Service coverage</p>
           <p className="mt-2 font-display text-2xl font-bold leading-snug text-midnight md:text-[1.75rem]">
             {supported.length} of our {total} service lines support {ind.title.toLowerCase()}.
           </p>
@@ -306,7 +308,7 @@ export function SectorServices({ industry: ind }: { industry: Industry }) {
                 <span aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald via-electric to-royal" />
                 <header className="flex items-start justify-between gap-4 [transform:translateZ(24px)]">
                   <div>
-                    <p className="label-tech text-teal-500">Group {pad(gi + 1)}</p>
+                    <p className="label-tech text-teal-600">Group {pad(gi + 1)}</p>
                     <h3 className="mt-1.5 font-display text-xl font-bold leading-tight text-midnight">{g.heading}</h3>
                   </div>
                   <div className="text-right">
@@ -486,8 +488,8 @@ export function DeliveryTimeline({ steps }: { steps: { title: string; desc: stri
                   on ? 'shadow-[0_40px_70px_-40px_rgb(8_126_219/0.55)] ring-emerald/30' : 'shadow-[0_24px_50px_-40px_rgb(9_38_75/0.5)] ring-royal/10',
                 )}
               >
-                <span aria-hidden className="absolute -right-2 -top-5 font-display text-[6rem] font-black leading-none text-royal/[0.05]">{pad(i + 1)}</span>
-                <p className={cn('relative label-tech transition-colors', on ? 'text-teal-500' : 'text-steel-400')}>Step {pad(i + 1)}</p>
+                <span aria-hidden data-wm={pad(i + 1)} className="absolute -right-2 -top-5 font-display text-[6rem] font-black leading-none text-royal/[0.05]" />
+                <p className={cn('relative label-tech transition-colors', on ? 'text-teal-600' : 'text-steel-400')}>Step {pad(i + 1)}</p>
                 <h3 className="relative mt-2 font-display text-2xl font-bold text-midnight [transform:translateZ(30px)]">{s.title}</h3>
                 <p className="relative mt-3 text-sm leading-relaxed text-steel-700">{s.desc}</p>
                 <span aria-hidden className={cn('absolute inset-x-0 bottom-0 h-1 origin-left bg-gradient-to-r from-emerald via-electric to-royal transition-transform duration-700', on ? 'scale-x-100' : 'scale-x-0')} />

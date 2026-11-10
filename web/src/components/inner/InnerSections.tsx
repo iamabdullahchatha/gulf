@@ -118,7 +118,7 @@ export function ProcessSteps({ steps, tone = 'dark' }: { steps: { title: string;
                   : 'bg-[linear-gradient(165deg,rgb(11_76_147/0.45),rgb(6_23_47/0.85))] ring-silver/10 group-hover/tilt:ring-emerald/40',
               )}
             >
-              <span aria-hidden className={cn('absolute -right-2 -top-6 font-display text-[7rem] font-black leading-none', light ? 'text-royal/[0.05]' : 'text-white/[0.04]')}>{String(i + 1).padStart(2, '0')}</span>
+              <span aria-hidden data-wm={String(i + 1).padStart(2, '0')} className={cn('absolute -right-2 -top-6 font-display text-[7rem] font-black leading-none', light ? 'text-royal/[0.05]' : 'text-white/[0.04]')} />
               <span
                 className={cn(
                   'relative z-10 inline-flex size-12 items-center justify-center rounded-full font-mono text-sm font-semibold transition-transform duration-700 ease-[var(--ease-out-expo)] [transform:translateZ(50px)] group-hover/tilt:[transform:translateZ(80px)_scale(1.08)]',
@@ -178,7 +178,7 @@ export function ScopeGrid({ items, tone = 'light', icon: Icon }: { items: { titl
         >
           <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-emerald via-electric to-royal transition-transform duration-500 group-hover:scale-x-100" />
           <div className="flex items-center justify-between">
-            <span className={cn('font-display text-4xl font-black', light ? 'text-royal/15' : 'text-metallic opacity-70')}>{String(i + 1).padStart(2, '0')}</span>
+            <span aria-hidden data-wm={String(i + 1).padStart(2, '0')} className={cn('font-display text-4xl font-black', light ? 'text-royal/15' : 'text-metallic opacity-70')} />
             {Icon && <Icon className={cn('size-5', light ? 'text-teal-500' : 'text-emerald')} />}
           </div>
           <h3 className={cn('mt-6 font-display text-xl font-semibold', light ? 'text-midnight' : 'text-white')}>{it.title}</h3>
@@ -223,14 +223,14 @@ export function SplitFeature({ id, index, eyebrow, title, body, points, image, i
         </figure>
         {chip && (
           <div className={cn('absolute -bottom-6 hidden rounded-2xl bg-white p-4 shadow-[0_24px_50px_-20px_rgb(3_13_29/0.6)] ring-1 ring-royal/10 transition-transform duration-500 [transform:translateZ(70px)] group-hover/tilt:[transform:translateZ(110px)] sm:block', reverse ? '-left-5' : '-right-5')}>
-            <p className="label-tech text-teal-500">{chip.label}</p>
+            <p className="label-tech text-teal-600">{chip.label}</p>
             <p className="mt-1 font-display text-lg font-bold text-midnight">{chip.value}</p>
           </div>
         )}
       </Tilt3D>
       <div>
         <p className="reveal flex items-center gap-3">
-          <span className={cn('label-tech', light ? 'text-teal-500' : 'text-emerald')}>{index}</span>
+          <span className={cn('label-tech', light ? 'text-teal-600' : 'text-emerald')}>{index}</span>
           <span className="h-px w-8 bg-gradient-to-r from-emerald to-transparent" aria-hidden />
           <span className={cn('font-display font-expanded text-[0.72rem] font-semibold uppercase tracking-[0.26em]', light ? 'text-royal' : 'text-silver')}>{eyebrow}</span>
         </p>

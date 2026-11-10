@@ -40,13 +40,18 @@
   --color-signal-400: #2e96ea;
   --color-signal-300: #6cb6f2;
   --color-teal-500: #009c82;
+  /* Accent text on light surfaces: teal-500 is 3.45:1 on white; this passes AA (5.8:1). */
+  --color-teal-600: #007360;
   --color-teal-400: #00b99a;
   --color-teal-300: #4dd6bd;
   --color-steel-100: #eef2f6;
   --color-steel-200: #dce3ea;
   --color-steel-300: #c5ced8;
   --color-steel-400: #a3afbd;
-  --color-steel-500: #7c8a9c;
+  /* Lifted a touch from #7c8a9c so small labels on navy pass WCAG AA (4.6:1 or more). */
+  --color-steel-500: #8390a1;
+  /* Muted text on light surfaces (5.7:1 on white). */
+  --color-steel-600: #5b6878;
   --color-steel-700: #43526a;
   --color-ink: #06172f;
   --color-paper: #f4f7fa;
@@ -56,10 +61,10 @@
    *   serif   — Instrument Serif italic: editorial emphasis inside headings
    *   sans    — Inter: body copy
    *   mono    — JetBrains Mono: technical labels, indices, metadata */
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Archivo Variable", "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Editorial display scale (fluid) */
   --text-display-2xl: clamp(3.25rem, 8vw, 7.5rem);
@@ -296,6 +301,14 @@ html.lenis, html.lenis body { height: auto; }
   from { transform: translateX(-100%); }
   to { transform: translateX(340%); }
 }
+/* VideoBackground: per-hero focal point on phones (kept in the stylesheet so
+   the Content-Security-Policy needs no inline styles). */
+@media (max-width: 768px) {
+  [data-state] img,
+  [data-state] video {
+    object-position: var(--focal-mobile, var(--focal, 50% 50%)) !important;
+  }
+}
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.45; transform: scale(0.8); }
@@ -324,6 +337,22 @@ html.lenis, html.lenis body { height: auto; }
 .theme-light {
   color-scheme: light;
   color: var(--color-ink);
+  /* The muted greys are tuned for navy; on paper and white they fall below
+     WCAG AA (2.2:1 and 3.5:1). Inside light sections they resolve to the
+     nearest passing shade of the same hue. A dark panel nested in a light
+     section opts back out with .theme-dark. */
+  --color-steel-400: #58697b;
+  --color-steel-500: #5b6878;
+}
+.theme-light .theme-dark {
+  --color-steel-400: #a3afbd;
+  --color-steel-500: #8390a1;
+}
+
+/* Decorative watermark numbers are drawn by CSS (`data-wm`), so assistive
+   tech and contrast checks treat them as the decoration they are. */
+[data-wm]::before {
+  content: attr(data-wm);
 }
 .theme-light :is(h1, h2, h3) em {
   background: linear-gradient(100deg, #073b75 0%, #087edb 55%, #00b99a 100%);

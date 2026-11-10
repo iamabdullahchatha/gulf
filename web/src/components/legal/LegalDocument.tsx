@@ -466,7 +466,7 @@ function Contents({ doc, active, goTo, progressRef, percentRef }: ContentsProps)
               )}
             >
               <span aria-hidden className={cn('absolute inset-y-2 left-0 w-0.5 rounded-full bg-gradient-to-b from-emerald to-electric transition-opacity duration-300', on ? 'opacity-100' : 'opacity-0')} />
-              <span className={cn('font-mono text-[0.7rem] tabular-nums', on ? 'text-emerald' : i < activeIndex ? 'text-teal-500/70' : 'text-steel-400')}>{pad(i + 1)}</span>
+              <span className={cn('font-mono text-[0.7rem] tabular-nums', on ? 'font-semibold text-teal-600' : i < activeIndex ? 'text-teal-600' : 'text-steel-400')}>{pad(i + 1)}</span>
               {s.title}
             </a>
           </li>
@@ -540,7 +540,7 @@ function Section({ section, index, path, onAnchor }: { section: LegalSection; in
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-3">
             <h2 id={`${section.id}-title`} className="font-display text-[1.5rem] font-bold leading-tight text-midnight md:text-[1.75rem]">
-              <span className="mr-2 font-mono text-sm font-medium text-emerald sm:hidden">{pad(index + 1)}</span>
+              <span className="mr-2 font-mono text-sm font-medium text-teal-600 sm:hidden">{pad(index + 1)}</span>
               {section.title}
             </h2>
             <button
@@ -550,7 +550,7 @@ function Section({ section, index, path, onAnchor }: { section: LegalSection; in
               aria-label={copied ? 'Link copied' : `Copy link to “${section.title}”`}
               className={cn(
                 'mt-1 inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-royal/10 text-steel-500 transition duration-300 hover:border-electric/40 hover:text-electric focus-visible:opacity-100',
-                copied ? 'border-emerald/40 text-emerald opacity-100' : 'opacity-100 md:opacity-0 md:group-hover/section:opacity-100',
+                copied ? 'border-emerald/40 text-teal-600 opacity-100' : 'opacity-100 md:opacity-0 md:group-hover/section:opacity-100',
               )}
             >
               {copied ? <Check className="size-4" aria-hidden /> : <Link2 className="size-4" aria-hidden />}

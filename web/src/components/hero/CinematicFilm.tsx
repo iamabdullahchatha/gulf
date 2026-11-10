@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronsDown } from 'lucide-react'
 import gsap from 'gsap'
@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/cn'
 import { buttonStyles } from '@/lib/buttonStyles'
 import { getNetworkTier } from '@/lib/network'
-import { FULL, PREVIEW, createClipQueue, createScrubLayer, pickFull, richEffects } from '@/lib/videoScrub'
+import { FULL, PREVIEW, createClipQueue, createScrubLayer, pageSettled, pickFull, richEffects } from '@/lib/videoScrub'
 import { scrollToElement } from '@/lib/lenis'
 import { resolveMedia } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -110,12 +110,26 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([])
   const beatRefs = useRef<(HTMLDivElement | null)[][]>(scenes.map(() => []))
   const ctaRefs = useRef<(HTMLDivElement | null)[]>([])
+  /**
+   * Posters of the later shots are only needed once the visitor heads into
+   * the film, so they wait for the same signal as the footage (first scroll or
+   * touch, or 1.5 s after the film appears). The opening poster loads at once.
+   */
+  const [laterPosters, setLaterPosters] = useState(false)
+  useEffect(() => {
+    const ctrl = new AbortController()
+    void pageSettled(ctrl.signal).then(() => !ctrl.signal.aborted && setLaterPosters(true))
+    return () => ctrl.abort()
+  }, [])
 
-  // Hero intro: words rise out of a mask, copy and controls follow.
+  // Hero intro: words rise out of a mask, copy and controls follow. The copy
+  // fades from 1% rather than 0: identical to the eye, but browsers only
+  // count text that is painted, so the first screen registers as rendered
+  // when it is (Largest Contentful Paint) instead of after the fade.
   useGSAP(
     () => {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.2 })
-      tl.from('[data-word]', { yPercent: 115, duration: 1.4, stagger: 0.08 }).from('[data-hero-fade]', { opacity: 0, y: 22, duration: 1.1, stagger: 0.1 }, '-=0.95')
+      tl.from('[data-word]', { yPercent: 115, duration: 1.4, stagger: 0.08 }).from('[data-hero-fade]', { opacity: 0.01, y: 22, duration: 1.1, stagger: 0.1 }, '-=0.95')
     },
     { scope: wrapRef },
   )
@@ -152,7 +166,11 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
         const src = t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, tier === 'fast')
         await layers[j]?.load(t, src)
       },
-      { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier === 'fast' ? undefined : 2 },
+      // Phones fetch full quality two shots ahead of the one on screen (previews
+      // of every shot still load, so a quick flick never freezes), which keeps
+      // full quality ahead of the viewer without spending mobile data on shots
+      // they may never reach; desktops prefetch everything.
+      { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier !== 'fast' || window.matchMedia('(pointer: coarse)').matches ? 2 : undefined, signal: ctrl.signal },
     )
 
     const duration = (j: number) => layers[j]?.duration() ?? 8.04
@@ -266,6 +284,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
 
   return (
     <section ref={wrapRef} className="relative" style={{ height: `${N * segment + 100}svh` }} aria-label={label} data-hero>
+      {/* The page heading stays in the accessibility tree for the whole film; the animated headline below is its visual copy. */}
+      <h1 className="sr-only">{hero.words.join(' ')}</h1>
       {/* Invisible deep-link anchors (e.g. /#offshore). */}
       {scenes.map((s, j) => (
         <div key={s.id} id={s.id} aria-hidden className="pointer-events-none absolute inset-x-0" style={{ top: `${j * segment}svh`, height: `${segment}svh` }} />
@@ -284,7 +304,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
               className="group/layer absolute inset-0 will-change-[opacity,transform]"
               style={{ visibility: j === 0 ? 'visible' : 'hidden' }}
             >
-              {media && (
+              {media && (j === 0 || laterPosters) && (
                 <Picture small={media.asset.posterSmall}
                     src={media.asset.poster}
                     alt=""
@@ -417,7 +437,7 @@ function SceneText({ scene, sceneIndex, total, beatRef, ctaRef, hero: heroCopy, 
               </p>
 
               {hero ? (
-                <HeroHeadline hero={heroCopy} />
+                <HeroHeadline hero={heroCopy} visualOnly />
               ) : (
                 <h2 className={cn('mt-6 font-bold text-white drop-shadow-[0_4px_30px_rgb(3_13_29/0.55)]', final ? 'text-display-xl' : 'text-display-lg')}>
                   <AccentTitle title={beat.title} accent={beat.accent} />
@@ -479,9 +499,10 @@ function SceneText({ scene, sceneIndex, total, beatRef, ctaRef, hero: heroCopy, 
   )
 }
 
-function HeroHeadline({ hero }: { hero: FilmHero }) {
+function HeroHeadline({ hero, visualOnly = false }: { hero: FilmHero; visualOnly?: boolean }) {
+  const Tag = visualOnly ? 'p' : 'h1'
   return (
-    <h1 className="mt-8 font-display font-black uppercase leading-[0.9] tracking-[-0.03em]" style={{ fontSize: hero.fontSize ?? 'clamp(2.2rem, 7.6vw, 7.5rem)', fontStretch: '108%' }}>
+    <Tag aria-hidden={visualOnly || undefined} className="mt-8 font-display font-black uppercase leading-[0.9] tracking-[-0.03em]" style={{ fontSize: hero.fontSize ?? 'clamp(2.2rem, 7.6vw, 7.5rem)', fontStretch: '108%' }}>
       {hero.words.map((w, i) => (
         <span key={`${i}-${w}`}>
           <span className="inline-block overflow-hidden pb-[0.06em] align-bottom">
@@ -492,7 +513,7 @@ function HeroHeadline({ hero }: { hero: FilmHero }) {
           {i < hero.words.length - 1 && ' '}
         </span>
       ))}
-    </h1>
+    </Tag>
   )
 }
 

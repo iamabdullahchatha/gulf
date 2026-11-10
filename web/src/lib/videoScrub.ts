@@ -106,12 +106,23 @@ export function attachClip(v: HTMLVideoElement, url: string, signal: AbortSignal
  * `fullBytes` is the approximate size of one full clip; `fullWindow` limits
  * full-quality downloads to nearby scenes (slow networks).
  */
-export function createClipQueue(count: number, load: (index: number, tier: Tier) => Promise<unknown>, opts: { fullBytes: number; fullWindow?: number }) {
+export function createClipQueue(
+  count: number,
+  load: (index: number, tier: Tier) => Promise<unknown>,
+  opts: { fullBytes: number; fullWindow?: number; signal?: AbortSignal },
+) {
   // [preview done, full done] per scene.
   const state = Array.from({ length: count }, () => [false, false])
   let center = 0
   let busy = false
   let stopped = false
+  /** Downloads begin once a scene has been asked for (focus) and the page has settled. */
+  let wanted = false
+  let open = false
+  void pageSettled(opts.signal).then(() => {
+    open = true
+    pump()
+  })
 
   const fullCost = () => {
     if (!throughput) return 4.5
@@ -139,7 +150,7 @@ export function createClipQueue(count: number, load: (index: number, tier: Tier)
   }
 
   const pump = () => {
-    if (busy || stopped) return
+    if (busy || stopped || !open || !wanted) return
     const next = pick()
     if (!next) return
     const [j, tier] = next
@@ -156,12 +167,43 @@ export function createClipQueue(count: number, load: (index: number, tier: Tier)
   return {
     focus(index: number) {
       center = index
+      wanted = true
       pump()
     },
     stop() {
       stopped = true
     },
   }
+}
+
+let settled: Promise<void> | null = null
+
+/** Delay after the first film mounts before clips download on their own. */
+const SETTLE_MS = 1500
+
+/**
+ * Resolves 1.5 s after the first film appears, or as soon as the visitor
+ * scrolls, touches or presses a key — whichever is first. Clip downloads wait
+ * for it, so megabytes of footage never compete with the scripts, fonts and
+ * poster that paint the first screen. (The window `load` event is no use here:
+ * the HTML is an app shell, so it fires before the page has even rendered.)
+ * The poster already shows the opening frame, and a visitor who scrolls
+ * straight away starts the downloads that instant, so nothing visible changes.
+ */
+export function pageSettled(signal?: AbortSignal): Promise<void> {
+  settled ??= new Promise<void>((resolve) => {
+    const events = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'] as const
+    let timer = 0
+    const done = () => {
+      window.clearTimeout(timer)
+      events.forEach((e) => window.removeEventListener(e, done, true))
+      resolve()
+    }
+    events.forEach((e) => window.addEventListener(e, done, { capture: true, passive: true, once: true }))
+    timer = window.setTimeout(done, SETTLE_MS)
+  })
+  if (!signal) return settled
+  return Promise.race([settled, new Promise<void>((r) => signal.addEventListener('abort', () => r(), { once: true }))])
 }
 
 /**

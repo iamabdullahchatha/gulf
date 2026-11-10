@@ -30,7 +30,7 @@ export function FAQAccordion({ items, tone = 'dark', className }: Props) {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="group flex w-full items-start gap-6 px-2 py-7 text-left md:px-4"
               >
-                <span className={cn('label-tech mt-1.5 transition', isOpen ? (light ? 'text-teal-500' : 'text-emerald') : light ? 'text-steel-400' : 'text-steel-500')}>
+                <span className={cn('label-tech mt-1.5 transition', isOpen ? (light ? 'text-teal-600' : 'text-emerald') : light ? 'text-steel-400' : 'text-steel-500')}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
