@@ -140,10 +140,10 @@ export default function AboutPage() {
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent" />
                 <figcaption className="absolute bottom-5 left-5 right-5 font-display text-lg font-semibold text-white">People, planning and field experience</figcaption>
               </figure>
-              <span className="absolute -left-6 top-8 rounded-2xl bg-white p-3 shadow-[0_24px_50px_-18px_rgb(3_13_29/0.7)] [transform:translateZ(80px)]" data-float>
+              <span className="absolute left-2 top-8 rounded-2xl sm:-left-6 bg-white p-3 shadow-[0_24px_50px_-18px_rgb(3_13_29/0.7)] [transform:translateZ(80px)]" data-float>
                 <img src={logoSrc} alt="GULF NEXT Oil and Gas" width={580} height={430} className="h-12 w-auto" />
               </span>
-              <div className="absolute -bottom-7 -right-4 flex items-center gap-3 rounded-2xl bg-midnight/90 px-4 py-3 shadow-[0_24px_50px_-18px_rgb(0_0_0/0.8)] ring-1 ring-emerald/30 backdrop-blur-md [transform:translateZ(100px)] sm:-right-8" data-float>
+              <div className="absolute -bottom-7 right-2 flex items-center gap-3 rounded-2xl bg-midnight/90 px-4 py-3 shadow-[0_24px_50px_-18px_rgb(0_0_0/0.8)] ring-1 ring-emerald/30 backdrop-blur-md [transform:translateZ(100px)] sm:-right-8" data-float>
                 <span className="inline-flex size-9 items-center justify-center rounded-full bg-emerald/15 text-emerald">
                   <ShieldCheck className="size-5" aria-hidden />
                 </span>
