@@ -1,5 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+// Typefaces are self-hosted (Google Fonts sources, trimmed to the weights and
+// widths the site uses by scripts/build-fonts.py): no render-blocking request
+// to another origin, and visitors' IP addresses are not sent to a third party.
+import './assets/fonts/fonts.css'
 import './index.css'
 import App from './App.tsx'
 

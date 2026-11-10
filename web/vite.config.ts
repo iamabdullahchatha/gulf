@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
@@ -25,9 +26,37 @@ function seoFiles(): Plugin {
   }
 }
 
+/**
+ * The Content-Security-Policy in vercel.json only lets the site send data to
+ * its own origin. If VITE_CONTACT_ENDPOINT points at a form service, that
+ * service's origin must be listed in `connect-src`, or every enquiry would be
+ * blocked by the browser. Fail the build with instructions instead.
+ */
+function cspGuard(): Plugin {
+  return {
+    name: 'gulf-next-csp-guard',
+    apply: 'build',
+    configResolved(config) {
+      const endpoint = loadEnv(config.mode, config.root, 'VITE_').VITE_CONTACT_ENDPOINT
+      if (!endpoint || endpoint.startsWith('/')) return
+      const origin = new URL(endpoint).origin
+      for (const file of ['../vercel.json', 'vercel.json']) {
+        const path = fileURLToPath(new URL(file, import.meta.url))
+        if (!existsSync(path)) continue
+        const conf = JSON.parse(readFileSync(path, 'utf8')) as { headers?: { headers: { key: string; value: string }[] }[] }
+        const csp = conf.headers?.flatMap((h) => h.headers).find((h) => h.key === 'Content-Security-Policy')?.value ?? ''
+        const connect = csp.split(';').map((d) => d.trim()).find((d) => d.startsWith('connect-src')) ?? ''
+        if (!connect.split(/\s+/).includes(origin)) {
+          throw new Error(`[csp] VITE_CONTACT_ENDPOINT is ${origin}, but ${file.replace('../', 'the root ')} does not allow it. Add "${origin}" to connect-src in the Content-Security-Policy of both vercel.json files.`)
+        }
+      }
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), seoFiles()],
+  plugins: [react(), tailwindcss(), seoFiles(), cspGuard()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -60,7 +89,9 @@ export default defineConfig({
         },
       },
     },
-    // Videos are served from /public/media and must never be inlined.
-    assetsInlineLimit: 4096,
+    // Videos are served from /public/media and must never be inlined. Fonts
+    // are never inlined either: the Content-Security-Policy allows fonts from
+    // this origin only (no data: URLs).
+    assetsInlineLimit: (file) => (/\.(woff2?|ttf|otf)$/i.test(file) ? false : undefined),
   },
 })

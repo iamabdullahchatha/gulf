@@ -22,7 +22,7 @@ import { COMPANY } from '@/data/company'
  *
  * What the Privacy Policy says about data must stay true to the code: the
  * site sets no cookies and runs no analytics, the enquiry forms post to
- * VITE_CONTACT_ENDPOINT, fonts load from Google Fonts and the site is hosted
+ * VITE_CONTACT_ENDPOINT, fonts are self-hosted (no third-party requests) and the site is hosted
  * on Vercel. Update the policy (and `updated`) before adding any tracking.
  *
  * Have both documents reviewed by a qualified UAE lawyer before relying on
@@ -86,8 +86,8 @@ export const PRIVACY_POLICY: LegalDoc = {
   intro:
     'How GULF NEXT collects, uses and protects personal information when you visit our website or send us an enquiry. Written to be read, not skimmed past.',
   effective: '2026-11-09',
-  updated: '2026-11-09',
-  version: '1.0',
+  updated: '2026-11-10',
+  version: '1.1',
   glance: [
     { icon: Ban, title: 'We never sell your data', text: 'Your details are used to answer your enquiry and run our business, and nothing else.' },
     { icon: Cookie, title: 'No tracking cookies', text: 'This website sets no advertising or analytics cookies and does not profile visitors.' },
@@ -164,10 +164,10 @@ export const PRIVACY_POLICY: LegalDoc = {
     {
       id: 'cookies',
       title: 'Cookies and similar technologies',
-      summary: 'We do not use tracking cookies. Our fonts load from Google, which sees your IP address.',
+      summary: 'We do not use tracking cookies, and every file on this site, including its fonts, is served by us.',
       blocks: [
         'This website does not set advertising, analytics or social media cookies, and it does not use tracking pixels or fingerprinting. You will not see a cookie banner because there is nothing to consent to.',
-        'To display our typefaces, your browser loads fonts from Google Fonts. When it does, Google receives your IP address and standard browser information. Google states that it does not use this data to profile visitors; you can read more in [Google’s Privacy Policy](https://policies.google.com/privacy).',
+        'Our typefaces are hosted on our own servers together with the rest of the site, so loading a page does not send your IP address or browser information to Google or any other font provider.',
         'If we introduce analytics or other non-essential technologies in future, we will update this policy first and ask for your consent where the law requires it.',
       ],
     },
