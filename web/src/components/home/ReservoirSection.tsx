@@ -133,7 +133,7 @@ export function ReservoirSection() {
                   <div
                     key={s.t}
                     className={cn(
-                      'group grid grid-cols-[3rem_1fr_auto] items-start gap-4 rounded-2xl border p-5 transition-all duration-500',
+                      'group grid grid-cols-[3rem_1fr] items-start gap-x-4 rounded-2xl border p-5 transition-all duration-500 sm:grid-cols-[3rem_1fr_auto] sm:gap-4',
                       active
                         ? 'border-emerald/40 bg-white/[0.08] shadow-[0_8px_32px_-12px_rgb(0_185_154/0.25)] backdrop-blur-sm'
                         : 'border-white/[0.06] bg-white/[0.02] opacity-60 hover:opacity-80',
@@ -165,10 +165,11 @@ export function ReservoirSection() {
                         {s.d}
                       </span>
                     </span>
+                    {/* Phones: under the description, so the copy keeps the full width. sm+: its own column. */}
                     <span
                       className={cn(
-                        'text-right transition-all duration-500',
-                        active ? 'opacity-100' : 'opacity-0',
+                        'col-start-2 flex items-baseline gap-1.5 overflow-hidden transition-all duration-500 sm:col-start-auto sm:block sm:max-h-none sm:text-right',
+                        active ? 'mt-2 max-h-16 opacity-100 sm:mt-0' : 'max-h-0 opacity-0',
                       )}
                     >
                       <span className="block font-display text-lg font-bold text-emerald">{s.stat}</span>

@@ -50,8 +50,8 @@ function SectorCopy({ ind, compact = false }: { ind: Industry; compact?: boolean
         </span>
         {ind.title}
       </h3>
-      <p className="mt-5 max-w-lg text-lg leading-relaxed text-steel-300">{ind.description}</p>
-      <ul className="mt-6 space-y-2">
+      <p className="mt-5 max-w-lg text-lg leading-relaxed text-steel-300 [@media(max-height:860px)]:mt-4 [@media(max-height:860px)]:text-base">{ind.description}</p>
+      <ul className="mt-6 space-y-2 [@media(max-height:860px)]:mt-4">
         {ind.context.map((c, i) => (
           <li key={c} className="flex items-center gap-3 text-sm text-steel-200">
             <span className="font-mono text-xs text-emerald">{pad(i + 1)}</span>
@@ -142,7 +142,7 @@ function PanoramaScroller() {
 
         <div ref={trackRef} className="absolute inset-y-0 left-0 flex will-change-transform" style={{ width: `${N * 100}vw` }}>
           {INDUSTRIES.map((ind, i) => (
-            <div key={ind.slug} className="relative flex h-full w-screen items-center pt-40">
+            <div key={ind.slug} className="relative flex h-full w-screen items-center pt-40 [@media(max-height:860px)]:pb-[5.5rem] [@media(max-height:860px)]:pt-[13rem]">
               <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-4 md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
                 <div
                   ref={(el) => {
@@ -267,7 +267,8 @@ export function SectorConnections() {
                     <span className={cn('block label-tech', on ? 'text-emerald' : 'text-steel-400')}>Industry {ind.index}</span>
                     <span className="mt-0.5 block font-display text-lg font-bold leading-tight">{ind.title}</span>
                   </span>
-                  <span className={cn('font-display text-3xl font-black', on ? 'text-white' : 'text-royal/15')}>{count}</span>
+                  <span aria-hidden data-wm={String(count)} className={cn('font-display text-3xl font-black', on ? 'text-white' : 'text-royal/15')} />
+                  <span className="sr-only">, {count} services</span>
                   {on && <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-emerald to-electric" />}
                 </button>
               )
@@ -344,7 +345,6 @@ export function StandardsFlip() {
                 <button
                   type="button"
                   aria-pressed={on}
-                  aria-label={`${s.title}: ${s.back}`}
                   onClick={() => setFlipped(on ? null : i)}
                   onMouseEnter={() => setFlipped(i)}
                   onMouseLeave={() => setFlipped(null)}

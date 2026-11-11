@@ -6,6 +6,7 @@ import { Texture } from '@/components/Texture'
 import { CheckList, PageNav, SiblingPager } from '@/components/inner/InnerSections'
 import { AboutFaq } from '@/components/about/AboutSections'
 import { DeliveryTimeline, FocusPanels, IndustryHero, SectorGlance, SectorServices } from '@/components/industries/IndustryDetailSections'
+import { sectorTitle } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { INDUSTRIES, findIndustry } from '@/data/industries'
 import { servicesForIndustry } from '@/data/services'
@@ -45,7 +46,7 @@ export default function IndustryDetailPage() {
   return (
     <div key={industry.slug}>
       <Seo
-        title={industry.title}
+        title={sectorTitle(industry.title)}
         description={industry.description}
         path={`/industries/${industry.slug}`}
         jsonLd={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: industry.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }}

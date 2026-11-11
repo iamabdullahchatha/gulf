@@ -150,7 +150,7 @@ function ValuesRing() {
               <h3 className="mt-4 font-display text-4xl font-bold text-white">{current.title}</h3>
               <p className="mt-4 max-w-md text-lg leading-relaxed text-steel-300">{current.detail}</p>
             </div>
-            <div className="mt-8 flex items-center gap-2" role="tablist" aria-label="Core values">
+            <div className="mt-8 flex items-center" role="tablist" aria-label="Core values">
               {VALUES.map((v, i) => (
                 <button
                   key={v.title}
@@ -159,14 +159,17 @@ function ValuesRing() {
                   aria-selected={i === active}
                   aria-label={v.title}
                   onClick={() => goTo(i)}
-                  className={cn('h-2 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-2 bg-silver/25 hover:bg-silver/60')}
-                />
+                  className="group/dot inline-flex h-6 min-w-6 items-center justify-center"
+                >
+                  <span className={cn('h-2 rounded-full transition-all duration-500', i === active ? 'w-10 bg-gradient-to-r from-emerald to-electric' : 'w-2 bg-silver/25 group-hover/dot:bg-silver/60')} />
+                </button>
               ))}
               <span className="ml-4 label-tech text-steel-500">Scroll to turn</span>
             </div>
           </div>
 
-          <div className="relative h-[34rem] [perspective:1700px]">
+          {/* The ring is sized for wide screens; 1024–1279px (iPad landscape, small laptops) shows it at 78% so it clears the copy and the screen edge. */}
+          <div className="relative h-[34rem] [perspective:1700px] lg:max-xl:scale-[0.78]">
             <div className="absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald/10 [transform:rotateX(78deg)]" aria-hidden />
             <div ref={ringRef} className="absolute inset-0 transition-transform duration-300 ease-out [transform-style:preserve-3d]">
               {VALUES.map((v, i) => (

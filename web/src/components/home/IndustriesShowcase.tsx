@@ -62,7 +62,7 @@ export function IndustriesShowcase() {
               const on = i === active
               const Icon = ind.icon
               return (
-                <li key={ind.slug} className="border-b border-royal/10">
+                <li key={ind.slug} role="none" className="border-b border-royal/10">
                   <button
                     type="button"
                     role="tab"
@@ -73,7 +73,7 @@ export function IndustriesShowcase() {
                     className="group relative flex w-full items-center gap-5 py-5 text-left"
                   >
                     <span aria-hidden className={cn('absolute left-0 top-0 h-full w-0.5 origin-top bg-gradient-to-b from-emerald to-electric transition-transform duration-500', on ? 'scale-y-100' : 'scale-y-0')} />
-                    <span className={cn('label-tech w-8 pl-3 transition-colors', on ? 'text-teal-500' : 'text-steel-400')}>{ind.index}</span>
+                    <span className={cn('label-tech w-8 pl-3 transition-colors', on ? 'text-teal-600' : 'text-steel-400')}>{ind.index}</span>
                     <span
                       className={cn(
                         'inline-flex size-10 shrink-0 items-center justify-center rounded-xl transition-all duration-500',

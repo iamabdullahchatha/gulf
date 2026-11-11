@@ -114,7 +114,7 @@ export function MobileMenu({ open, onClose }: Props) {
                       >
                         {({ isActive }) => (
                           <>
-                            <span className={cn('label-tech w-6 shrink-0 transition-colors', isActive ? 'text-electric' : 'text-teal-500')}>
+                            <span className={cn('label-tech w-6 shrink-0 transition-colors', isActive ? 'text-electric' : 'text-teal-600')}>
                               {String(n + 1).padStart(2, '0')}
                             </span>
                             <span
@@ -126,7 +126,7 @@ export function MobileMenu({ open, onClose }: Props) {
                               {entry.label}
                             </span>
                             {isActive && (
-                              <span className="rounded-full bg-emerald/10 px-2 py-1 text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-teal-500">
+                              <span className="rounded-full bg-emerald/10 px-2 py-1 text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-teal-600">
                                 Current
                               </span>
                             )}

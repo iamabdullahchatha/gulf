@@ -9,6 +9,7 @@ import { Texture } from '@/components/Texture'
 import { ProcessSteps } from '@/components/inner/InnerSections'
 import { AboutFaq } from '@/components/about/AboutSections'
 import { IndustryTile, LifecycleHub, ServiceDeck, ServiceGroups } from '@/components/services/ServicesSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { SERVICES, SERVICE_GROUPS, servicesIn } from '@/data/services'
 import { INDUSTRIES } from '@/data/industries'
@@ -36,8 +37,8 @@ export default function ServicesPage() {
   return (
     <>
       <Seo
-        title="Services"
-        description="Nine integrated service lines for oil, gas, petrochemical and industrial facilities, from field services and pipelines to mechanical works, construction, maintenance and supply."
+        title={PAGE_META['/services'].title}
+        description={PAGE_META['/services'].description}
         path="/services"
         jsonLd={{
           '@context': 'https://schema.org',

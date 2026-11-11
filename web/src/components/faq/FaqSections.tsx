@@ -11,6 +11,7 @@ import {
   Handshake,
   Layers,
   Link2,
+  Mail,
   MessageSquareText,
   Plus,
   Quote,
@@ -19,6 +20,7 @@ import {
   ShieldCheck,
   X,
 } from 'lucide-react'
+import { COMPANY } from '@/data/company'
 import { Container } from '@/components/Container'
 import { Texture } from '@/components/Texture'
 import { Tilt3D } from '@/components/animations/Tilt3D'
@@ -78,7 +80,30 @@ function Highlight({ text, query }: { text: string; query: string }) {
 export function QuestionCarousel({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => void }) {
   const reduced = usePrefersReducedMotion()
   const desktop = useMediaQuery('(min-width: 1024px)')
-  return desktop && !reduced ? <Ring items={items} onPick={onPick} /> : <Row items={items} onPick={onPick} />
+  if (reduced) return <Row items={items} onPick={onPick} />
+  // Both layouts are in the pre-rendered HTML and CSS shows the right one at
+  // first paint, so the hero is correct at every width before JavaScript runs.
+  // The ring only animates on desktop.
+  return (
+    <>
+      <div className="lg:hidden">
+        <Row items={items} onPick={onPick} />
+      </div>
+      <div className="hidden lg:block">
+        <Ring items={items} onPick={onPick} running={desktop} />
+      </div>
+    </>
+  )
+}
+
+/** Ring transform and per-card fade for a given angle and pointer lean (shared by the first paint and every frame). */
+function ringPose(angle: number, x: number, y: number, R: number) {
+  return `translateZ(${-R}px) rotateX(${(-7 + y * 8).toFixed(2)}deg) rotateY(${(-angle + x * 14).toFixed(2)}deg)`
+}
+function cardPose(i: number, step: number, angle: number) {
+  const rel = ((((i * step - angle) % 360) + 540) % 360) - 180
+  const facing = Math.max(0, Math.cos((rel * Math.PI) / 180))
+  return { opacity: (0.12 + 0.88 * facing ** 1.8).toFixed(3), filter: `brightness(${(0.5 + 0.5 * facing).toFixed(3)})`, pointerEvents: facing > 0.75 ? 'auto' : 'none' } as const
 }
 
 function QuestionCard({ f, onPick, className }: { f: CatalogFaq; onPick: (id: string) => void; className?: string }) {
@@ -105,7 +130,7 @@ function QuestionCard({ f, onPick, className }: { f: CatalogFaq; onPick: (id: st
   )
 }
 
-function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => void }) {
+function Ring({ items, onPick, running }: { items: CatalogFaq[]; onPick: (id: string) => void; running: boolean }) {
   const ringRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const angle = useRef(0)
@@ -116,31 +141,28 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
   const R = 430
 
   useEffect(() => {
+    if (!running) return
     let raf = 0
     const tick = () => {
       if (!paused.current) angle.current = (angle.current + 0.07) % 360
       const ring = ringRef.current
-      if (ring) {
-        const { x, y } = pointer.current
-        ring.style.transform = `translateZ(${-R}px) rotateX(${(-7 + y * 8).toFixed(2)}deg) rotateY(${(-angle.current + x * 14).toFixed(2)}deg)`
-      }
+      if (ring) ring.style.transform = ringPose(angle.current, pointer.current.x, pointer.current.y, R)
       cardRefs.current.forEach((el, i) => {
         if (!el) return
-        const rel = ((((i * STEP - angle.current) % 360) + 540) % 360) - 180
-        const facing = Math.max(0, Math.cos((rel * Math.PI) / 180))
-        el.style.opacity = (0.12 + 0.88 * facing ** 1.8).toFixed(3)
-        el.style.filter = `brightness(${(0.5 + 0.5 * facing).toFixed(3)})`
-        el.style.pointerEvents = facing > 0.75 ? 'auto' : 'none'
+        const p = cardPose(i, STEP, angle.current)
+        el.style.opacity = p.opacity
+        el.style.filter = p.filter
+        el.style.pointerEvents = p.pointerEvents
       })
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [STEP])
+  }, [STEP, running])
 
   return (
     <div
-      className="relative h-[30rem] [perspective:1700px]"
+      className="relative h-[30rem] [perspective:1700px] lg:max-xl:scale-[0.8]"
       onPointerEnter={() => (paused.current = true)}
       onPointerLeave={() => {
         paused.current = false
@@ -154,7 +176,7 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
       <div aria-hidden className="absolute left-1/2 top-[62%] h-[16rem] w-[46rem] -translate-x-1/2 rounded-[50%] border border-emerald/20 [transform:rotateX(76deg)]" />
       <div aria-hidden className="absolute left-1/2 top-[62%] h-[12rem] w-[34rem] -translate-x-1/2 animate-[spin_50s_linear_infinite] rounded-[50%] border border-dashed border-electric/25 [transform:rotateX(76deg)]" />
       <div aria-hidden className="absolute bottom-6 left-1/2 h-24 w-[60%] -translate-x-1/2 rounded-[50%] bg-electric/25 blur-3xl" />
-      <div ref={ringRef} className="absolute inset-0 [transform-style:preserve-3d]">
+      <div ref={ringRef} className="absolute inset-0 [transform-style:preserve-3d]" style={{ transform: ringPose(0, 0, 0, R) }}>
         {items.map((f, i) => (
           <div
             key={f.id}
@@ -162,7 +184,7 @@ function Ring({ items, onPick }: { items: CatalogFaq[]; onPick: (id: string) => 
               cardRefs.current[i] = el
             }}
             className="absolute left-1/2 top-1/2 -ml-[8.75rem] -mt-[10rem] h-[20rem] w-[17.5rem] [backface-visibility:hidden]"
-            style={{ transform: `rotateY(${i * STEP}deg) translateZ(${R}px)` }}
+            style={{ transform: `rotateY(${i * STEP}deg) translateZ(${R}px)`, ...cardPose(i, STEP, 0) }}
           >
             <QuestionCard f={f} onPick={onPick} />
           </div>
@@ -323,6 +345,12 @@ export function FaqBrowser({ query, setQuery, open, toggle, setAll }: BrowserPro
             <Link to="/contact" className="relative mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-midnight transition hover:bg-emerald">
               Send a question <ArrowUpRight className="size-4" aria-hidden />
             </Link>
+            {COMPANY.contact.email && (
+              <a href={`mailto:${COMPANY.contact.email}`} className="relative mt-4 flex items-center gap-2 text-sm text-steel-300 transition hover:text-white">
+                <Mail className="size-4 text-emerald" aria-hidden />
+                <span className="link-underline">{COMPANY.contact.email}</span>
+              </a>
+            )}
           </div>
         </Tilt3D>
       </aside>
@@ -359,6 +387,7 @@ function SearchBox({ query, setQuery, large = false, onSubmit }: { query: string
   return (
     <form
       role="search"
+      aria-label={large ? 'Search all questions' : 'Filter questions'}
       onSubmit={(e) => {
         e.preventDefault()
         onSubmit?.()
@@ -434,7 +463,7 @@ function TopicGroup({ cat, items, query, open, toggle }: { cat: (typeof FAQ_CATE
                   <Highlight text={group} query={query} />
                 </h3>
                 {list[0]?.link && (
-                  <Link to={list[0].link.href} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-teal-300 transition hover:text-white">
+                  <Link to={list[0].link.href} aria-label={`Open page: ${group}`} className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-teal-300 transition hover:text-white">
                     <span className="hidden sm:inline">Open page</span> <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                   </Link>
                 )}
@@ -478,7 +507,7 @@ function FaqCard({ f, n, query, isOpen, toggle }: { f: CatalogFaq; n: number; qu
       >
         <span aria-hidden className={cn('absolute inset-y-0 left-0 w-1 origin-top bg-gradient-to-b from-emerald to-electric transition-transform duration-500', isOpen ? 'scale-y-100' : 'scale-y-0')} />
         <h3>
-          <button type="button" aria-expanded={isOpen} aria-controls={`${f.id}-answer`} onClick={() => toggle(f.id)} className="flex w-full items-start gap-4 px-5 py-5 text-left md:px-6">
+          <button type="button" id={`${f.id}-question`} aria-expanded={isOpen} aria-controls={`${f.id}-answer`} onClick={() => toggle(f.id)} className="flex w-full items-start gap-4 px-5 py-5 text-left md:px-6">
             <span className={cn('mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg font-mono text-xs transition-colors', isOpen ? 'bg-emerald text-midnight' : 'bg-white/5 text-steel-400 group-hover:text-white')}>{pad(n)}</span>
             <span className={cn('flex-1 font-display text-[1.0625rem] font-semibold leading-snug transition-colors md:text-lg', isOpen ? 'text-white' : 'text-steel-100')}>
               <Highlight text={f.q} query={query} />
@@ -488,7 +517,7 @@ function FaqCard({ f, n, query, isOpen, toggle }: { f: CatalogFaq; n: number; qu
             </span>
           </button>
         </h3>
-        <div id={`${f.id}-answer`} role="region" className="grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)]" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
+        <div id={`${f.id}-answer`} role="region" aria-labelledby={`${f.id}-question`} className="grid transition-[grid-template-rows] duration-500 ease-[var(--ease-out-expo)]" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
           <div className="overflow-hidden">
             <div className={cn('origin-top pb-6 pl-[4.25rem] pr-6 transition-[transform,opacity] duration-500 ease-[var(--ease-out-expo)] md:pl-[4.5rem]', isOpen ? 'opacity-100 [transform:rotateX(0deg)]' : 'opacity-0 [transform:rotateX(-18deg)]')}>
               <p className="max-w-3xl leading-relaxed text-steel-300">
@@ -538,6 +567,14 @@ export function StillHaveQuestion({ children }: { children?: ReactNode }) {
               We will answer it <em>directly</em>.
             </h2>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-steel-300">Send us your question with a little context about the asset and scope, and a member of our engineering team will come back to you.</p>
+            {COMPANY.contact.email && (
+              <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-steel-300">
+                <Mail className="size-4 text-emerald" aria-hidden /> Email us at
+                <a href={`mailto:${COMPANY.contact.email}`} className="link-underline font-semibold text-white">
+                  {COMPANY.contact.email}
+                </a>
+              </p>
+            )}
             {children}
           </div>
           <div className="grid gap-4 [perspective:1600px] sm:grid-cols-3 lg:grid-cols-1">

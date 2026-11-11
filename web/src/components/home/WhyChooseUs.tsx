@@ -44,7 +44,7 @@ export function WhyChooseUs() {
             </span>
             <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-4 rounded-2xl bg-white/92 px-5 py-4 backdrop-blur-md [transform:translateZ(40px)]">
               <div>
-                <p className="label-tech text-teal-500">How we work</p>
+                <p className="label-tech text-teal-600">How we work</p>
                 <p className="mt-1 font-display font-semibold text-midnight">Scope · Plan · Execute · Hand over</p>
               </div>
               <Link to="/about" aria-label="How we work" className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-royal text-white transition hover:bg-electric">
@@ -74,7 +74,6 @@ function FlipCard({ reason, index }: { reason: (typeof REASONS)[number]; index: 
         type="button"
         onClick={() => setFlipped((f) => !f)}
         aria-pressed={flipped}
-        aria-label={`${reason.t}: ${reason.d}`}
         className={cn(
           'group relative h-full w-full text-left transition-transform duration-[900ms] ease-[var(--ease-out-expo)] [transform-style:preserve-3d]',
           'group-hover/flip:[transform:rotateY(180deg)] focus-visible:[transform:rotateY(180deg)] focus-visible:outline-none',
@@ -87,11 +86,11 @@ function FlipCard({ reason, index }: { reason: (typeof REASONS)[number]; index: 
             <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-electric to-royal text-white shadow-[0_14px_28px_-12px_rgb(8_126_219/0.8)]">
               <Icon className="size-6" aria-hidden />
             </span>
-            <span className="font-display text-5xl font-black text-steel-200">{n}</span>
+            <span aria-hidden data-wm={n} className="font-display text-5xl font-black text-steel-200" />
           </span>
           <span className="mt-auto block font-display text-2xl font-bold text-midnight">{reason.t}</span>
           <span className="mt-2 block text-sm text-steel-700">{reason.tag}</span>
-          <span className="mt-5 flex items-center gap-2 label-tech text-teal-500">
+          <span className="mt-5 flex items-center gap-2 label-tech text-teal-600">
             <RotateCw className="size-3.5" aria-hidden />
             <span className="[@media(hover:none)]:hidden">Hover to explore</span>
             <span className="hidden [@media(hover:none)]:inline">Tap to explore</span>

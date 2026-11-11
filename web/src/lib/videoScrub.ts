@@ -30,6 +30,8 @@
  * efficient enough for full sharpness at sensible file sizes.
  */
 
+import { FrameEngine, frameEngineSupported, type EngineState } from './frameEngine'
+
 /** Frame rate of every encoded clip. */
 export const CLIP_FPS = 24
 
@@ -38,22 +40,29 @@ export const PREVIEW = 0
 export const FULL = 1
 export type Tier = typeof PREVIEW | typeof FULL
 
+/** Download a whole clip into memory (null on failure), recording line speed. */
+export async function fetchBytes(src: string, signal: AbortSignal): Promise<ArrayBuffer | null> {
+  try {
+    const started = performance.now()
+    const r = await fetch(src, { signal })
+    if (!r.ok) throw new Error(String(r.status))
+    const buf = await r.arrayBuffer()
+    recordThroughput(buf.byteLength, (performance.now() - started) / 1000)
+    return buf
+  } catch (err) {
+    if (signal.aborted) throw err
+    return null
+  }
+}
+
 /**
  * Fetch a clip fully into memory and return an object URL for it, so every
  * later seek is served locally. Falls back to the network URL on failure.
  */
 export async function fetchClip(src: string, signal: AbortSignal): Promise<{ url: string; blob: boolean }> {
-  try {
-    const started = performance.now()
-    const r = await fetch(src, { signal })
-    if (!r.ok) throw new Error(String(r.status))
-    const blob = await r.blob()
-    recordThroughput(blob.size, (performance.now() - started) / 1000)
-    return { url: URL.createObjectURL(blob), blob: true }
-  } catch (err) {
-    if (signal.aborted) throw err
-    return { url: src, blob: false }
-  }
+  const buf = await fetchBytes(src, signal)
+  if (!buf) return { url: src, blob: false }
+  return { url: URL.createObjectURL(new Blob([buf], { type: 'video/mp4' })), blob: true }
 }
 
 /** Smoothed download speed in bytes per second, from the clips fetched so far (0 = unknown). */
@@ -97,12 +106,23 @@ export function attachClip(v: HTMLVideoElement, url: string, signal: AbortSignal
  * `fullBytes` is the approximate size of one full clip; `fullWindow` limits
  * full-quality downloads to nearby scenes (slow networks).
  */
-export function createClipQueue(count: number, load: (index: number, tier: Tier) => Promise<unknown>, opts: { fullBytes: number; fullWindow?: number }) {
+export function createClipQueue(
+  count: number,
+  load: (index: number, tier: Tier) => Promise<unknown>,
+  opts: { fullBytes: number; fullWindow?: number; signal?: AbortSignal },
+) {
   // [preview done, full done] per scene.
   const state = Array.from({ length: count }, () => [false, false])
   let center = 0
   let busy = false
   let stopped = false
+  /** Downloads begin once a scene has been asked for (focus) and the page has settled. */
+  let wanted = false
+  let open = false
+  void pageSettled(opts.signal).then(() => {
+    open = true
+    pump()
+  })
 
   const fullCost = () => {
     if (!throughput) return 4.5
@@ -130,7 +150,7 @@ export function createClipQueue(count: number, load: (index: number, tier: Tier)
   }
 
   const pump = () => {
-    if (busy || stopped) return
+    if (busy || stopped || !open || !wanted) return
     const next = pick()
     if (!next) return
     const [j, tier] = next
@@ -147,12 +167,43 @@ export function createClipQueue(count: number, load: (index: number, tier: Tier)
   return {
     focus(index: number) {
       center = index
+      wanted = true
       pump()
     },
     stop() {
       stopped = true
     },
   }
+}
+
+let settled: Promise<void> | null = null
+
+/** Delay after the first film mounts before clips download on their own. */
+const SETTLE_MS = 1500
+
+/**
+ * Resolves 1.5 s after the first film appears, or as soon as the visitor
+ * scrolls, touches or presses a key — whichever is first. Clip downloads wait
+ * for it, so megabytes of footage never compete with the scripts, fonts and
+ * poster that paint the first screen. (The window `load` event is no use here:
+ * the HTML is an app shell, so it fires before the page has even rendered.)
+ * The poster already shows the opening frame, and a visitor who scrolls
+ * straight away starts the downloads that instant, so nothing visible changes.
+ */
+export function pageSettled(signal?: AbortSignal): Promise<void> {
+  settled ??= new Promise<void>((resolve) => {
+    const events = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'] as const
+    let timer = 0
+    const done = () => {
+      window.clearTimeout(timer)
+      events.forEach((e) => window.removeEventListener(e, done, true))
+      resolve()
+    }
+    events.forEach((e) => window.addEventListener(e, done, { capture: true, passive: true, once: true }))
+    timer = window.setTimeout(done, SETTLE_MS)
+  })
+  if (!signal) return settled
+  return Promise.race([settled, new Promise<void>((r) => signal.addEventListener('abort', () => r(), { once: true }))])
 }
 
 /**
@@ -212,10 +263,11 @@ function nextSeeked(v: HTMLVideoElement, ms: number, signal: AbortSignal): Promi
 }
 
 /**
- * One scrubbed shot backed by two stacked <video> elements: `preview` below,
- * `full` above (both start at opacity 0 over the poster).
+ * <video> fallback for browsers without WebCodecs: two stacked elements,
+ * `preview` below and `full` above (both start at opacity 0 over the poster),
+ * driven by seeking.
  */
-export function createScrubLayer(els: { preview: HTMLVideoElement; full: HTMLVideoElement }, ease: number, signal: AbortSignal, onLive?: () => void) {
+function createVideoLayer(els: { preview: HTMLVideoElement; full: HTMLVideoElement }, ease: number, signal: AbortSignal, onLive?: () => void) {
   const scrub = { preview: createScrubber(els.preview, ease), full: createScrubber(els.full, ease) }
   const urls: string[] = []
   let previewOn = false
@@ -274,12 +326,106 @@ export function createScrubLayer(els: { preview: HTMLVideoElement; full: HTMLVid
         if (previewOn) releasePreview()
       }
     },
+    duration(): number | undefined {
+      for (const v of [els.full, els.preview]) if (Number.isFinite(v.duration) && v.duration > 0) return v.duration
+      return undefined
+    },
     destroy() {
       for (const v of [els.preview, els.full]) {
         v.removeAttribute('src')
         v.load()
       }
       urls.forEach((u) => URL.revokeObjectURL(u))
+    },
+  }
+}
+
+export type LayerState = EngineState
+
+/**
+ * One scrubbed shot. With WebCodecs (Chrome, Edge, Safari 16.4+, Firefox 130+)
+ * it renders on `canvas` through `FrameEngine`: frame-exact, blended between
+ * frames, never waiting on a seek. Anywhere else, or if decoding fails at
+ * runtime, it falls back to the stacked <video> elements on the same frame.
+ *
+ * `tick` takes the layer's state: `visible` (on screen), `warm` (next to
+ * appear: decode and paint its target frame while hidden) or `cold`.
+ */
+export function createScrubLayer(
+  els: { preview: HTMLVideoElement; full: HTMLVideoElement; canvas?: HTMLCanvasElement | null },
+  ease: number,
+  signal: AbortSignal,
+  onLive?: () => void,
+) {
+  const video = createVideoLayer(els, ease, signal, onLive)
+  const canvas = els.canvas
+  let engine: FrameEngine | null = null
+  let lastT = 0
+  let best: { tier: Tier; src: string } | null = null
+
+  const fallBack = () => {
+    if (!engine) return
+    engine.destroy()
+    engine = null
+    // The canvas keeps its last picture underneath until the video fades in over it.
+    video.set(lastT)
+    if (best && !signal.aborted) void video.load(best.tier, best.src)
+  }
+
+  if (canvas && frameEngineSupported()) {
+    engine = new FrameEngine(
+      canvas,
+      ease,
+      () => {
+        canvas.style.opacity = '1'
+        onLive?.()
+      },
+      fallBack,
+    )
+  }
+
+  return {
+    set(t: number) {
+      lastT = t
+      if (engine) engine.set(t)
+      else video.set(t)
+    },
+    /** Call every animation frame. A boolean means visible / cold. */
+    tick(dt: number, state: LayerState | boolean) {
+      const s: LayerState = state === true ? 'visible' : state === false ? 'cold' : state
+      if (engine) engine.tick(dt, s)
+      else video.tick(dt, s === 'visible')
+    },
+    async load(tier: Tier, src: string) {
+      if (engine) {
+        if (tier === PREVIEW && best?.tier === FULL) return
+        const bytes = await fetchBytes(src, signal)
+        if (signal.aborted) return
+        if (engine && bytes) {
+          try {
+            await engine.load(bytes)
+            if (!best || tier >= best.tier) best = { tier, src }
+            return
+          } catch {
+            best = { tier, src }
+            fallBack()
+            return
+          }
+        }
+        best = { tier, src }
+        fallBack()
+        return
+      }
+      await video.load(tier, src)
+    },
+    /** Clip length in seconds, once known. */
+    duration(): number | undefined {
+      return engine?.duration ?? video.duration()
+    },
+    destroy() {
+      engine?.destroy()
+      engine = null
+      video.destroy()
     },
   }
 }

@@ -1,6 +1,26 @@
 import { Link } from 'react-router'
 import { cn } from '@/lib/cn'
 import logoSrc from '@/assets/brand/logo.webp'
+import logo200 from '@/assets/brand/logo-200.webp'
+import logo300 from '@/assets/brand/logo-300.webp'
+import logo400 from '@/assets/brand/logo-400.webp'
+
+/**
+ * Resized copies of the unaltered artwork (same image, fewer pixels). The
+ * browser picks the smallest one that is still sharp for the logo's displayed
+ * width and the screen's pixel density; the 580px original stays the largest.
+ */
+export const LOGO_SRCSET = `${logo200} 200w, ${logo300} 300w, ${logo400} 400w, ${logoSrc} 580w`
+
+/** Displayed width in CSS px for each size (height × 580/430). */
+const SIZES = {
+  sm: '49px',
+  md: '(min-width: 768px) 65px, 59px',
+  lg: '87px',
+  xl: '(min-width: 768px) 130px, 108px',
+  header: '(min-width: 1024px) 87px, (min-width: 768px) 71px, 65px',
+  headerFloating: '(min-width: 1024px) 76px, (min-width: 768px) 59px, 54px',
+} as const
 
 interface Props {
   linked?: boolean
@@ -33,6 +53,8 @@ export function Logo({ linked = true, size = 'md', plate: withPlate = true, clas
     >
       <img
         src={logoSrc}
+        srcSet={LOGO_SRCSET}
+        sizes={SIZES[size]}
         alt="GULF NEXT Oil and Gas"
         width={580}
         height={430}
