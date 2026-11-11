@@ -11,6 +11,12 @@ glyph renders exactly as before while each file is smaller:
   JetBrains Mono  wght 400-500
   Instrument Serif  static 400 roman + italic (copied unchanged)
 
+Each Latin file is split in two, the way Google Fonts splits scripts: a
+"core" face (ASCII, Latin-1 and common punctuation: everything the site's
+copy uses) that pages preload, and a "rest" face with the remaining Latin
+range that browsers fetch only if a page ever shows one of those characters.
+Every glyph still renders in its real face; first paint needs less.
+
 Output: web/src/assets/fonts/*.woff2 and fonts.css (imported by src/main.tsx).
 
 Usage (from the repo root, once fonttools is available):
@@ -23,6 +29,7 @@ import re
 import shutil
 from pathlib import Path
 
+from fontTools import subset
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
@@ -38,6 +45,48 @@ FAMILIES = [
     ("@fontsource/instrument-serif/400.css", None, {}),
     ("@fontsource/instrument-serif/400-italic.css", None, {}),
 ]
+
+# Characters the first paint needs (unicode-range syntax): ASCII, no-break space,
+# © ® · and the dashes, quotes, bullet and ellipsis the copy uses. Accented
+# Latin letters live in the "rest" face and load only if a page shows one.
+CORE = "U+0000-00A0,U+00A9,U+00AE,U+00B7,U+2013-2014,U+2018-201E,U+2022,U+2026,U+2039-203A,U+20AC,U+2122"
+
+
+def parse_ranges(spec: str) -> set[int]:
+    out: set[int] = set()
+    for part in spec.replace(" ", "").split(","):
+        lo, _, hi = part.removeprefix("U+").partition("-")
+        out.update(range(int(lo, 16), int(hi or lo, 16) + 1))
+    return out
+
+
+def to_ranges(points: set[int]) -> str:
+    pts = sorted(points)
+    out, start, prev = [], None, None
+    for p in pts + [None]:
+        if start is None:
+            start = prev = p
+        elif p is not None and p == prev + 1:
+            prev = p
+        else:
+            out.append(f"U+{start:04X}" + (f"-{prev:04X}" if prev != start else ""))
+            start = prev = p
+    return ",".join(out)
+
+
+def subset_file(src: Path, dst: Path, codepoints: set[int]) -> None:
+    opts = subset.Options()
+    opts.layout_features = ["*"]
+    opts.flavor = "woff2"
+    opts.name_IDs = ["*"]
+    opts.notdef_outline = True
+    font = TTFont(src)
+    sub = subset.Subsetter(opts)
+    sub.populate(unicodes=codepoints)
+    sub.subset(font)
+    font.flavor = "woff2"
+    font.save(dst)
+
 
 FACE = re.compile(r"@font-face\s*{[^}]*}", re.S)
 URL = re.compile(r"url\(\./files/([^)]+\.woff2)\)\s*format\('woff2(?:-variations)?'\)")
@@ -82,7 +131,19 @@ def main() -> None:
             # moment instead of showing a fallback face and swapping (no flash of
             # the wrong font, no layout shift).
             face = re.sub(r"font-display:\s*[^;]+;", "font-display: block;", face)
-            css.append(face)
+            if "-latin-" not in name or "-latin-ext-" in name:
+                css.append(face)
+                continue
+            # Split the Latin face into core (preloaded) and rest.
+            latin = parse_ranges(re.search(r"unicode-range:\s*([^;]+);", face).group(1))
+            core, rest = latin & parse_ranges(CORE), latin - parse_ranges(CORE)
+            for part, points in (("core", core), ("rest", rest)):
+                part_name = name.replace(".woff2", f"-{part}.woff2")
+                subset_file(dst, OUT / part_name, points)
+                after += (OUT / part_name).stat().st_size
+                css.append(re.sub(r"unicode-range:\s*[^;]+;", f"unicode-range: {to_ranges(points)};", face.replace(f"./{name}", f"./{part_name}")))
+            after -= dst.stat().st_size
+            dst.unlink()
     (OUT / "fonts.css").write_text("\n".join(css) + "\n")
     print(f"{len(css) - 1} faces, {before / 1024:.0f} KB -> {after / 1024:.0f} KB")
 

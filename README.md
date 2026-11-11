@@ -27,10 +27,33 @@ back to seeking `<video>` elements on the same frame. The clips themselves
 are unchanged and still come from `tools/build-media.sh`; keep the 8-frame
 GOP and no B-frames, which the engine relies on.
 
+## Pre-rendering
+
+`npm run build` renders every page to finished HTML, so the first screen paints
+before any JavaScript runs. React then hydrates that markup in place.
+
+- `web/src/entry-server.tsx` renders one route with `renderToString`. The
+  build bundles it with `vite build --ssr`, and `scripts/prerender-meta.ts`
+  writes each page's HTML into `dist/<path>/index.html`.
+- Unknown URLs get `dist/app-shell.html` (an empty root, rendered in the
+  browser). See the rewrite in `vercel.json`.
+- Pre-rendered pages load a small generated `assets/boot-<hash>.js`. It starts
+  the app once the page has painted, so downloading and running the scripts
+  never delays the first paint.
+- Components must render the same markup on the server and in the browser.
+  Use `useMediaQuery` and `useNetworkTier`, which hydrate with the build-time
+  value and then update. Never read `window` while rendering.
+- Hero entrances start from a CSS state (`[data-intro]` in `index.css`) that
+  matches the first frame of their GSAP animation. Each component removes
+  `data-intro` when its animation starts. If you change an entrance's starting
+  values, change the CSS to match.
+- Fonts are preloaded (Latin core subsets) and use `font-display: block`, so
+  text paints in its real font with no layout shift.
+
 ## Security headers
 
 Both `vercel.json` files (root and `web/`) send a strict Content-Security-Policy
-(everything from this origin only, no inline scripts or styles), HSTS,
+(everything from this origin only: no inline scripts, no inline `<style>` elements; style attributes are allowed because pre-rendered markup carries them), HSTS,
 `X-Frame-Options: DENY`, `nosniff`, a referrer policy, a permissions policy and
 COOP. Keep the two files identical.
 

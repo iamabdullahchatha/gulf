@@ -39,9 +39,9 @@ if (!existsSync(TEMPLATE)) {
   console.error('[prerender-meta] dist/index.html not found. Run `vite build` first.')
   process.exit(1)
 }
-// Preload the four faces the first screen uses (latin subsets) so text paints
+// Preload the four faces the first screen uses (Latin core subsets) so text paints
 // in its real font straight from the HTML (fonts use font-display: block).
-const FONT_FILES = [/^archivo-latin-wdth-normal-.+\.woff2$/, /^inter-latin-wght-normal-.+\.woff2$/, /^jetbrains-mono-latin-wght-normal-.+\.woff2$/, /^instrument-serif-latin-400-italic-.+\.woff2$/]
+const FONT_FILES = [/^archivo-latin-wdth-normal-core-.+\.woff2$/, /^inter-latin-wght-normal-core-.+\.woff2$/, /^jetbrains-mono-latin-wght-normal-core-.+\.woff2$/, /^instrument-serif-latin-400-italic-core-.+\.woff2$/]
 const assets = readdirSync('dist/assets')
 const fontPreloads = FONT_FILES.map((re) => {
   const f = assets.find((a) => re.test(a))
@@ -71,7 +71,7 @@ writeFileSync('dist/app-shell.html', template)
 const ENTRY = /\s*<script type="module" crossorigin src="(\/assets\/index-[\w-]+\.js)"><\/script>/
 const PRELOADS = /\s*<link rel="modulepreload" crossorigin href="(\/assets\/[\w-]+\.js)">/g
 const entry = template.match(ENTRY)?.[1]
-const chunks = [...template.matchAll(PRELOADS)].map((m) => m[1]!)
+const chunks = [...template.matchAll(PRELOADS)].map((m) => m[1])
 if (!entry) {
   console.error('[prerender-meta] entry <script> not found in index.html.')
   process.exit(1)
@@ -89,9 +89,20 @@ const start = () => {
   }
   import(${JSON.stringify(entry)})
 }
-// The first animation frame runs before the first paint; the second runs after it.
-requestAnimationFrame(() => requestAnimationFrame(start))
-// Background tabs do not run animation frames.
+// Start once the page has actually painted (animation frames can run before
+// anything is on screen). buffered: true also reports a paint that happened
+// before this script ran.
+try {
+  new PerformanceObserver((list, obs) => {
+    if (list.getEntries().some((e) => e.name === 'first-contentful-paint')) {
+      obs.disconnect()
+      setTimeout(start, 0)
+    }
+  }).observe({ type: 'paint', buffered: true })
+} catch {
+  requestAnimationFrame(() => requestAnimationFrame(start))
+}
+// Safety net: browsers without paint timing, background tabs.
 setTimeout(start, 1500)
 `
 const bootFile = `assets/boot-${createHash('sha256').update(boot).digest('hex').slice(0, 10)}.js`

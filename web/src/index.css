@@ -283,6 +283,38 @@ html.lenis, html.lenis body { height: auto; }
   transform: none;
 }
 
+/* ----------------------------------------------------------------------------
+ * Intro start states
+ * Pages are pre-rendered, so each hero's markup is on screen before its GSAP
+ * entrance runs. These rules put every animated element at the exact first
+ * frame of that entrance, so the first paint and the animation line up with no
+ * flash; the component removes [data-intro] the moment GSAP takes over.
+ * Without JavaScript, or if it takes longer than 3 s, everything settles into
+ * place on its own; with reduced motion it starts settled.
+ * ------------------------------------------------------------------------- */
+[data-intro] [data-word] { transform: translateY(115%); }
+[data-intro] [data-hero-fade] { opacity: 0.01; transform: translateY(22px); }
+[data-intro='service'] [data-hero-bg] { transform: scale(1.3); }
+[data-intro='service'] [data-hero-in] { opacity: 0.01; transform: translateY(50px); }
+[data-intro='service'] [data-hero-frame] { opacity: 0.01; transform: translateZ(-300px) rotateY(-55deg) rotateX(12deg); }
+[data-intro='service'] [data-hero-card] { opacity: 0.01; transform: translateY(90px) translateZ(-120px); }
+[data-intro='industry'] [data-hero-slat] { opacity: 0.01; transform: rotateY(-88deg); }
+[data-intro='industry'] [data-hero-in] { opacity: 0.01; transform: translateY(44px); }
+[data-intro='industry'] [data-hero-fact] { opacity: 0.01; transform: translateY(30px); }
+@keyframes intro-settle {
+  to { opacity: 1; transform: none; }
+}
+[data-intro] :is([data-word], [data-hero-fade], [data-hero-bg], [data-hero-in], [data-hero-frame], [data-hero-card], [data-hero-slat], [data-hero-fact]) {
+  animation: intro-settle 0.9s var(--ease-out-expo) 3s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-intro] :is([data-word], [data-hero-fade], [data-hero-bg], [data-hero-in], [data-hero-frame], [data-hero-card], [data-hero-slat], [data-hero-fact]) {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 /* A photo that arrives while the page is showing fades in instead of popping
    (added by useImageWarmup). Only opacity animates, towards the element's own
    value, so images with their own opacity, filters or transforms are unchanged. */

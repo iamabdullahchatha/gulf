@@ -130,6 +130,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   // when it is (Largest Contentful Paint) instead of after the fade.
   useGSAP(
     () => {
+      // Hand over from the pre-rendered start frame (index.css) to GSAP in the same task.
+      wrapRef.current?.removeAttribute('data-intro')
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.2 })
       tl.from('[data-word]', { yPercent: 115, duration: 1.4, stagger: 0.08 }).from('[data-hero-fade]', { opacity: 0.01, y: 22, duration: 1.1, stagger: 0.1 }, '-=0.95')
     },
@@ -285,7 +287,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   }
 
   return (
-    <section ref={wrapRef} className="relative" style={{ height: `${N * segment + 100}svh` }} aria-label={label} data-hero>
+    <section ref={wrapRef} className="relative" style={{ height: `${N * segment + 100}svh` }} aria-label={label} data-hero data-intro="film">
       {/* The page heading stays in the accessibility tree for the whole film; the animated headline below is its visual copy. */}
       <h1 className="sr-only">{hero.words.join(' ')}</h1>
       {/* Invisible deep-link anchors (e.g. /#offshore). */}

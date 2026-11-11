@@ -42,6 +42,8 @@ export function IndustryHero({ industry: ind, total, services }: { industry: Ind
 
   useGSAP(
     () => {
+      // Hand over from the pre-rendered start frame (index.css) to GSAP in the same task.
+      ref.current?.removeAttribute('data-intro')
       if (reduced) return
       gsap.from(slatRefs.current, { rotateY: -88, opacity: 0.01, duration: 1.6, ease: 'expo.out', stagger: 0.08, delay: 0.1 })
       // Hero entrances start at 1% opacity, not 0: identical to the eye, but the
@@ -74,6 +76,7 @@ export function IndustryHero({ industry: ind, total, services }: { industry: Ind
           ref={(el) => {
             slatRefs.current[i] = el
           }}
+          data-hero-slat
           className="absolute inset-y-0 overflow-hidden transition-[translate] duration-700 ease-out will-change-transform"
           style={{ left: `calc(${(i * 100) / SLATS}% + 2px)`, width: `calc(${100 / SLATS}% - 4px)` }}
         >
@@ -89,6 +92,7 @@ export function IndustryHero({ industry: ind, total, services }: { industry: Ind
   return (
     <section
       ref={ref}
+      data-intro="industry"
       className="relative isolate overflow-hidden bg-midnight"
       aria-label={ind.title}
       onPointerMove={onMove}

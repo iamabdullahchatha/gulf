@@ -30,6 +30,8 @@ export function ServiceHero({ service: s, total, industries }: { service: Servic
 
   useGSAP(
     () => {
+      // Hand over from the pre-rendered start frame (index.css) to GSAP in the same task.
+      ref.current?.removeAttribute('data-intro')
       if (reduced) return
       gsap.fromTo('[data-hero-bg]', { scale: 1.3 }, { scale: 1.12, duration: 2.8, ease: 'expo.out' })
       // Hero entrances start at 1% opacity, not 0: identical to the eye, but the
@@ -47,6 +49,7 @@ export function ServiceHero({ service: s, total, industries }: { service: Servic
   return (
     <section
       ref={ref}
+      data-intro="service"
       className="relative isolate flex min-h-svh items-center overflow-hidden bg-midnight pb-20 pt-36"
       aria-label={s.title}
       onPointerMove={(e) => {
