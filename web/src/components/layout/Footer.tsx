@@ -165,11 +165,16 @@ export function Footer() {
                         <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="link-underline text-white/90 hover:text-white">{contact.phone}</a>
                       </ContactRow>
                     )}
-                    {contact.address && (
-                      <ContactRow icon={MapPin}>
-                        <address className="not-italic text-white/90">{contact.address.map((l) => <span key={l} className="block">{l}</span>)}</address>
+                    {contact.offices.map((o) => (
+                      <ContactRow key={o.label} icon={MapPin}>
+                        <span className="block label-tech text-teal-300">{o.label}</span>
+                        <address className="mt-1 not-italic leading-relaxed text-white/90">
+                          {o.lines.map((l) => (
+                            <span key={l} className="block">{l}</span>
+                          ))}
+                        </address>
                       </ContactRow>
-                    )}
+                    ))}
                     {contact.hours && (
                       <ContactRow icon={Clock}>
                         <span className="text-white/90">{contact.hours}</span>

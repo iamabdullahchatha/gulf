@@ -14,6 +14,16 @@ export function organizationJsonLd(): JsonLd {
     logo: absoluteUrl(SITE.logo),
     ...(COMPANY.contact.email ? { email: COMPANY.contact.email } : {}),
     ...(COMPANY.social.linkedin ? { sameAs: [COMPANY.social.linkedin] } : {}),
+    ...(COMPANY.contact.offices.length
+      ? {
+          address: { '@type': 'PostalAddress', ...COMPANY.contact.offices[0]!.postal },
+          location: COMPANY.contact.offices.map((o) => ({
+            '@type': 'Place',
+            name: `${COMPANY.legalName}, ${o.label}`,
+            address: { '@type': 'PostalAddress', ...o.postal },
+          })),
+        }
+      : {}),
   }
 }
 

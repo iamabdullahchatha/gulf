@@ -70,7 +70,7 @@ const CONTACT_BLOCKS: LegalBlock[] = [
     ? [`Email: [${contact.email}](mailto:${contact.email})`]
     : ['The quickest way to reach us is through our [contact page](/contact). Please choose “General enquiry” and mention the policy your question relates to.']),
   ...(contact.phone ? [`Telephone: ${contact.phone}`] : []),
-  ...(contact.address ? [`Post: ${legalName}, ${contact.address.join(', ')}`] : []),
+  ...contact.offices.map((o) => `${o.label}: ${legalName}, ${o.lines.join(', ')}`),
 ]
 
 /* ============================================================================
