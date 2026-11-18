@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Mail, Plus } from 'lucide-react'
+import { COMPANY } from '@/data/company'
 import { cn } from '@/lib/cn'
 import { Container } from '@/components/Container'
 import { SectionHeading } from '@/components/SectionHeading'
@@ -37,6 +38,14 @@ export function FaqShowcase() {
                   All questions <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </div>
+              {COMPANY.contact.email && (
+                <p className="relative mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/75">
+                  <Mail className="size-4 text-teal-300" aria-hidden /> Or email
+                  <a href={`mailto:${COMPANY.contact.email}`} className="link-underline font-semibold text-white">
+                    {COMPANY.contact.email}
+                  </a>
+                </p>
+              )}
             </div>
             <span
               aria-hidden

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronsDown } from 'lucide-react'
 import gsap from 'gsap'
@@ -7,10 +7,11 @@ import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/cn'
 import { buttonStyles } from '@/lib/buttonStyles'
 import { getNetworkTier } from '@/lib/network'
-import { FULL, PREVIEW, createClipQueue, createScrubLayer, pickFull, richEffects } from '@/lib/videoScrub'
+import { FULL, PREVIEW, createClipQueue, createScrubLayer, pageSettled, pickFull, richEffects } from '@/lib/videoScrub'
 import { scrollToElement } from '@/lib/lenis'
 import { resolveMedia } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useNetworkTier } from '@/hooks/useNetworkTier'
 import { Texture } from '@/components/Texture'
 import { AccentTitle } from '@/components/home/AccentTitle'
 import type { FilmBeat, FilmScene } from '@/data/homeChapters'
@@ -91,7 +92,8 @@ const HOME_FINALE: Cta[] = [
  */
 export function CinematicFilm(props: Props) {
   const reduced = usePrefersReducedMotion()
-  const scrub = !reduced && getNetworkTier() !== 'none'
+  const tier = useNetworkTier()
+  const scrub = !reduced && tier !== 'none'
   return scrub ? <FilmStage {...props} /> : <FilmStatic {...props} />
 }
 
@@ -104,16 +106,34 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   const bloomRef = useRef<HTMLDivElement>(null)
   const cueRef = useRef<HTMLDivElement>(null)
   const layerRefs = useRef<(HTMLDivElement | null)[]>([])
-  /** Per scene: [preview, full] video elements. */
+  /** Per scene: [preview, full] video elements (fallback when WebCodecs is unavailable). */
   const videoRefs = useRef<[HTMLVideoElement | null, HTMLVideoElement | null][]>(scenes.map(() => [null, null]))
+  /** Per scene: the canvas the frame engine paints on. */
+  const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([])
   const beatRefs = useRef<(HTMLDivElement | null)[][]>(scenes.map(() => []))
   const ctaRefs = useRef<(HTMLDivElement | null)[]>([])
+  /**
+   * Posters of the later shots are only needed once the visitor heads into
+   * the film, so they wait for the same signal as the footage (first scroll or
+   * touch, or 1.5 s after the film appears). The opening poster loads at once.
+   */
+  const [laterPosters, setLaterPosters] = useState(false)
+  useEffect(() => {
+    const ctrl = new AbortController()
+    void pageSettled(ctrl.signal).then(() => !ctrl.signal.aborted && setLaterPosters(true))
+    return () => ctrl.abort()
+  }, [])
 
-  // Hero intro: words rise out of a mask, copy and controls follow.
+  // Hero intro: words rise out of a mask, copy and controls follow. The copy
+  // fades from 1% rather than 0: identical to the eye, but browsers only
+  // count text that is painted, so the first screen registers as rendered
+  // when it is (Largest Contentful Paint) instead of after the fade.
   useGSAP(
     () => {
+      // Hand over from the pre-rendered start frame (index.css) to GSAP in the same task.
+      wrapRef.current?.removeAttribute('data-intro')
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay: 0.2 })
-      tl.from('[data-word]', { yPercent: 115, duration: 1.4, stagger: 0.08 }).from('[data-hero-fade]', { opacity: 0, y: 22, duration: 1.1, stagger: 0.1 }, '-=0.95')
+      tl.from('[data-word]', { yPercent: 115, duration: 1.4, stagger: 0.08 }).from('[data-hero-fade]', { opacity: 0.01, y: 22, duration: 1.1, stagger: 0.1 }, '-=0.95')
     },
     { scope: wrapRef },
   )
@@ -128,9 +148,12 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const layers = scenes.map((_, j) => {
       const [preview, full] = videoRefs.current[j] ?? []
       if (!preview || !full) return null
-      return createScrubLayer({ preview, full }, ease, ctrl.signal, () => layerRefs.current[j]?.classList.add('is-ready'))
+      return createScrubLayer({ preview, full, canvas: canvasRefs.current[j] }, ease, ctrl.signal, () => layerRefs.current[j]?.classList.add('is-ready'))
     })
     let lastAlign = ''
+    /** Scene on screen and whether the next one is dissolving in (drives each layer's state). */
+    let cur = 0
+    let incoming = false
 
     // Previews of every scene plus full-quality clips, one download at a time
     // in an order adapted to the connection (see lib/videoScrub). On 3G, full
@@ -147,13 +170,14 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
         const src = t === PREVIEW ? media.asset.sources.preview : pickFull(media.asset.sources, tier === 'fast')
         await layers[j]?.load(t, src)
       },
-      { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier === 'fast' ? undefined : 2 },
+      // Phones fetch full quality two shots ahead of the one on screen (previews
+      // of every shot still load, so a quick flick never freezes), which keeps
+      // full quality ahead of the viewer without spending mobile data on shots
+      // they may never reach; desktops prefetch everything.
+      { fullBytes: hd ? 13e6 : 8e6, fullWindow: tier !== 'fast' || window.matchMedia('(pointer: coarse)').matches ? 2 : undefined, signal: ctrl.signal },
     )
 
-    const duration = (j: number) => {
-      for (const v of videoRefs.current[j] ?? []) if (v && Number.isFinite(v.duration) && v.duration > 0) return v.duration
-      return 8.04
-    }
+    const duration = (j: number) => layers[j]?.duration() ?? 8.04
     /** Clip time for scene j at in-scene progress p (0–1). Scenes after the first start LEAD seconds in. */
     const timeAt = (j: number, p: number) => {
       const lead = j === 0 ? 0 : LEAD
@@ -168,6 +192,8 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
       const ek = easeInOut(k)
 
       queue.focus(k > 0.5 ? i + 1 : i)
+      cur = i
+      incoming = k > 0
 
       layers[i]?.set(timeAt(i, local))
       if (k > 0) layers[i + 1]?.set(k * LEAD)
@@ -233,7 +259,9 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
     const loop = (now: number) => {
       const dt = last ? (now - last) / 1000 : 1 / 60
       last = now
-      layers.forEach((l, j) => l?.tick(dt, layerRefs.current[j]?.style.visibility !== 'hidden'))
+      // On screen: the current shot (and the next while it dissolves in). Warm:
+      // the next shot, decoded and painted while hidden so the join is instant.
+      layers.forEach((l, j) => l?.tick(dt, j === cur || (j === cur + 1 && incoming) ? 'visible' : j === cur + 1 ? 'warm' : 'cold'))
       raf = requestAnimationFrame(loop)
     }
     const io = new IntersectionObserver(([e]) => {
@@ -259,7 +287,9 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
   }
 
   return (
-    <section ref={wrapRef} className="relative" style={{ height: `${N * segment + 100}svh` }} aria-label={label} data-hero>
+    <section ref={wrapRef} className="relative" style={{ height: `${N * segment + 100}svh` }} aria-label={label} data-hero data-intro="film">
+      {/* The page heading stays in the accessibility tree for the whole film; the animated headline below is its visual copy. */}
+      <h1 className="sr-only">{hero.words.join(' ')}</h1>
       {/* Invisible deep-link anchors (e.g. /#offshore). */}
       {scenes.map((s, j) => (
         <div key={s.id} id={s.id} aria-hidden className="pointer-events-none absolute inset-x-0" style={{ top: `${j * segment}svh`, height: `${segment}svh` }} />
@@ -278,7 +308,7 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
               className="group/layer absolute inset-0 will-change-[opacity,transform]"
               style={{ visibility: j === 0 ? 'visible' : 'hidden' }}
             >
-              {media && (
+              {media && (j === 0 || laterPosters) && (
                 <Picture small={media.asset.posterSmall}
                     src={media.asset.poster}
                     alt=""
@@ -287,7 +317,14 @@ function FilmStage({ scenes, skipTo, hero = HOME_HERO, finale = HOME_FINALE, seg
                     className="absolute inset-0 h-full w-full object-cover"
                   />
               )}
-              {/* Preview (below) and full quality (above); each fades in over the poster when ready. */}
+              {/* Frame engine output: fades in over the poster on its first frame. */}
+              <canvas
+                ref={(el) => {
+                  canvasRefs.current[j] = el
+                }}
+                className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500"
+              />
+              {/* <video> fallback: preview (below) and full quality (above); each fades in when ready. */}
               {([PREVIEW, FULL] as const).map((t) => (
                 <video
                   key={t}
@@ -404,7 +441,7 @@ function SceneText({ scene, sceneIndex, total, beatRef, ctaRef, hero: heroCopy, 
               </p>
 
               {hero ? (
-                <HeroHeadline hero={heroCopy} />
+                <HeroHeadline hero={heroCopy} visualOnly />
               ) : (
                 <h2 className={cn('mt-6 font-bold text-white drop-shadow-[0_4px_30px_rgb(3_13_29/0.55)]', final ? 'text-display-xl' : 'text-display-lg')}>
                   <AccentTitle title={beat.title} accent={beat.accent} />
@@ -466,9 +503,10 @@ function SceneText({ scene, sceneIndex, total, beatRef, ctaRef, hero: heroCopy, 
   )
 }
 
-function HeroHeadline({ hero }: { hero: FilmHero }) {
+function HeroHeadline({ hero, visualOnly = false }: { hero: FilmHero; visualOnly?: boolean }) {
+  const Tag = visualOnly ? 'p' : 'h1'
   return (
-    <h1 className="mt-8 font-display font-black uppercase leading-[0.9] tracking-[-0.03em]" style={{ fontSize: hero.fontSize ?? 'clamp(2.2rem, 7.6vw, 7.5rem)', fontStretch: '108%' }}>
+    <Tag aria-hidden={visualOnly || undefined} className="mt-8 font-display font-black uppercase leading-[0.9] tracking-[-0.03em]" style={{ fontSize: hero.fontSize ?? 'clamp(2.2rem, 7.6vw, 7.5rem)', fontStretch: '108%' }}>
       {hero.words.map((w, i) => (
         <span key={`${i}-${w}`}>
           <span className="inline-block overflow-hidden pb-[0.06em] align-bottom">
@@ -479,7 +517,7 @@ function HeroHeadline({ hero }: { hero: FilmHero }) {
           {i < hero.words.length - 1 && ' '}
         </span>
       ))}
-    </h1>
+    </Tag>
   )
 }
 

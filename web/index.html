@@ -9,26 +9,20 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/brand/favicon-96x96.png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <link rel="manifest" href="/brand/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    <!-- Per-route <title>/<meta> are rendered by src/lib/seo.tsx (React 19 hoisting). -->
+    <!--
+      Page title + link-preview tags. Everything between the seo markers is
+      replaced per page at build time (scripts/prerender-meta.ts), because
+      WhatsApp, LinkedIn, Facebook and X read only this static HTML. In the
+      browser the app removes this block and <Seo> takes over.
+    -->
+    <!-- seo:start -->
     <title>GULF NEXT Oil and Gas</title>
-    <meta
-      name="description"
-      content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector."
-    />
+    <meta name="description" content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector." />
     <link rel="canonical" href="https://www.gulfnext.ae/" />
     <meta property="og:site_name" content="GULF NEXT Oil and Gas" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="GULF NEXT Oil and Gas" />
-    <meta
-      property="og:description"
-      content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector."
-    />
+    <meta property="og:description" content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector." />
     <meta property="og:url" content="https://www.gulfnext.ae/" />
     <meta property="og:image" content="https://www.gulfnext.ae/brand/og-image.webp" />
     <meta property="og:image:secure_url" content="https://www.gulfnext.ae/brand/og-image.webp" />
@@ -38,15 +32,13 @@
     <meta property="og:image:alt" content="GULF NEXT Oil and Gas" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GULF NEXT Oil and Gas" />
-    <meta
-      name="twitter:description"
-      content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector."
-    />
+    <meta name="twitter:description" content="Integrated engineering, construction and operations support for the oil, gas and petrochemical sector." />
     <meta name="twitter:image" content="https://www.gulfnext.ae/brand/og-image.webp" />
+    <!-- seo:end -->
   </head>
   <body>
     <div id="root"></div>
-    <noscript>GULF NEXT Oil and Gas. Please enable JavaScript to view this website.</noscript>
+    <noscript>Some interactive features of this website, such as the scroll-driven films and menus, need JavaScript.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

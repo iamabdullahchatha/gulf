@@ -29,11 +29,14 @@ import { SectionHeading } from '@/components/SectionHeading'
 import { Texture } from '@/components/Texture'
 import { ProcessSteps } from '@/components/inner/InnerSections'
 import { AboutFaq } from '@/components/about/AboutSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { cn } from '@/lib/cn'
 import { scrollToElement } from '@/lib/lenis'
 import logoSrc from '@/assets/brand/logo.webp'
-import { COMPANY, hasVerifiedContact } from '@/data/company'
+import { LOGO_SRCSET } from '@/components/Logo'
+import { COMPANY, directionsUrl, hasVerifiedContact } from '@/data/company'
+import { LinkedInIcon } from '@/components/icons/LinkedInIcon'
 import { CONTACT_FAQ } from '@/data/faq'
 import { SERVICES } from '@/data/services'
 import { INDUSTRIES } from '@/data/industries'
@@ -73,8 +76,8 @@ export default function ContactPage() {
   return (
     <>
       <Seo
-        title="Contact"
-        description="Tell us about your project and our engineering team will come back with a practical plan."
+        title={PAGE_META['/contact'].title}
+        description={PAGE_META['/contact'].description}
         path="/contact"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -205,18 +208,31 @@ export default function ContactPage() {
                         {contact.phone && (
                           <li className="flex gap-3"><Phone className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden /><a className="link-underline text-white" href={`tel:${contact.phone.replace(/\s+/g, '')}`}>{contact.phone}</a></li>
                         )}
-                        {contact.address && (
-                          <li className="flex gap-3"><MapPin className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden /><address className="not-italic text-white">{contact.address.join(', ')}</address></li>
+                        {contact.offices.length > 0 && (
+                          <li className="flex gap-3">
+                            <MapPin className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden />
+                            <a className="link-underline text-white" href="#offices">
+                              {contact.offices.map((o) => `${o.label} in ${o.city}`).join(' · ')}
+                            </a>
+                          </li>
                         )}
                         {contact.hours && (
                           <li className="flex gap-3"><Clock className="mt-0.5 size-4 shrink-0 text-emerald" aria-hidden /><span className="text-white">{contact.hours}</span></li>
+                        )}
+                        {COMPANY.social.linkedin && (
+                          <li className="flex gap-3">
+                            <LinkedInIcon className="mt-0.5 size-4 shrink-0 text-emerald" />
+                            <a className="link-underline text-white" href={COMPANY.social.linkedin} target="_blank" rel="noopener noreferrer">
+                              Follow GULF NEXT on LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+                            </a>
+                          </li>
                         )}
                       </ul>
                     </div>
                   ) : (
                     <div className="relative flex items-start gap-4">
                       <span className="inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white p-2 shadow-[0_14px_30px_-12px_rgb(0_0_0/0.6)] [transform:translateZ(40px)]">
-                        <img src={logoSrc} alt="" className="h-full w-full object-contain" />
+                        <img src={logoSrc} srcSet={LOGO_SRCSET} sizes="40px" alt="" className="h-full w-full object-contain" />
                       </span>
                       <div>
                         <h3 className="font-display text-lg font-bold text-white">Who reads your enquiry</h3>
@@ -250,11 +266,66 @@ export default function ContactPage() {
         </Container>
       </AnimatedSection>
 
+      {/* Offices */}
+      {contact.offices.length > 0 && (
+        <AnimatedSection id="offices" className="relative scroll-mt-32 overflow-hidden bg-deep py-24 md:py-28">
+          <Texture variant="grid" />
+          <Texture variant="glow" />
+          <Container className="relative">
+            <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+              <SectionHeading index="03" eyebrow="Our offices" title={<>Based where the <em>work</em> is.</>} />
+              <p className="reveal max-w-md text-steel-300 lg:text-right">
+                Our head office sits in Al Ruwais Industrial City, beside the plants we support, with a branch office in Dubai.
+              </p>
+            </div>
+            <ul className="mt-14 grid gap-6 [perspective:1600px] md:grid-cols-2">
+              {contact.offices.map((o, i) => (
+                <li key={o.label} className="reveal">
+                  <Tilt3D max={7} lift={14} className="h-full rounded-[1.75rem]" wrapperClassName="h-full">
+                    <article className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border-metallic surface-metal p-8 md:p-10">
+                      <Texture variant="lines" className="opacity-40" />
+                      <span aria-hidden data-wm={String(i + 1).padStart(2, '0')} className="pointer-events-none absolute -right-2 -top-6 font-display text-[7rem] font-black leading-none text-white/[0.04]" />
+                      <div className="relative flex items-center justify-between gap-4">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-emerald/10 px-3 py-1.5 label-tech text-emerald ring-1 ring-emerald/25">
+                          {i === 0 && <span aria-hidden className="size-1.5 rounded-full bg-emerald shadow-[0_0_8px_rgb(0_185_154/0.8)]" />}
+                          {o.label}
+                        </span>
+                        <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald to-teal-500 text-midnight shadow-[0_14px_28px_-10px_rgb(0_185_154/0.8)] [transform:translateZ(40px)]">
+                          <MapPin className="size-5" aria-hidden />
+                        </span>
+                      </div>
+                      <h3 className="relative mt-8 font-display text-3xl font-bold text-white [transform:translateZ(24px)]">{o.city}</h3>
+                      <address className="relative mt-3 not-italic text-lg leading-relaxed text-steel-300">
+                        {o.lines.map((l) => (
+                          <span key={l} className="block">
+                            {l}
+                          </span>
+                        ))}
+                      </address>
+                      <a
+                        href={directionsUrl(o)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative mt-auto inline-flex w-fit items-center gap-2 pt-8 text-sm font-semibold text-teal-300 transition hover:text-white"
+                      >
+                        Get directions
+                        <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+                        <span className="sr-only">to our {o.label.toLowerCase()} in {o.city} (opens Google Maps in a new tab)</span>
+                      </a>
+                    </article>
+                  </Tilt3D>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </AnimatedSection>
+      )}
+
       {/* Explore */}
       <AnimatedSection id="explore" className="theme-light relative scroll-mt-32 overflow-hidden bg-paper py-24 md:py-28">
         <Texture variant="glow-light" />
         <Container className="relative">
-          <SectionHeading tone="light" index="03" eyebrow="Before you write" title={<>Find the right <em>starting point</em>.</>} lead="Knowing which service or sector your scope sits in helps us route it to the right specialists." />
+          <SectionHeading tone="light" index={contact.offices.length > 0 ? '04' : '03'} eyebrow="Before you write" title={<>Find the right <em>starting point</em>.</>} lead="Knowing which service or sector your scope sits in helps us route it to the right specialists." />
           <div className="mt-14 grid gap-6 [perspective:1600px] md:grid-cols-3">
             {[
               { href: '/services', icon: Layers, eyebrow: `${SERVICES.length} service lines`, title: 'Services', text: 'Field services, pipelines, mechanical works, construction, maintenance and supply.' },
@@ -272,7 +343,7 @@ export default function ContactPage() {
                       <ArrowUpRight className="size-4" aria-hidden />
                     </span>
                   </div>
-                  <p className="relative mt-10 label-tech text-teal-500">{c.eyebrow}</p>
+                  <p className="relative mt-10 label-tech text-teal-600">{c.eyebrow}</p>
                   <h3 className="relative mt-2 font-display text-2xl font-bold text-midnight [transform:translateZ(30px)]">{c.title}</h3>
                   <p className="relative mt-2 text-sm leading-relaxed text-steel-700">{c.text}</p>
                   <span aria-hidden className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-emerald via-electric to-royal transition-transform duration-700 group-hover:scale-x-100" />
@@ -285,7 +356,7 @@ export default function ContactPage() {
 
       <AboutFaq
         items={CONTACT_FAQ}
-        index="04"
+        index={contact.offices.length > 0 ? '05' : '04'}
         title={<>Before you <em>get in touch</em>.</>}
         lead="Common questions about sending an enquiry and what to expect from our team."
         askHref="#enquiry"

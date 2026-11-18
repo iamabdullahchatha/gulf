@@ -40,7 +40,7 @@ export function SectionHeading({
     <div className={cn(align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl', className)}>
       {(eyebrow ?? index) && (
         <p className={cn('flex items-center gap-3', align === 'center' && 'justify-center', r)}>
-          {index && <span className={cn('label-tech', light ? 'text-teal-500' : 'text-emerald')}>{index}</span>}
+          {index && <span className={cn('label-tech', light ? 'text-teal-600' : 'text-emerald')}>{index}</span>}
           {index && eyebrow && <span className="h-px w-8 bg-gradient-to-r from-emerald to-transparent" aria-hidden />}
           {eyebrow && (
             <span className={cn('font-display font-expanded text-[0.72rem] font-semibold uppercase tracking-[0.26em]', light ? 'text-royal' : 'text-silver')}>

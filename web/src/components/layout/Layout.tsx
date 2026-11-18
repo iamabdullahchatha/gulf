@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import { Outlet } from 'react-router'
 import { useLenis } from '@/hooks/useLenis'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
+import { useImageWarmup } from '@/hooks/useImageWarmup'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { LoadingFallback } from '@/components/LoadingFallback'
@@ -13,6 +14,7 @@ import { LoadingFallback } from '@/components/LoadingFallback'
 export function Layout() {
   useLenis()
   useScrollToTop()
+  useImageWarmup()
   return (
     <>
       <a

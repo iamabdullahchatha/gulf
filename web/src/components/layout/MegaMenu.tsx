@@ -102,7 +102,7 @@ function Panel({ menu, onNavigate }: { menu: MegaKey; onNavigate: () => void }) 
         <div>
           <div className="flex items-end justify-between gap-6 border-b border-royal/10 pb-5">
             <div>
-              <p className="label-tech text-teal-500">{content.eyebrow}</p>
+              <p className="label-tech text-teal-600">{content.eyebrow}</p>
               <p className="mt-1.5 font-display text-xl font-bold text-midnight">{content.title}</p>
             </div>
             <Link

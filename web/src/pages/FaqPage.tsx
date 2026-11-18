@@ -5,6 +5,7 @@ import { AnimatedSection } from '@/components/animations/AnimatedSection'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Texture } from '@/components/Texture'
 import { FaqBrowser, QuestionCarousel, SearchBox, StillHaveQuestion, TopicTiles } from '@/components/faq/FaqSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { scrollToElement } from '@/lib/lenis'
 import { FAQ_CATALOG, FAQ_CATEGORIES, FEATURED_FAQ } from '@/data/faqCatalog'
@@ -55,8 +56,8 @@ export default function FaqPage() {
   return (
     <>
       <Seo
-        title="FAQs"
-        description="Answers to common questions about working with GULF NEXT, our nine service lines and the sectors we support, from enquiries to safety and handover."
+        title={PAGE_META['/faqs'].title}
+        description={PAGE_META['/faqs'].description}
         path="/faqs"
         jsonLd={{
           '@context': 'https://schema.org',

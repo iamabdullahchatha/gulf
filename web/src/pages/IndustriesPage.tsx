@@ -1,6 +1,7 @@
 import { CinematicFilm } from '@/components/hero/CinematicFilm'
 import { AboutFaq } from '@/components/about/AboutSections'
 import { NotListedBand, SectorConnections, SectorPanorama, StandardsFlip } from '@/components/industries/IndustriesSections'
+import { PAGE_META } from '@/config/site'
 import { Seo } from '@/lib/seo'
 import { INDUSTRIES } from '@/data/industries'
 import type { FaqItem } from '@/data/faq'
@@ -19,8 +20,8 @@ export default function IndustriesPage() {
   return (
     <>
       <Seo
-        title="Industries"
-        description="Oil and gas, petrochemical and processing, industrial construction and infrastructure, and mechanical engineering and equipment."
+        title={PAGE_META['/industries'].title}
+        description={PAGE_META['/industries'].description}
         path="/industries"
         jsonLd={{
           '@context': 'https://schema.org',
